@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<info>
+	<id>integration_opensign</id>
+	<name>Integration OpenSign</name>
+	<summary>Sign files via OpenSign Service.</summary>
+	<description>Sign files via OpenSign Service.</description>
+	<version>1.0.0</version>
+	<licence>agpl</licence>
+	<author mail="jana.peper@nextcloud.com" homepage="">Jana Peper</author>
+	<namespace>OpenSign</namespace>
+	<category>files</category>
+	<category>workflow</category>
+	<website>https://github.com/janepie/integration_opensign</website>
+	<bugs>https://github.com/janepie/integration_opensign</bugs>
+	<dependencies>
+		<nextcloud min-version="28" max-version="31"/>
+	</dependencies>
+</info>
