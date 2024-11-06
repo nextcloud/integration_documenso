@@ -100,44 +100,32 @@ export default {
 	methods: {
 		onLogoutClick() {
 			this.state.token = ''
-			this.saveOptions({ token: this.state.token, token_type: '' })
+			this.saveOptions({ token: this.state.token })
 		},
 		onInput() {
 			this.loading = true
 			delay(() => {
-				const values = {
+				this.saveOptions({
+					token: this.state.token,
 					url: this.state.url,
-				}
-				if (this.state.token !== 'dummyToken') {
-					values.token = this.state.token
-				}
-				this.saveOptions(values)
+				})
 			}, 2000)()
 		},
-		async saveOptions(values, sensitive = true) {
-			// if (sensitive) {
-			//     await confirmPassword()
-			// }
-			// TODO needed?
+		saveOptions(values) {
+			console.warn(values)
 			const req = {
 				values,
 			}
-			const url = sensitive
-				? generateUrl('/apps/integration_documenso/sensitive-config')
-				: generateUrl('/apps/integration_documenso/config')
-			return axios.put(url, req)
+			const url = generateUrl('/apps/integration_documenso/config')
+			axios.put(url, req)
 				.then((response) => {
 					showSuccess(t('integration_documenso', 'Documenso options saved'))
-					if (response.data.user_name !== undefined) {
-						this.state.user_name = response.data.user_name
-						if (this.state.token && response.data.user_name === '') {
-							showError(t('integration_documenso', 'Incorrect access token'))
-						}
-					}
 				})
 				.catch((error) => {
-					console.error(error)
-					showError(t('integration_documenso', 'Failed to save Documenso options'))
+					showError(
+						t('integration_documenso', 'Failed to save Documenso options')
+						+ ': ' + error.response.request.responseText,
+					)
 				})
 				.then(() => {
 					this.loading = false
