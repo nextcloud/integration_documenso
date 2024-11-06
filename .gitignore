@@ -9,3 +9,15 @@
 
 /node_modules/
 /js/
+
+
+
+
+.code-workspace
+.DS_Store
+.vscode/
+.vscode-upload.json
+.*.sw*
+js/*hot-update.*
+build
+.php*.cache

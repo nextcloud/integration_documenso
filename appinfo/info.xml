@@ -15,4 +15,8 @@
 	<dependencies>
 		<nextcloud min-version="28" max-version="31"/>
 	</dependencies>
+	<settings>
+		<personal>OCA\OpenSign\Settings\Personal</personal>
+		<personal-section>OCA\OpenSign\Settings\PersonalSection</personal-section>
+	</settings>
 </info>

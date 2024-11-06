@@ -1,5 +1,5 @@
 {
-	"name": "nextcloud/integrationopensign",
+	"name": "nextcloud/integration_opensign",
 	"description": "Sign files via OpenSign Service.",
 	"license": "AGPL-3.0-or-later",
 	"authors": [
