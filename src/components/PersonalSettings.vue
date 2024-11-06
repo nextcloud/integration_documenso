@@ -61,9 +61,8 @@ import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import { showSuccess, showError } from '@nextcloud/dialogs'
-// import { confirmPassword } from '@nextcloud/password-confirmation'
 
-// import { delay } from '../utils.js'
+import { delay } from '../utils.js'
 
 export default {
 	name: 'PersonalSettings',
@@ -103,22 +102,17 @@ export default {
 			this.state.token = ''
 			this.saveOptions({ token: this.state.token, token_type: '' })
 		},
-		onCheckboxChanged(newValue, key) {
-			this.state[key] = newValue
-			this.saveOptions({ [key]: this.state[key] ? '1' : '0' }, false)
-		},
 		onInput() {
 			this.loading = true
-			/* delay(() => {
+			delay(() => {
 				const values = {
 					url: this.state.url,
 				}
 				if (this.state.token !== 'dummyToken') {
 					values.token = this.state.token
-					values.token_type = this.showOAuth ? 'oauth' : 'access'
 				}
 				this.saveOptions(values)
-			}, 2000)() */
+			}, 2000)()
 		},
 		async saveOptions(values, sensitive = true) {
 			// if (sensitive) {
