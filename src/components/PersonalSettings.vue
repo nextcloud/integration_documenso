@@ -112,7 +112,6 @@ export default {
 			}, 2000)()
 		},
 		saveOptions(values) {
-			console.warn(values)
 			const req = {
 				values,
 			}

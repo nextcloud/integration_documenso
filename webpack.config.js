@@ -15,7 +15,7 @@ webpackConfig.stats = {
 const appId = 'integration_documenso'
 webpackConfig.entry = {
 	adminSettings: { import: path.join(__dirname, 'src', 'personalSettings.js'), filename: appId + '-personalSettings.js' },
-	// filesplugin: { import: path.join(__dirname, 'src', 'filesplugin.js'), filename: appId + '-filesplugin.js' },
+	filesplugin: { import: path.join(__dirname, 'src', 'filesplugin.js'), filename: appId + '-filesplugin.js' },
 }
 
 webpackConfig.plugins.push(

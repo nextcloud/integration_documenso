@@ -1,13 +1,4 @@
 <?php
-/**
- * Nextcloud - DocuSign
- *
- * This file is licensed under the Affero General Public License version 3 or
- * later. See the COPYING file.
- *
- * @author Florian Klinger <florian.klinger@nextcloud.com>
- * @copyright Florian Klinger 2023
- */
 
 declare(strict_types=1);
 
@@ -42,6 +33,19 @@ class DocumensoController extends Controller {
 		$this->config = $config;
 		$this->l = $l;
 		$this->userId = $userId;
+	}
+
+	/**
+	 * @return DataResponse
+	 */
+	#[NoAdminRequired]
+	#[FrontpageRoute(verb: 'GET', url: '/documenso/info')]
+	public function getDocumensoInfo(): DataResponse {
+		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
+		$isConnected = ($token !== '');
+		return new DataResponse([
+			'connected' => $isConnected,
+		]);
 	}
 
 	/**
