@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.3",
     "info": {
-        "title": "integrationopensign",
+        "title": "integrationdocumenso",
         "version": "0.0.1",
-        "description": "Sign files via OpenSign Service.",
+        "description": "Sign files via Documenso Service.",
         "license": {
             "name": "agpl"
         }
@@ -47,7 +47,7 @@
         }
     },
     "paths": {
-        "/ocs/v2.php/apps/integrationopensign/api": {
+        "/ocs/v2.php/apps/integrationdocumenso/api": {
             "get": {
                 "operationId": "api-index",
                 "summary": "An example API endpoint",

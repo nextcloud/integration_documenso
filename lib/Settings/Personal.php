@@ -1,8 +1,8 @@
 <?php
 
-namespace OCA\OpenSign\Settings;
+namespace OCA\Documenso\Settings;
 
-use OCA\OpenSign\AppInfo\Application;
+use OCA\Documenso\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;

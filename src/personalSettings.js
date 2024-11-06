@@ -3,4 +3,4 @@ import PersonalSettings from './components/PersonalSettings.vue'
 Vue.mixin({ methods: { t, n } })
 
 const View = Vue.extend(PersonalSettings)
-new View().$mount('#opensign_prefs')
+new View().$mount('#documenso_prefs')

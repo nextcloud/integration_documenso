@@ -1,45 +1,45 @@
 <template>
-	<div id="opensign_prefs" class="section">
+	<div id="documenso_prefs" class="section">
 		<h2>
-			<OpensignIcon class="icon" />
-			{{ t('integration_opensign', 'Opensign integration') }}
+			<DocumensoIcon class="icon" />
+			{{ t('integration_documenso', 'Documenso integration') }}
 		</h2>
-		<div id="opensign-content">
+		<div id="documenso-content">
 			<div class="line">
-				<label for="opensign-url">
+				<label for="documenso-url">
 					<EarthIcon :size="20" class="icon" />
-					{{ t('integration_opensign', 'OpenSign instance address') }}
+					{{ t('integration_documenso', 'Documenso instance address') }}
 				</label>
-				<input id="opensign-url"
+				<input id="documenso-url"
 					v-model="state.url"
 					type="text"
 					:disabled="connected === true"
-					:placeholder="t('integration_opensign', 'https://app.opensignlabs.com/')"
+					:placeholder="t('integration_documenso', 'https://app.documenso.com/')"
 					@input="onInput">
 			</div>
 			<div class="line">
-				<label for="opensign-token">
+				<label for="documenso-token">
 					<KeyIcon :size="20" class="icon" />
-					{{ t('integration_opensign', 'Access token') }}
+					{{ t('integration_documenso', 'Access token') }}
 				</label>
-				<input id="opensign-token"
+				<input id="documenso-token"
 					v-model="state.token"
 					type="password"
 					:disabled="connected === true"
-					:placeholder="t('integration_opensign', 'OpenSign access token')"
+					:placeholder="t('integration_documenso', 'Documenso access token')"
 					@input="onInput">
 			</div>
 			<div v-if="connected" class="line">
-				<label class="opensign-connected">
+				<label class="documenso-connected">
 					<CheckIcon :size="20" class="icon" />
-					{{ t('integration_opensign', 'Connected as {user}', { user: state.user_name }) }}
+					{{ t('integration_documenso', 'Connected as {user}', { user: state.user_name }) }}
 				</label>
-				<NcButton id="opensign-rm-cred"
+				<NcButton id="documenso-rm-cred"
 					@click="onLogoutClick">
 					<template #icon>
 						<CloseIcon :size="20" />
 					</template>
-					{{ t('integration_opensign', 'Disconnect from OpenSign') }}
+					{{ t('integration_documenso', 'Disconnect from Documenso') }}
 				</NcButton>
 			</div>
 		</div>
@@ -52,7 +52,7 @@ import KeyIcon from 'vue-material-design-icons/Key.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 
-import OpensignIcon from './icons/OpensignIcon.vue'
+import DocumensoIcon from './icons/DocumensoIcon.vue'
 // TODO change icon
 
 import { NcButton } from '@nextcloud/vue'
@@ -70,7 +70,7 @@ export default {
 
 	components: {
 		NcButton,
-		OpensignIcon,
+		DocumensoIcon,
 		EarthIcon,
 		KeyIcon,
 		CloseIcon,
@@ -81,10 +81,9 @@ export default {
 
 	data() {
 		return {
-			state: loadState('integration_opensign', 'user-config'),
-			initialToken: loadState('integration_opensign', 'user-config').token,
+			state: loadState('integration_documenso', 'user-config'),
+			initialToken: loadState('integration_documenso', 'user-config').token,
 			loading: false,
-			redirect_uri: window.location.protocol + '//' + window.location.host + generateUrl('/apps/integration_opensign/oauth-redirect'),
 		}
 	},
 
@@ -130,21 +129,21 @@ export default {
 				values,
 			}
 			const url = sensitive
-				? generateUrl('/apps/integration_opensign/sensitive-config')
-				: generateUrl('/apps/integration_opensign/config')
+				? generateUrl('/apps/integration_documenso/sensitive-config')
+				: generateUrl('/apps/integration_documenso/config')
 			return axios.put(url, req)
 				.then((response) => {
-					showSuccess(t('integration_opensign', 'OpenSign options saved'))
+					showSuccess(t('integration_documenso', 'Documenso options saved'))
 					if (response.data.user_name !== undefined) {
 						this.state.user_name = response.data.user_name
 						if (this.state.token && response.data.user_name === '') {
-							showError(t('integration_opensign', 'Incorrect access token'))
+							showError(t('integration_documenso', 'Incorrect access token'))
 						}
 					}
 				})
 				.catch((error) => {
 					console.error(error)
-					showError(t('integration_opensign', 'Failed to save OpenSign options'))
+					showError(t('integration_documenso', 'Failed to save Documenso options'))
 				})
 				.then(() => {
 					this.loading = false
@@ -155,8 +154,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#opensign_prefs {
-	#opensign-content {
+#documenso_prefs {
+	#documenso-content {
 		margin-left: 40px;
 	}
 	h2,

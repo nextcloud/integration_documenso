@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OCA\OpenSign\AppInfo;
+namespace OCA\Documenso\AppInfo;
 
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -10,7 +10,7 @@ use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 
 class Application extends App implements IBootstrap {
-	public const APP_ID = 'integration_opensign';
+	public const APP_ID = 'integration_documenso';
 
 	/** @psalm-suppress PossiblyUnusedMethod */
 	public function __construct() {

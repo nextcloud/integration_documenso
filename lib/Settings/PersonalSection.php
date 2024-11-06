@@ -1,6 +1,6 @@
 <?php
 
-namespace OCA\OpenSign\Settings;
+namespace OCA\Documenso\Settings;
 
 use OCP\IL10N;
 use OCP\IURLGenerator;

@@ -1,6 +1,6 @@
 {
-	"name": "nextcloud/integration_opensign",
-	"description": "Sign files via OpenSign Service.",
+	"name": "nextcloud/integration_documenso",
+	"description": "Sign files via Documenso Service.",
 	"license": "AGPL-3.0-or-later",
 	"authors": [
 		{
@@ -11,7 +11,7 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"OCA\\IntegrationOpenSign\\": "lib/"
+			"OCA\\IntegrationDocumenso\\": "lib/"
 		}
 	},
 	"scripts": {
