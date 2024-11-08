@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace OCA\Documenso\Controller;
 
 use OCA\Documenso\AppInfo\Application;
-use OCP\AppFramework\Controller;
 use OCA\Documenso\Service\DocumensoAPIService;
 use OCA\Documenso\Service\UtilsService;
+use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\Attribute\FrontpageRoute;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
@@ -22,7 +22,7 @@ class DocumensoController extends Controller {
 	/**
 	 * @var IL10N
 	 */
-	 private $l;
+	private $l;
 	/**
 	 * @var IURLGenerator
 	 */

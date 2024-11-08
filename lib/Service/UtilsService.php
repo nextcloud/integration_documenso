@@ -6,15 +6,12 @@ namespace OCA\Documenso\Service;
 
 use Exception;
 use OCA\Documenso\AppInfo\Application;
-use OCP\Constants;
 use OCP\Files\IRootFolder;
-use OCP\Files\Node;
 use OCP\IConfig;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\Security\ICrypto;
 use OCP\Share\IManager as IShareManager;
-use OCP\Share\IShare;
 use OCP\SystemTag\ISystemTagManager;
 
 class UtilsService {
@@ -66,7 +63,7 @@ class UtilsService {
 	 *
 	 * @return string
 	 * @throws Exception
-	 * TODO change docu
+	 *                   TODO change docu
 	 */
 	public function getEncryptedUserValue(string $userId, string $key): string {
 		$storedValue = $this->config->getUserValue($userId, Application::APP_ID, $key);

@@ -5,8 +5,7 @@
 	"authors": [
 		{
 			"name": "Jana Peper",
-			"email": "jana.peper@nextcloud.com",
-			"homepage": ""
+			"email": "jana.peper@nextcloud.com"
 		}
 	],
 	"autoload": {

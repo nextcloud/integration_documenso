@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace OCA\Documenso\Service;
 
-use DateTime;
 use Exception;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
@@ -20,53 +19,22 @@ use OCP\IUserManager;
 use Psr\Log\LoggerInterface;
 
 class DocumensoAPIService {
-
-	private $l10n;
-	private $logger;
-	/**
-	 * @var IUserManager
-	 */
-	private $userManager;
-	/**
-	 * @var IConfig
-	 */
-	private $config;
-	/**
-	 * @var IRootFolder
-	 */
-	private $root;
-	/**
-	 * @var string
-	 */
-	private $appName;
-	/**
-	 * @var IClient
-	 */
-	private $client;
-	/**
-	 * @var UtilsService
-	 */
-	private $utilsService;
+	private IClient $client; // stays
 
 	/**
 	 * Service to make requests to Documenso
 	 */
-	public function __construct(IUserManager $userManager,
-		string $appName,
-		LoggerInterface $logger,
-		IL10N $l10n,
-		IConfig $config,
-		IRootFolder $root,
+	public function __construct(
+		private IUserManager $userManager,
+		private LoggerInterface $logger,
+		private IL10N $l10n,
+		private IConfig $config,
+		private IRootFolder $root,
 		IClientService $clientService,
-		UtilsService $utilsService) {
-		$this->appName = $appName;
-		$this->userManager = $userManager;
-		$this->logger = $logger;
-		$this->l10n = $l10n;
-		$this->config = $config;
-		$this->root = $root;
-		$this->client = $clientService->newClient();
-		$this->utilsService = $utilsService;
+		//stays
+		private UtilsService $utilsService,
+	) {
+		$this->client = $clientService->newClient(); // stays
 	}
 
 	/**
@@ -116,7 +84,7 @@ class DocumensoAPIService {
 		$uploadEndpoint = $this->requestUploadEndpoint(
 			$file,
 			$ccUserId,
-			$signers, 
+			$signers,
 			$ccEmail, $ccName
 		);
 
@@ -145,7 +113,7 @@ class DocumensoAPIService {
 		$envelope = [
 			'title' => $file->getName(),
 			'externalId' => 'test',
-			'recipients' => $signers, 
+			'recipients' => $signers,
 			'meta' => [
 				'subject' => 'string',
 				'message' => 'test',
@@ -153,7 +121,7 @@ class DocumensoAPIService {
 		];
 
 		$endPoint = 'api/v1/documents';
-		return $this->apiRequest($baseUrl, $token,$endPoint, $envelope, 'POST');
+		return $this->apiRequest($baseUrl, $token, $endPoint, $envelope, 'POST');
 	}
 
 	public function uploadFile(File $file, array $uploadEndpoint, $ccUserId): array {
@@ -238,11 +206,11 @@ class DocumensoAPIService {
 			} else {
 				return json_decode($body, true);
 			}
-		} catch (ServerException | ClientException $e) {
+		} catch (ServerException|ClientException $e) {
 			$response = $e->getResponse();
-			$body = (string) $response->getBody();
+			$body = (string)$response->getBody();
 			// parse response
-			$this->logger->warning('Documenso API error : '.$e->getMessage(), ['app' => Application::APP_ID]);
+			$this->logger->warning('Documenso API error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			return [
 				'error' => $e->getMessage(),
 				'response' => json_decode($body, true),
