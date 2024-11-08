@@ -43,7 +43,6 @@ const requestSignatureAction = new FileAction({
 	},
 })
 registerFileAction(requestSignatureAction)
-console.warn('FileAction gets registered')
 
 // signature modal
 const modalId = 'documensoModal'
@@ -59,7 +58,7 @@ OCA.Documenso.DocumensoModalVue = new Vue({
 })
 
 // is Documenso configured?
-const urlDs = generateUrl('/apps/integration_documenso/documenso/info')
+const urlDs = generateUrl('/apps/integration_documenso/info')
 axios.get(urlDs).then((response) => {
 	OCA.Documenso.documensoConnected = response.data.connected
 }).catch((error) => {

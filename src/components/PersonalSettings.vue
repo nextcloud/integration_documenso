@@ -4,6 +4,9 @@
 			<DocumensoIcon class="icon" />
 			{{ t('integration_documenso', 'Documenso integration') }}
 		</h2>
+		<p class="settings-hint">
+			{{ t('integration_documenso', 'To create an access token, go to the "API Token" section of your Documenso User settings.') }}
+		</p>
 		<div id="documenso-content">
 			<div class="line">
 				<label for="documenso-url">

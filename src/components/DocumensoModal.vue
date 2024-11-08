@@ -127,6 +127,9 @@ export default {
 			}
 			const url = generateUrl('/apps/integration_documenso/documenso/standalone-sign/' + this.fileId)
 			axios.put(url, req).then((response) => {
+				console.warn('1')
+				window.open(response.data.documentUrl, '_blank').focus()
+				console.warn('2')
 				showSuccess(t('integration_documenso', 'Recipients will receive an email from Documenso to sign the document')) // TODO update
 				this.closeRequestModal()
 			}).catch((error) => {

@@ -113,58 +113,22 @@ class DocumensoAPIService {
 		$ccName = $ccUser->getDisplayName();
 		$ccEmail = $ccUser->getEMailAddress();
 
-		return $this->emailSignRequest(
+		$uploadEndpoint = $this->requestUploadEndpoint(
 			$file,
-			$signers,
+			$ccUserId,
+			$signers, 
 			$ccEmail, $ccName
 		);
+
+		if (isset($uploadEndpoint['error'])) {
+			return $uploadEndpoint;
+		};
+
+		return $this->uploadFile($file, $uploadEndpoint, $ccUserId);
 	}
 
 	/**
-	 * Start the Documenso email signature flow
-	 *
-	 * @param int $fileId
-	 * @param string $signerUserId
-	 * @param string|null $ccUserId
-	 * @return array result or error
-	 */
-	public function emailSignByApprover(int $fileId, string $signerUserId, ?string $ccUserId = null): array {
-		$found = $this->root->getById($fileId);
-		if (count($found) > 0) {
-			$file = $found[0];
-		} else {
-			return ['error' => 'File not found'];
-		}
-
-		$signerUser = $this->userManager->get($signerUserId);
-		if ($signerUser === null) {
-			return ['error' => 'Signer user not found'];
-		}
-		$signer = [
-			'email' => $signerUser->getEMailAddress(),
-			'name' => $signerUser->getDisplayName(),
-		];
-
-		$ccEmail = null;
-		$ccName = null;
-		if (!is_null($ccUserId)) {
-			$ccUser = $this->userManager->get($ccUserId);
-			if ($ccUser === null) {
-				return ['error' => 'CC user not found'];
-			}
-			$ccName = $ccUser->getDisplayName();
-			$ccEmail = $ccUser->getEMailAddress();
-		}
-
-		return $this->emailSignRequest(
-			$file,
-			[$signer],
-			$ccEmail, $ccName
-		);
-	}
-
-	/**
-	 * Build and sent the enveloppe to Documenso
+	 * Build and sent the envelope to Documenso
 	 *
 	 * @param File $file
 	 * @param array $signers
@@ -172,68 +136,44 @@ class DocumensoAPIService {
 	 * @param string|null $ccName
 	 * @return array request result
 	 */
-	public function emailSignRequest(File $file,
-		array $signers,
-		?string $ccEmail, ?string $ccName): array {
-		$accessToken = $this->utilsService->getEncryptedAppValue('token');
-		$baseURI = $this->config->getAppValue(Application::APP_ID, 'url');
 
-		$docB64 = base64_encode($file->getContent());
-		$enveloppe = [
-			'emailSubject' => $this->l10n->t('Signature of %s', $file->getName()),
-			'documents' => [
-				[
-					'documentBase64' => $docB64,
-					'name' => $file->getName(),
-					'fileExtension' => 'pdf',
-					'documentId' => $file->getId(),
-				],
+	public function requestUploadEndpoint(File $file, ?string $ccUserId, array $signers,
+		?string $ccEmail, ?string $ccName): array {
+		$token = $this->utilsService->getEncryptedUserValue($ccUserId, 'token');
+		$baseUrl = $this->config->getUserValue($ccUserId, Application::APP_ID, 'url');
+
+		$envelope = [
+			'title' => $file->getName(),
+			'externalId' => 'test',
+			'recipients' => $signers, 
+			'meta' => [
+				'subject' => 'string',
+				'message' => 'test',
 			],
-			'recipients' => [
-				'carbonCopies' => [],
-				'signers' => [],
-			],
-			'status' => 'sent',
 		];
 
-		// signers
-		foreach ($signers as $k => $signer) {
-			$enveloppe['recipients']['signers'][] = [
-				'email' => $signer['email'],
-				'name' => $signer['name'],
-				'recipientId' => intval($k) + 1,
-				'routingOrder' => '1',
-				'tabs' => [
-					'signHereTabs' => [
-						[
-							'anchorString' => '**signature_1**',
-							'anchorUnits' => 'pixels',
-							'anchorXOffset' => '20',
-							'anchorYOffset' => '10',
-						],
-						[
-							'anchorString' => '/sn1/',
-							'anchorUnits' => 'pixels',
-							'anchorXOffset' => '20',
-							'anchorYOffset' => '10',
-						],
-					],
-				],
+		$endPoint = 'api/v1/documents';
+		return $this->apiRequest($baseUrl, $token,$endPoint, $envelope, 'POST');
+	}
+
+	public function uploadFile(File $file, array $uploadEndpoint, $ccUserId): array {
+		$options = [
+			'body' => $file->getContent(),
+		];
+
+		$response = $this->client->put($uploadEndpoint['uploadUrl'], $options);
+		$body = $response->getBody();
+		$respCode = $response->getStatusCode();
+
+		if ($respCode >= 400) {
+			return ['error' => $this->l10n->t('Bad credentials')];
+		} else {
+			$baseUrl = $this->config->getUserValue($ccUserId, Application::APP_ID, 'url');
+			return [
+				'body' => json_decode($body, true),
+				'documentUrl' => $baseUrl . 'documents/' . $uploadEndpoint['documentId'] . '/edit',
 			];
 		}
-
-		// CC is optional
-		if ($ccName && $ccEmail) {
-			$enveloppe['recipients']['carbonCopies'][] = [
-				'email' => $ccEmail,
-				'name' => $ccName,
-				'recipientId' => '99',
-				'routingOrder' => '99',
-			];
-		}
-
-		$endPoint = '/restapi/v2.1/accounts/' . $accountId .'/envelopes';
-		return $this->apiRequest($baseURI, $accessToken, $refreshToken, $clientID, $clientSecret, $endPoint, $enveloppe, 'POST');
 	}
 
 	/**
@@ -248,17 +188,14 @@ class DocumensoAPIService {
 	 * @return array
 	 * @throws Exception
 	 */
-	public function apiRequest(?string $baseUrl, string $accessToken, string $refreshToken,
-		string $clientId, string $clientSecret,
+	public function apiRequest(?string $baseUrl, string $token,
 		string $endPoint = '', array $params = [], string $method = 'GET'): array {
 
-		$accessToken = $this->utilsService->getEncryptedAppValue('documenso_token');
 		try {
 			$url = $baseUrl . $endPoint;
 			$options = [
 				'headers' => [
-					'Authorization' => 'Bearer ' . $accessToken,
-					'User-Agent' => 'Nextcloud Documenso integration',
+					'Authorization' => $token,
 					'Content-Type' => 'application/json',
 				]
 			];
@@ -309,61 +246,9 @@ class DocumensoAPIService {
 			return [
 				'error' => $e->getMessage(),
 				'response' => json_decode($body, true),
+				'request' => $options,
 			];
 		} catch (ConnectException $e) {
-			return ['error' => $e->getMessage()];
-		}
-	}
-
-	/**
-	 * @param string $url
-	 * @param string $clientId
-	 * @param string $clientSecret
-	 * @param array $params
-	 * @param string $method
-	 * @return array
-	 */
-	public function requestOAuthAccessToken(string $url, string $clientId, string $clientSecret,
-		array $params = [], string $method = 'GET'): array {
-		try {
-			$b64Credentials = base64_encode($clientId . ':' . $clientSecret);
-			$options = [
-				'headers' => [
-					'User-Agent' => 'Nextcloud Documenso integration',
-					'Authorization' => 'Basic ' . $b64Credentials,
-				],
-			];
-
-			if (count($params) > 0) {
-				if ($method === 'GET') {
-					$paramsContent = http_build_query($params);
-					$url .= '?' . $paramsContent;
-				} else {
-					$options['body'] = $params;
-				}
-			}
-
-			if ($method === 'GET') {
-				$response = $this->client->get($url, $options);
-			} elseif ($method === 'POST') {
-				$response = $this->client->post($url, $options);
-			} elseif ($method === 'PUT') {
-				$response = $this->client->put($url, $options);
-			} elseif ($method === 'DELETE') {
-				$response = $this->client->delete($url, $options);
-			} else {
-				return ['error' => $this->l10n->t('Bad HTTP method')];
-			}
-			$body = $response->getBody();
-			$respCode = $response->getStatusCode();
-
-			if ($respCode >= 400) {
-				return ['error' => $this->l10n->t('OAuth access token refused')];
-			} else {
-				return json_decode($body, true);
-			}
-		} catch (Exception $e) {
-			$this->logger->warning('Documenso OAuth error : '.$e->getMessage(), ['app' => $this->appName]);
 			return ['error' => $e->getMessage()];
 		}
 	}
