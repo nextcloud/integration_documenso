@@ -10,6 +10,7 @@ use OCA\Documenso\Service\UtilsService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\Attribute\FrontpageRoute;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -102,13 +103,14 @@ class DocumensoController extends Controller {
 	 * @throws PreConditionNotMetException
 	 */
 	#[NoAdminRequired]
+	#[PasswordConfirmationRequired]
 	#[FrontpageRoute(verb: 'PUT', url: '/config')]
 	public function setConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
 			if ($key === 'token' && $value !== '') {
 				$this->utilsService->setEncryptedUserValue($this->userId, $key, trim($value));
 			} else {
-				$this->config->setUserValue($this->userId, Application::APP_ID, $key, trim($value));
+				$this->config->setUserValue($this->userId, Application::APP_ID, $key, trim($value, " /\n\r\t\v\x00") . "/");
 			}
 		}
 

@@ -64,6 +64,7 @@ import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import { showSuccess, showError } from '@nextcloud/dialogs'
+import { confirmPassword } from '@nextcloud/password-confirmation'
 
 import { delay } from '../utils.js'
 
@@ -109,12 +110,18 @@ export default {
 			this.loading = true
 			delay(() => {
 				this.saveOptions({
-					token: this.state.token,
 					url: this.state.url,
 				})
+				console.warn(this.state.token)
+				if (!'dummyToken'.includes(this.state.token)) {
+					this.saveOptions({
+						token: this.state.token,
+					})
+				}
 			}, 2000)()
 		},
-		saveOptions(values) {
+		async saveOptions(values) {
+			await confirmPassword()
 			const req = {
 				values,
 			}

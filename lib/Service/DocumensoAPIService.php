@@ -55,7 +55,8 @@ class DocumensoAPIService {
 		}
 
 		$signers = [];
-
+		// $mailExisting = false;
+		$missingMailCount = 0;
 		foreach ($targetEmails as $targetEmail) {
 			$signers[] = [
 				'name' => $targetEmail,
@@ -65,13 +66,17 @@ class DocumensoAPIService {
 
 		foreach ($targetUserIds as $targetUserId) {
 			$targetUser = $this->userManager->get($targetUserId);
-			if ($targetUser !== null) {
+			if ($targetUser !== null && $targetUser->getEMailAddress() !== null) {
 				$signers[] = [
 					'name' => $targetUser->getDisplayName(),
 					'email' => $targetUser->getEMailAddress(),
 				];
 			}
+			else {
+				$missingMailCount ++;
+			}
 		}
+		
 
 		// cc user is the one who requested the signature
 		$ccUser = $this->userManager->get($ccUserId);
@@ -92,7 +97,9 @@ class DocumensoAPIService {
 			return $uploadEndpoint;
 		};
 
-		return $this->uploadFile($file, $uploadEndpoint, $ccUserId);
+		$response = $this->uploadFile($file, $uploadEndpoint, $ccUserId);
+		$response['missingMailCount'] = $missingMailCount;
+		return $response;
 	}
 
 	/**
@@ -112,11 +119,9 @@ class DocumensoAPIService {
 
 		$envelope = [
 			'title' => $file->getName(),
-			'externalId' => 'test',
 			'recipients' => $signers,
 			'meta' => [
-				'subject' => 'string',
-				'message' => 'test',
+				'signingOrder' => 'PARALLEL',
 			],
 		];
 

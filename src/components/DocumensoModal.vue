@@ -44,6 +44,18 @@
 						</template>
 					</NcButton>
 				</div>
+				<NcDialog
+					:open.sync="showDialog"
+					name="Warning"
+					:message="t('integration_documenso', 'Some users did not have a mail address assigned to their account. They were not added as signers.')"
+					:can-close="false">
+					<template #actions>
+						<NcButton
+							@click="missingMailConfirmation">
+							{{ t('integration_documenso', 'OK') }}
+						</NcButton>
+					</template>
+				</NcDialog>
 			</div>
 		</NcModal>
 	</div>
@@ -52,6 +64,7 @@
 <script>
 import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
 import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
 import NcLoadingIcon from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 import NcEmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
 
@@ -60,7 +73,7 @@ import DocumensoIcon from './icons/DocumensoIcon.vue'
 
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
-import { showSuccess, showError } from '@nextcloud/dialogs'
+import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'DocumensoModal',
@@ -72,6 +85,7 @@ export default {
 		NcButton,
 		NcLoadingIcon,
 		NcEmptyContent,
+		NcDialog,
 	},
 
 	props: [],
@@ -82,6 +96,8 @@ export default {
 			loading: false,
 			fileId: 0,
 			selectedItems: [],
+			showDialog: false,
+			documentUrl: '',
 		}
 	},
 
@@ -127,11 +143,14 @@ export default {
 			}
 			const url = generateUrl('/apps/integration_documenso/documenso/standalone-sign/' + this.fileId)
 			axios.put(url, req).then((response) => {
-				console.warn('1')
-				window.open(response.data.documentUrl, '_blank').focus()
-				console.warn('2')
-				showSuccess(t('integration_documenso', 'Recipients will receive an email from Documenso to sign the document')) // TODO update
-				this.closeRequestModal()
+				console.warn(response.data.missingMailCount)
+				this.documentUrl = response.data.documentUrl
+
+				if (response.data.missingMailCount === 0) {
+					this.openDocumentTab()
+				} else {
+					this.showDialog = true
+				}
 			}).catch((error) => {
 				console.debug(error.response)
 				showError(
@@ -141,6 +160,19 @@ export default {
 			}).then(() => {
 				this.loading = false
 			})
+		},
+		missingMailConfirmation() {
+			this.openDocumentTab()
+			this.showDialog = false
+
+		},
+		openDocumentTab() {
+			try {
+				window.open(this.documentUrl, '_blank').focus()
+			} catch (error) {
+				showError(t('integration_documenso', 'Please allow pop-up windows.'))
+			}
+			this.closeRequestModal()
 		},
 	},
 }
