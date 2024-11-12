@@ -18,40 +18,16 @@ use OCP\IRequest;
 use OCP\IURLGenerator;
 
 class DocumensoController extends Controller {
-	private $userId;
-	private $config;
-	/**
-	 * @var IL10N
-	 */
-	private $l;
-	/**
-	 * @var IURLGenerator
-	 */
-	private $urlGenerator;
-	/**
-	 * @var DocumensoAPIService
-	 */
-	private $documensoAPIService;
-	/**
-	 * @var UtilsService
-	 */
-	private $utilsService;
 
 	public function __construct($AppName,
 		IRequest $request,
-		IConfig $config,
-		IL10N $l,
-		IURLGenerator $urlGenerator,
-		DocumensoAPIService $documensoAPIService,
-		UtilsService $utilsService,
-		?string $userId) {
+		private IConfig $config,
+		private IL10N $l,
+		private IURLGenerator $urlGenerator,
+		private DocumensoAPIService $documensoAPIService,
+		private UtilsService $utilsService,
+		private ?string $userId) {
 		parent::__construct($AppName, $request);
-		$this->config = $config;
-		$this->l = $l;
-		$this->urlGenerator = $urlGenerator;
-		$this->documensoAPIService = $documensoAPIService;
-		$this->utilsService = $utilsService;
-		$this->userId = $userId;
 	}
 
 	/**

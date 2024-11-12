@@ -55,7 +55,6 @@ class DocumensoAPIService {
 		}
 
 		$signers = [];
-		// $mailExisting = false;
 		$missingMailCount = 0;
 		foreach ($targetEmails as $targetEmail) {
 			$signers[] = [
@@ -103,17 +102,16 @@ class DocumensoAPIService {
 	}
 
 	/**
-	 * Build and sent the envelope to Documenso
+	 * Build and send the envelope to Documenso
 	 *
 	 * @param File $file
+	 * @param ?string $ccUserId 
 	 * @param array $signers
-	 * @param string|null $ccEmail
-	 * @param string|null $ccName
 	 * @return array request result
 	 */
 
-	public function requestUploadEndpoint(File $file, ?string $ccUserId, array $signers,
-		?string $ccEmail, ?string $ccName): array {
+	public function requestUploadEndpoint(File $file, ?string $ccUserId, 
+		array $signers,): array {
 		$token = $this->utilsService->getEncryptedUserValue($ccUserId, 'token');
 		$baseUrl = $this->config->getUserValue($ccUserId, Application::APP_ID, 'url');
 
@@ -129,6 +127,14 @@ class DocumensoAPIService {
 		return $this->apiRequest($baseUrl, $token, $endPoint, $envelope, 'POST');
 	}
 
+	/**
+	 * Send the document to a provided upload endpoint
+	 *
+	 * @param File $file
+	 * @param array $uploadEndpoint 
+	 * @param mixed $ccUserId 
+	 * @return array request result
+	 */
 	public function uploadFile(File $file, array $uploadEndpoint, $ccUserId): array {
 		$options = [
 			'body' => $file->getContent(),
@@ -151,14 +157,11 @@ class DocumensoAPIService {
 
 	/**
 	 * @param string|null $baseUrl
-	 * @param string $accessToken
-	 * @param string $refreshToken
-	 * @param string $clientId
-	 * @param string $clientSecret
+	 * @param string $token
 	 * @param string $endPoint
 	 * @param array $params
 	 * @param string $method
-	 * @return array
+	 * @return array request result
 	 * @throws Exception
 	 */
 	public function apiRequest(?string $baseUrl, string $token,

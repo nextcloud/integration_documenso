@@ -110,7 +110,6 @@ export default {
 				this.saveOptions({
 					url: this.state.url,
 				})
-				console.warn(this.state.token)
 				if (!'dummyToken'.includes(this.state.token)) {
 					this.saveOptions({
 						token: this.state.token,

@@ -143,7 +143,6 @@ export default {
 			}
 			const url = generateUrl('/apps/integration_documenso/documenso/standalone-sign/' + this.fileId)
 			axios.put(url, req).then((response) => {
-				console.warn(response.data.missingMailCount)
 				this.documentUrl = response.data.documentUrl
 
 				if (response.data.missingMailCount === 0) {
