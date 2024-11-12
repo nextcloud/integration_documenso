@@ -25,7 +25,7 @@
 					@update:value="updateSelectedItems($event)" />
 				<NcEmptyContent
 					:name="t('integration_documenso', 'Documenso workflow')"
-					:description="t('integration_documenso', 'Recipients will receive an email from Documenso with a link to sign the document. You will be informed by email when the document has been signed by all recipients.')">
+					:description="t('integration_documenso', 'The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing.')">
 					<template #icon>
 						<DocumensoIcon />
 					</template>
@@ -38,7 +38,7 @@
 					<NcButton type="primary"
 						:disabled="!canValidate"
 						@click="onSignClick">
-						{{ t('integration_documenso', 'Request signature') }}
+						{{ t('integration_documenso', 'Send document') }}
 						<template v-if="loading" #icon>
 							<NcLoadingIcon />
 						</template>
