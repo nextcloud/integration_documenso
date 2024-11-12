@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OCA\Documenso\AppInfo;
 
+use OCA\Documenso\Dashboard\DocumensoWidget;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -30,6 +31,7 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function register(IRegistrationContext $context): void {
+		$context->registerDashboardWidget(DocumensoWidget::class);
 	}
 
 	public function boot(IBootContext $context): void {
