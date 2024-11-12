@@ -5,6 +5,6 @@ module.exports = {
 	rules: {
 		'jsdoc/require-jsdoc': 'off',
 		'vue/first-attribute-linebreak': 'off',
-		'import/extensions': 'off'
+		// 'import/extensions': 'off'
 	},
 }

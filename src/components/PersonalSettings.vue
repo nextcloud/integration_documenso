@@ -56,8 +56,6 @@ import CloseIcon from 'vue-material-design-icons/Close.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 
 import DocumensoIcon from './icons/DocumensoIcon.vue'
-// TODO change icon
-
 import { NcButton } from '@nextcloud/vue'
 
 import { loadState } from '@nextcloud/initial-state'
