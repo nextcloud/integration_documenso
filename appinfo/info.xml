@@ -10,8 +10,8 @@
 	<namespace>Documenso</namespace>
 	<category>files</category>
 	<category>workflow</category>
-	<website>https://github.com/janepie/integration_documenso</website>
-	<bugs>https://github.com/janepie/integration_documenso</bugs>
+	<website>https://github.com/nextcloud/integration_documenso</website>
+	<bugs>https://github.com/nextcloud/integration_documenso</bugs>
 	<dependencies>
 		<nextcloud min-version="28" max-version="31"/>
 	</dependencies>
