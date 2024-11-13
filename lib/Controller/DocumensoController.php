@@ -76,6 +76,29 @@ class DocumensoController extends Controller {
 		}
 	}
 
+	/**
+	 * get all Documenso documents available
+	 *
+	 * @return DataResponse
+	 * @throws PreConditionNotMetException
+	 */
+	#[NoAdminRequired]
+	#[FrontpageRoute(verb: 'GET', url: '/documenso/get-documents')]
+	public function getAllDocuments(): DataResponse {
+		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
+		$url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url');
+		$isConnected = ($token !== '' && $url !== '');
+		if (!$isConnected) {
+			return new DataResponse(['error' => 'Documenso connected account is not configured'], 401);
+		}
+		$signResult = $this->documensoAPIService->getDocumentList($this->userId);
+		if (isset($signResult['error'])) {
+			return new DataResponse($signResult, 401);
+		} else {
+			return new DataResponse($signResult);
+		}
+	}
+
 
 	/**
 	 * Set config values
