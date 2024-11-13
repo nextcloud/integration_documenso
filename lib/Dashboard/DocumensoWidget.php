@@ -108,11 +108,11 @@ class DocumensoWidget implements IButtonWidget, IIconWidget, IReloadableWidget {
                 $documentUrl = $url . 'documents/' . $document['id'];
                 $status = $document['status'];
                 if ($status === 'COMPLETED') {
-                    $subtitle = 'Completed';
+                    $subtitle = $this->l10n->t('Completed');
                 } else if ($status === 'DRAFT') {
-                    $subtitle = 'Not sent';
+                    $subtitle = $this->l10n->t('Not sent');
                 } else if ($status === 'PENDING') {
-                    $subtitle = 'Waiting for signatures';
+                    $subtitle = $this->l10n->t('Waiting for signatures');
                 } else {
                     $subtitle = $status;
                 }
