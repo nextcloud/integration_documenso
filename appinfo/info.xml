@@ -13,7 +13,7 @@
 	<website>https://github.com/nextcloud/integration_documenso</website>
 	<bugs>https://github.com/nextcloud/integration_documenso</bugs>
 	<dependencies>
-		<nextcloud min-version="28" max-version="31"/>
+		<nextcloud min-version="29" max-version="31"/>
 	</dependencies>
 	<settings>
 		<personal>OCA\Documenso\Settings\Personal</personal>

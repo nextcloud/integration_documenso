@@ -71,7 +71,7 @@ class UtilsService {
 		if ($user instanceof IUser) {
 			$userFolder = $this->root->getUserFolder($userId);
 			$found = $userFolder->getById($fileId);
-			return count($found) > 0;
+			return !empty($found);
 		}
 		return false;
 	}

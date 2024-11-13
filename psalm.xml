@@ -6,7 +6,7 @@
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
     findUnusedBaselineEntry="true"
-    findUnusedCode="true"
+    findUnusedCode="false"
 >
     <projectFiles>
         <directory name="lib" />
@@ -17,4 +17,16 @@
 	<extraFiles>
 		<directory name="vendor"/>
 	</extraFiles>
+    <issueHandlers>
+		<UndefinedClass>
+			<errorLevel type="suppress">
+                <referencedClass name="GuzzleHttp\Exception\ConnectException" />
+                <referencedClass name="GuzzleHttp\Exception\ClientException" />
+                <referencedClass name="GuzzleHttp\Exception\ServerException" />
+			</errorLevel>
+		</UndefinedClass>
+	</issueHandlers>
+    <stubs>
+		<file name="tests/stubs/oc_hooks_emitter.php" />
+	</stubs>
 </psalm>
