@@ -63,10 +63,10 @@ class UtilsService {
 	 * Check if user has access to a given file
 	 *
 	 * @param int $fileId
-	 * @param string|null $userId
+	 * @param string $userId
 	 * @return bool
 	 */
-	public function userHasAccessTo(int $fileId, ?string $userId): bool {
+	public function userHasAccessTo(int $fileId, string $userId): bool {
 		$user = $this->userManager->get($userId);
 		if ($user instanceof IUser) {
 			$userFolder = $this->root->getUserFolder($userId);

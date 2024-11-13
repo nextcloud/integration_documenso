@@ -8,6 +8,7 @@ use OCA\Documenso\AppInfo\Application;
 use OCA\Documenso\Service\DocumensoAPIService;
 use OCA\Documenso\Service\UtilsService;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\FrontpageRoute;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
@@ -19,7 +20,7 @@ use OCP\IURLGenerator;
 
 class DocumensoController extends Controller {
 
-	public function __construct($AppName,
+	public function __construct(string $AppName,
 		IRequest $request,
 		private IConfig $config,
 		private IL10N $l,
@@ -36,6 +37,9 @@ class DocumensoController extends Controller {
 	#[NoAdminRequired]
 	#[FrontpageRoute(verb: 'GET', url: '/info')]
 	public function getDocumensoInfo(): DataResponse {
+		if ($this->userId === null) {
+			return new DataResponse(['error' => 'no user in context'], Http::STATUS_UNAUTHORIZED);
+		}
 		$token = $this->utilsService->getEncryptedUserValue($this->userId, 'token');
 		$isConnected = ($token !== '');
 		return new DataResponse([
@@ -45,14 +49,16 @@ class DocumensoController extends Controller {
 
 	/**
 	 * @param int $fileId
-	 * @param array $targetEmails
-	 * @param array $targetUserIds
+	 * @param string[] $targetEmails
+	 * @param string[] $targetUserIds
 	 * @return DataResponse
 	 */
 	#[NoAdminRequired]
 	#[FrontpageRoute(verb: 'PUT', url: '/documenso/standalone-sign/{fileId}')]
 	public function signStandalone(int $fileId, array $targetEmails = [], array $targetUserIds = []): DataResponse {
-		// $token = $this->utilsService->getEncryptedUserValue($this->userId, 'token');
+		if ($this->userId === null) {
+			return new DataResponse(['error' => 'no user in context'], Http::STATUS_UNAUTHORIZED);
+		}
 		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
 		$url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url');
 		$isConnected = ($token !== '' && $url !== '');
@@ -74,14 +80,16 @@ class DocumensoController extends Controller {
 	/**
 	 * Set config values
 	 *
-	 * @param array $values
+	 * @param array<string, string> $values
 	 * @return DataResponse
-	 * @throws PreConditionNotMetException
 	 */
 	#[NoAdminRequired]
 	#[PasswordConfirmationRequired]
 	#[FrontpageRoute(verb: 'PUT', url: '/config')]
 	public function setConfig(array $values): DataResponse {
+		if ($this->userId === null) {
+			return new DataResponse(['error' => 'no user in context'], Http::STATUS_UNAUTHORIZED);
+		}
 		foreach ($values as $key => $value) {
 			if ($key === 'token' && $value !== '') {
 				$this->utilsService->setEncryptedUserValue($this->userId, $key, trim($value));

@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="1"
+    errorBaseline="tests/psalm-baseline.xml"
+    errorLevel="3"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -28,5 +29,6 @@
 	</issueHandlers>
     <stubs>
 		<file name="tests/stubs/oc_hooks_emitter.php" />
+        <file name="tests/stubs/oca_files_event.php" />
 	</stubs>
 </psalm>

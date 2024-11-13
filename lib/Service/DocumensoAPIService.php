@@ -12,6 +12,7 @@ use OCA\Documenso\AppInfo\Application;
 use OCP\Files\File;
 use OCP\Files\IRootFolder;
 use OCP\Http\Client\IClient;
+use OCP\Http\Client\IResponse;
 use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -42,13 +43,14 @@ class DocumensoAPIService {
 	 *
 	 * @param int $fileId
 	 * @param string $ccUserId
-	 * @param array $targetEmails
-	 * @param array $targetUserIds
+	 * @param string[] $targetEmails
+	 * @param string[] $targetUserIds
 	 * @return array result or error
 	 */
 	public function emailSignStandalone(int $fileId, string $ccUserId, array $targetEmails = [], array $targetUserIds = []): array {
 		$found = $this->root->getById($fileId);
 		if (count($found) > 0) {
+			/** @var File $file */
 			$file = $found[0];
 		} else {
 			return ['error' => 'File not found'];
@@ -89,7 +91,6 @@ class DocumensoAPIService {
 			$file,
 			$ccUserId,
 			$signers,
-			$ccEmail, $ccName
 		);
 
 		if (isset($uploadEndpoint['error'])) {
@@ -105,16 +106,17 @@ class DocumensoAPIService {
 	 * Build and send the envelope to Documenso
 	 *
 	 * @param File $file
-	 * @param ?string $ccUserId 
+	 * @param string $ccUserId 
 	 * @param array $signers
 	 * @return array request result
 	 */
 
-	public function requestUploadEndpoint(File $file, ?string $ccUserId, 
+	public function requestUploadEndpoint(File $file, string $ccUserId, 
 		array $signers,): array {
 		$token = $this->utilsService->getEncryptedUserValue($ccUserId, 'token');
 		$baseUrl = $this->config->getUserValue($ccUserId, Application::APP_ID, 'url');
 
+		/** @var array<string, string|string[]> $envelope */
 		$envelope = [
 			'title' => $file->getName(),
 			'recipients' => $signers,
@@ -132,15 +134,16 @@ class DocumensoAPIService {
 	 *
 	 * @param File $file
 	 * @param array $uploadEndpoint 
-	 * @param mixed $ccUserId 
+	 * @param string $ccUserId 
 	 * @return array request result
 	 */
-	public function uploadFile(File $file, array $uploadEndpoint, $ccUserId): array {
+	public function uploadFile(File $file, array $uploadEndpoint, string $ccUserId): array {
 		$options = [
 			'body' => $file->getContent(),
 		];
 
 		$response = $this->client->put($uploadEndpoint['uploadUrl'], $options);
+		/** @var string $body */
 		$body = $response->getBody();
 		$respCode = $response->getStatusCode();
 
@@ -156,26 +159,26 @@ class DocumensoAPIService {
 	}
 
 	/**
-	 * @param string|null $baseUrl
+	 * @param string $baseUrl
 	 * @param string $token
 	 * @param string $endPoint
-	 * @param array $params
+	 * @param array<string, string|string[]> $params
 	 * @param string $method
 	 * @return array request result
 	 * @throws Exception
 	 */
-	public function apiRequest(?string $baseUrl, string $token,
+	public function apiRequest(string $baseUrl, string $token,
 		string $endPoint = '', array $params = [], string $method = 'GET'): array {
 
-		try {
-			$url = $baseUrl . $endPoint;
-			$options = [
-				'headers' => [
-					'Authorization' => $token,
-					'Content-Type' => 'application/json',
-				]
-			];
+		$url = $baseUrl . $endPoint;
+		$options = [
+			'headers' => [
+				'Authorization' => $token,
+				'Content-Type' => 'application/json',
+			]
+		];
 
+		try {
 			if (count($params) > 0) {
 				if ($method === 'GET') {
 					// manage array parameters
@@ -206,6 +209,7 @@ class DocumensoAPIService {
 			} else {
 				return ['error' => $this->l10n->t('Bad HTTP method')];
 			}
+			/** @var string $body */
 			$body = $response->getBody();
 			$respCode = $response->getStatusCode();
 

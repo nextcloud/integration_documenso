@@ -21,6 +21,7 @@ class Application extends App implements IBootstrap {
 
 		$container = $this->getContainer();
 
+		/** @var IEventDispatcher $eventDispatcher */
 		$eventDispatcher = $container->get(IEventDispatcher::class);
 		// load files plugin script
 		$eventDispatcher->addListener(LoadAdditionalScriptsEvent::class, function () {
