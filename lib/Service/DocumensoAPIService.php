@@ -158,6 +158,17 @@ class DocumensoAPIService {
 		}
 	}
 
+
+	public function getDocumentList($UserId): array {
+		$token = $this->utilsService->getEncryptedUserValue($UserId, 'token');
+		$baseUrl = $this->config->getUserValue($UserId, Application::APP_ID, 'url');
+		$endPoint = 'api/v1/documents';
+		$params = [
+			'perPage' => 10,
+		];
+		return $this->apiRequest($baseUrl, $token, $endPoint, $params);
+	}
+
 	/**
 	 * @param string $baseUrl
 	 * @param string $token
