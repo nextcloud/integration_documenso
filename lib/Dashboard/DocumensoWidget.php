@@ -104,10 +104,21 @@ class DocumensoWidget implements IButtonWidget, IIconWidget, IReloadableWidget {
 		if (isset($response['error'])) {
 			$emptyMessage = $this->l10n->t('Documenso service not available');
 		} else {
-            // $number = array_keys($response)[2];
             foreach ($response['documents'] as $document) {
                 $documentUrl = $url . 'documents/' . $document['id'];
-                $items[] = new WidgetItem($document['title'], '', $documentUrl);
+                $status = $document['status'];
+                if ($status === 'COMPLETED') {
+                    $subtitle = 'Completed';
+                } else if ($status === 'DRAFT') {
+                    $subtitle = 'Not sent';
+                } else if ($status === 'PENDING') {
+                    $subtitle = 'Waiting for signatures';
+                } else {
+                    $subtitle = $status;
+                }
+
+
+                $items[] = new WidgetItem($document['title'], $subtitle, $documentUrl);
             }
 		}
 
