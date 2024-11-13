@@ -163,7 +163,10 @@ class DocumensoAPIService {
 		$token = $this->utilsService->getEncryptedUserValue($UserId, 'token');
 		$baseUrl = $this->config->getUserValue($UserId, Application::APP_ID, 'url');
 		$endPoint = 'api/v1/documents';
-		return $this->apiRequest($baseUrl, $token, $endPoint);
+		$params = [
+			'perPage' => 10,
+		];
+		return $this->apiRequest($baseUrl, $token, $endPoint, $params);
 	}
 
 	/**
