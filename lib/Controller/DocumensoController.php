@@ -20,14 +20,16 @@ use OCP\IURLGenerator;
 
 class DocumensoController extends Controller {
 
-	public function __construct(string $AppName,
+	public function __construct(
+		string $AppName,
 		IRequest $request,
 		private IConfig $config,
 		private IL10N $l,
 		private IURLGenerator $urlGenerator,
 		private DocumensoAPIService $documensoAPIService,
 		private UtilsService $utilsService,
-		private ?string $userId) {
+		private ?string $userId,
+	) {
 		parent::__construct($AppName, $request);
 	}
 
@@ -77,30 +79,6 @@ class DocumensoController extends Controller {
 	}
 
 	/**
-	 * get all Documenso documents available
-	 *
-	 * @return DataResponse
-	 * @throws PreConditionNotMetException
-	 */
-	#[NoAdminRequired]
-	#[FrontpageRoute(verb: 'GET', url: '/documenso/get-documents')]
-	public function getAllDocuments(): DataResponse {
-		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
-		$url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url');
-		$isConnected = ($token !== '' && $url !== '');
-		if (!$isConnected) {
-			return new DataResponse(['error' => 'Documenso connected account is not configured'], 401);
-		}
-		$signResult = $this->documensoAPIService->getDocumentList($this->userId);
-		if (isset($signResult['error'])) {
-			return new DataResponse($signResult, 401);
-		} else {
-			return new DataResponse($signResult);
-		}
-	}
-
-
-	/**
 	 * Set config values
 	 *
 	 * @param array<string, string> $values
@@ -117,7 +95,7 @@ class DocumensoController extends Controller {
 			if ($key === 'token' && $value !== '') {
 				$this->utilsService->setEncryptedUserValue($this->userId, $key, trim($value));
 			} else {
-				$this->config->setUserValue($this->userId, Application::APP_ID, $key, trim($value, " /\n\r\t\v\x00") . "/");
+				$this->config->setUserValue($this->userId, Application::APP_ID, $key, trim($value, " /\n\r\t\v\x00") . '/');
 			}
 		}
 

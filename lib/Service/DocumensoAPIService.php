@@ -12,7 +12,6 @@ use OCA\Documenso\AppInfo\Application;
 use OCP\Files\File;
 use OCP\Files\IRootFolder;
 use OCP\Http\Client\IClient;
-use OCP\Http\Client\IResponse;
 use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
@@ -72,8 +71,7 @@ class DocumensoAPIService {
 					'name' => $targetUser->getDisplayName(),
 					'email' => $targetUser->getEMailAddress(),
 				];
-			}
-			else {
+			} else {
 				$missingMailCount ++;
 			}
 		}
@@ -106,13 +104,13 @@ class DocumensoAPIService {
 	 * Build and send the envelope to Documenso
 	 *
 	 * @param File $file
-	 * @param string $ccUserId 
+	 * @param string $ccUserId
 	 * @param array $signers
 	 * @return array request result
 	 */
 
-	public function requestUploadEndpoint(File $file, string $ccUserId, 
-		array $signers,): array {
+	public function requestUploadEndpoint(File $file, string $ccUserId,
+		array $signers, ): array {
 		$token = $this->utilsService->getEncryptedUserValue($ccUserId, 'token');
 		$baseUrl = $this->config->getUserValue($ccUserId, Application::APP_ID, 'url');
 
@@ -133,8 +131,8 @@ class DocumensoAPIService {
 	 * Send the document to a provided upload endpoint
 	 *
 	 * @param File $file
-	 * @param array $uploadEndpoint 
-	 * @param string $ccUserId 
+	 * @param array $uploadEndpoint
+	 * @param string $ccUserId
 	 * @return array request result
 	 */
 	public function uploadFile(File $file, array $uploadEndpoint, string $ccUserId): array {
@@ -158,11 +156,17 @@ class DocumensoAPIService {
 		}
 	}
 
+	/**
+	 * Get a list of all documents from Documenso
+	 * @param string $userId
+	 * @return array request result
+	 */
 
-	public function getDocumentList($UserId): array {
-		$token = $this->utilsService->getEncryptedUserValue($UserId, 'token');
-		$baseUrl = $this->config->getUserValue($UserId, Application::APP_ID, 'url');
+	public function getDocumentList($userId): array {
+		$token = $this->utilsService->getEncryptedUserValue($userId, 'token');
+		$baseUrl = $this->config->getUserValue($userId, Application::APP_ID, 'url');
 		$endPoint = 'api/v1/documents';
+		/** @var array<string, string|string[]> $params */
 		$params = [
 			'perPage' => 10,
 		];

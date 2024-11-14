@@ -18,19 +18,22 @@ class UtilsService {
 	/**
 	 * Service providing storage, circles and tags tools
 	 */
-	public function __construct(string $appName,
+	public function __construct(
+		string $appName,
 		private IUserManager $userManager,
 		private IShareManager $shareManager,
 		private IRootFolder $root,
 		private ISystemTagManager $tagManager,
 		private IConfig $config,
-		private ICrypto $crypto) {	}
+		private ICrypto $crypto,
+	) {
+	}
 
 	/**
 	 * Get decrypted user value
 	 *
-	 * @param string $userId 
-	 * @param string $key 
+	 * @param string $userId
+	 * @param string $key
 	 * @return string
 	 * @throws Exception
 	 */
@@ -45,8 +48,8 @@ class UtilsService {
 	/**
 	 * Store encrypted user secret
 	 *
-	 * @param string $userId 
-	 * @param string $key 
+	 * @param string $userId
+	 * @param string $key
 	 * @param string $value
 	 * @return void
 	 */
