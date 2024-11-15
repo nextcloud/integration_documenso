@@ -6,7 +6,7 @@
 	<description>Sign files via Documenso Service.</description>
 	<version>1.0.3</version>
 	<licence>agpl</licence>
-	<author mail="jana.peper@nextcloud.com" homepage="">Jana Peper</author>
+	<author mail="jana.peper@nextcloud.com">Jana Peper</author>
 	<namespace>Documenso</namespace>
 	<category>files</category>
 	<category>workflow</category>
