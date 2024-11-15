@@ -1,0 +1,7 @@
+{ "translations": {
+    "Connected accounts" : "Свързани профили",
+    "Users or email addresses" : "Потребители или имейл адреси",
+    "OK" : "Добре",
+    "Access token" : "Токен за достъп"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
