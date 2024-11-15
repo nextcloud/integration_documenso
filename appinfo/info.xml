@@ -4,7 +4,7 @@
 	<name>Integration Documenso</name>
 	<summary>Sign files via Documenso Service.</summary>
 	<description>Sign files via Documenso Service.</description>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<licence>agpl</licence>
 	<author mail="jana.peper@nextcloud.com" homepage="">Jana Peper</author>
 	<namespace>Documenso</namespace>
@@ -12,6 +12,9 @@
 	<category>workflow</category>
 	<website>https://github.com/nextcloud/integration_documenso</website>
 	<bugs>https://github.com/nextcloud/integration_documenso</bugs>
+	<screenshot>https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_1.png?raw=true</screenshot>
+	<screenshot>https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_2.png?raw=true</screenshot>
+	<screenshot>https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_3.png?raw=true</screenshot>
 	<dependencies>
 		<nextcloud min-version="29" max-version="31"/>
 	</dependencies>
