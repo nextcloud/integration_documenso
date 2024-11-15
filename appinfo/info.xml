@@ -4,7 +4,7 @@
 	<name>Integration Documenso</name>
 	<summary>Sign files via Documenso Service.</summary>
 	<description>Sign files via Documenso Service.</description>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<licence>agpl</licence>
 	<author mail="jana.peper@nextcloud.com" homepage="">Jana Peper</author>
 	<namespace>Documenso</namespace>
