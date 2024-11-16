@@ -11,6 +11,7 @@ OC.L10N.register(
     "No recommendations. Start typing." : "Nessun consiglio. Inizia a scrivere.",
     "Who?" : "Chi?",
     "Impossible to get user/group/circle list" : "Impossibile recuperare la lista utenti/gruppi/cerchie",
+    "https://app.documenso.com/" : "https://app.documenso.com/",
     "Access token" : "Token di accesso",
     "Connected as {user}" : "Connesso come {user}"
 },

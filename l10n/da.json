@@ -1,5 +1,8 @@
 { "translations": {
     "Connected accounts" : "Forbundne konti",
-    "OK" : "OK"
+    "Cancel" : "Annullér",
+    "OK" : "OK",
+    "No recommendations. Start typing." : "Ingen anbefalinger. Begynd at skrive.",
+    "Connected as {user}" : "Forbundet som {user}"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

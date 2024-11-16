@@ -1,4 +1,5 @@
 { "translations": {
-    "OK" : "Akcepti"
+    "OK" : "Akcepti",
+    "No recommendations. Start typing." : "Neniu propono. Ektajpu."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -1,4 +1,5 @@
 { "translations": {
-    "Cancel" : "չեղարկել"
+    "Cancel" : "Canzelar",
+    "OK" : "OK"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
