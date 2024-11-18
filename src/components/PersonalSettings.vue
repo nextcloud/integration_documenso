@@ -17,7 +17,7 @@
 					v-model="state.url"
 					type="text"
 					:disabled="connected === true"
-					:placeholder="t('integration_documenso', 'https://app.documenso.com/')"
+					placeholder='https://app.documenso.com/'
 					@input="onInput">
 			</div>
 			<div class="line">
