@@ -70,7 +70,7 @@ class DocumensoWidget implements IButtonWidget, IIconWidget, IReloadableWidget {
 	 * @inheritDoc
 	 */
 	public function getUrl(): ?string {
-		return $this->urlGenerator->linkToRouteAbsolute('integration_documenso.view.index');
+		return $this->config->getUserValue($this->userId, Application::APP_ID, 'url');
 	}
 
 	/**
@@ -103,27 +103,27 @@ class DocumensoWidget implements IButtonWidget, IIconWidget, IReloadableWidget {
 		} else {
 			foreach ($response['documents'] as $document) {
 				$documentUrl = $url . 'documents/' . $document['id'];
+				$icon = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $document['title'], 'size' => 44, 'darkTheme' => true,]);
+				$overlayIcon = $this->urlGenerator->imagePath('integration_documenso', 'dash_pending.svg');
 				$status = $document['status'];
 				if ($status === 'COMPLETED') {
 					$subtitle = $this->l10n->t('Completed');
+					$overlayIcon = $this->urlGenerator->imagePath('integration_documenso', 'dash_complete.svg');
 				} elseif ($status === 'DRAFT') {
-					$subtitle = $this->l10n->t('Not sent');
+					$subtitle = $this->l10n->t('Draft');
+					$overlayIcon = $this->urlGenerator->imagePath('integration_documenso', 'dash_draft.svg');
 				} elseif ($status === 'PENDING') {
 					$subtitle = $this->l10n->t('Waiting for signatures');
+					$overlayIcon = $this->urlGenerator->imagePath('integration_documenso', 'dash_pending.svg');
 				} else {
 					$subtitle = $status;
+					$overlayIcon = $this->urlGenerator->imagePath('integration_documenso', 'app_dark.svg');
 				}
 
-
-				$items[] = new WidgetItem($document['title'], $subtitle, $documentUrl);
+				$items[] = new WidgetItem($document['title'], $subtitle, $documentUrl, $icon, '', $overlayIcon);
 			}
 		}
 
-
-
-
-		// $item = new WidgetItem('Dokumenttitel', 'hier Infos einfügen', 'https://app.documenso.com/documents/');
-		// $items = [$item];
 		return new WidgetItems(
 			$items,
 			$emptyMessage,
@@ -137,8 +137,8 @@ class DocumensoWidget implements IButtonWidget, IIconWidget, IReloadableWidget {
 		return [
 			new WidgetButton(
 				WidgetButton::TYPE_MORE,
-				$this->urlGenerator->linkToRouteAbsolute('integration_documenso.view.index'),
-				$this->l10n->t('More items'),
+				$this->config->getUserValue($this->userId, Application::APP_ID, 'url'),
+				$this->l10n->t('More documents'),
 			),
 		];
 	}
