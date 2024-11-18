@@ -16,3 +16,4 @@ Once the credentials are added, the 'Sign Document' option will become available
 ![1](https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_1.png?raw=true)
 ![2](https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_2.png?raw=true)
 ![3](https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_3.png?raw=true)
+![4](https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_4.png?raw=true)

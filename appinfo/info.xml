@@ -15,6 +15,7 @@
 	<screenshot>https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_1.png?raw=true</screenshot>
 	<screenshot>https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_2.png?raw=true</screenshot>
 	<screenshot>https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_3.png?raw=true</screenshot>
+	<screenshot>https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_4.png?raw=true</screenshot>
 	<dependencies>
 		<nextcloud min-version="29" max-version="31"/>
 	</dependencies>
