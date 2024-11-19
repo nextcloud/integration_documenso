@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Terminat",
+    "Draft" : "Schiță",
     "Bad credentials" : "Credențiale greșite",
     "Bad HTTP method" : "Metodă HTTP nepotrivită",
     "Connected accounts" : "Conturile conectate",

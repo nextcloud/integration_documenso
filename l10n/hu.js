@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Teljesített",
+    "Draft" : "Piszkozat",
     "Bad credentials" : "Hibás hitelesítő adatok",
     "Bad HTTP method" : "Hibás HTTP metódus",
     "Connected accounts" : "Kapcsolt fiókok",

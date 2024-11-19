@@ -1,4 +1,5 @@
 { "translations": {
+    "Completed" : "Lõpetatud",
     "Cancel" : "Tühista",
     "No recommendations. Start typing." : "Soovitusi pole. Alusta trükkimist."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

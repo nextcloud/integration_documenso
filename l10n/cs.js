@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Draft" : "Koncept",
     "Bad credentials" : "Nesprávné přihlašovací údaje",
     "Bad HTTP method" : "Nesprávná HTTP metoda",
     "Connected accounts" : "Propojené účty",
@@ -24,7 +25,6 @@ OC.L10N.register(
     "Documenso integration" : "Napojení na Documenso",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Pokud si chcete vytvořit přístupový token, jděte do sekce „Token k API“ v Nastaveních uživatele v Documenso.",
     "Documenso instance address" : "Adresa instance Documenso",
-    "https://app.documenso.com/" : "https://app.documenso.com/",
     "Access token" : "Přístupový token",
     "Documenso access token" : "Přístupový token k Documenso",
     "Connected as {user}" : "Připojeni jako {user}",

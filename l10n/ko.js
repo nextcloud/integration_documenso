@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "완료됨",
+    "Draft" : "초안",
     "Bad credentials" : "옳지 않은 자격 증명",
     "Bad HTTP method" : "옳지 않은 HTTP 메소드",
     "Connected accounts" : "계정 연결됨",
@@ -24,7 +26,6 @@ OC.L10N.register(
     "Documenso integration" : "Documenso 통합",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "접근 토큰을 생성하기위해서 Documenso  사용자 설정의 \"API 토큰\" 부분으로 이동합니다.",
     "Documenso instance address" : "Documenso 인스턴스 주소",
-    "https://app.documenso.com/" : "https://app.documenso.com/",
     "Access token" : "접근 토큰",
     "Documenso access token" : "Documenso 접근 토큰",
     "Connected as {user}" : "{user}로 연결됨",

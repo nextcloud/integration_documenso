@@ -1,4 +1,5 @@
 { "translations": {
+    "Completed" : "დასრულებული",
     "Cancel" : "გაუქმება",
     "OK" : "ნორმალური"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"

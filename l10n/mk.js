@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Завршено",
+    "Draft" : "Шаблон",
     "Bad credentials" : "Неточни акредитиви",
     "Connected accounts" : "Поврзани сметки",
     "Cancel" : "Откажи",

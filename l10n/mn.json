@@ -1,4 +1,5 @@
 { "translations": {
+    "Completed" : "Гүйцэтгэгдсэн",
     "Cancel" : "Цуцлах",
     "OK" : "ЗА"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

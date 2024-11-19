@@ -1,4 +1,6 @@
 { "translations": {
+    "Completed" : "Ολοκληρωμένες",
+    "Draft" : "Πρόχειρο",
     "Bad credentials" : "Εσφαλμένα διαπιστευτήρια",
     "Bad HTTP method" : "Κακή μέθοδος HTTP",
     "Connected accounts" : "Συνδεδεμένοι λογαριασμοί",

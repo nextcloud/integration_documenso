@@ -1,4 +1,6 @@
 { "translations": {
+    "Completed" : "Ferdig",
+    "Draft" : "Kladd",
     "Bad credentials" : "Påloggingsdetaljene er feil",
     "Bad HTTP method" : "HTTP-metode er feil",
     "Connected accounts" : "Tilknyttede kontoer",

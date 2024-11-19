@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Pabeigts",
     "Bad credentials" : "Nederīgi pieteikšanās dati",
     "Bad HTTP method" : "Nederīgs HTTP pieprasījuma veids",
     "Connected accounts" : "Savienotie konti",

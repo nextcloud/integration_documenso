@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Fullført",
     "Connected accounts" : "Tilkopla kontoar",
     "OK" : "Greitt"
 },

@@ -1,4 +1,5 @@
 { "translations": {
+    "Completed" : "Fullført",
     "Connected accounts" : "Tilkopla kontoar",
     "OK" : "Greitt"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Ολοκληρωμένες",
+    "Draft" : "Πρόχειρο",
     "Bad credentials" : "Εσφαλμένα διαπιστευτήρια",
     "Bad HTTP method" : "Κακή μέθοδος HTTP",
     "Connected accounts" : "Συνδεδεμένοι λογαριασμοί",

@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Dokončené",
+    "Draft" : "Koncept",
     "Bad credentials" : "Nesprávne prihlasovacie údaje",
     "Bad HTTP method" : "Zlá metóda HTTP",
     "Connected accounts" : "Prepojené účty",

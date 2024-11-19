@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "已完成",
+    "Draft" : "草稿",
     "Bad credentials" : "錯誤的身份驗證",
     "Bad HTTP method" : "不正確的 HTTP 方法",
     "Connected accounts" : "已連線的賬號",

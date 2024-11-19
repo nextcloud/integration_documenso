@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Finalizado",
+    "Draft" : "Rascunho",
     "Bad credentials" : "Credenciais inválidas",
     "Bad HTTP method" : "Método HTTP incorreto",
     "Connected accounts" : "Contas conectadas",
@@ -24,7 +26,6 @@ OC.L10N.register(
     "Documenso integration" : "Integração Documenso",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Para criar seu token de acesso, vá para a seção \"API Token\" nas suas configurações de usuário na Documenso",
     "Documenso instance address" : "Endereço da instância Documenso",
-    "https://app.documenso.com/" : "https://app.documenso.com/",
     "Access token" : "Token de acesso",
     "Documenso access token" : "Token de acesso Documenso",
     "Connected as {user}" : "Conectado como {user}",

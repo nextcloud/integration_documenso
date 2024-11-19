@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Slutförd",
+    "Draft" : "Utkast",
     "Bad credentials" : "Ogiltiga inloggningsuppgifter",
     "Bad HTTP method" : "Felaktig HTTP-metod",
     "Connected accounts" : "Anslutna konton",

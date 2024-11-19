@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Coileanta",
     "Cancel" : "Sguir dheth",
     "OK" : "Ceart ma-thà"
 },

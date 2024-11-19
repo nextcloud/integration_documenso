@@ -1,4 +1,6 @@
 { "translations": {
+    "Completed" : "Terminé",
+    "Draft" : "Brouillon",
     "Bad credentials" : "Identifiants incorrects",
     "Bad HTTP method" : "Mauvaise méthode HTTP",
     "Connected accounts" : "Comptes connectés",
@@ -13,7 +15,6 @@
     "Who?" : "Qui ?",
     "Users or groups" : "Utilisateurs ou groupes",
     "Impossible to get user/group/circle list" : "Impossible d'obtenir la liste d'utilisateurs/groupes/cercles",
-    "https://app.documenso.com/" : "https://app.documenso.com/",
     "Access token" : "Jeton d'accès",
     "Connected as {user}" : "Connecté en tant que {user}"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"

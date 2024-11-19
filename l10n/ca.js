@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Draft" : "Esborrany",
     "Bad credentials" : "Credencials dolentes",
     "Bad HTTP method" : "Mètode HTTP incorrecte",
     "Connected accounts" : "Comptes connectats",

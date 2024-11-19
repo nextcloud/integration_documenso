@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Hoàn thành",
     "Bad credentials" : "Thông tin đăng nhập không hợp lệ.",
     "Bad HTTP method" : "Phương thức HTTP không hợp lệ",
     "Connected accounts" : "Đã kết nối tài khoản",

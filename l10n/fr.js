@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Terminé",
+    "Draft" : "Brouillon",
     "Bad credentials" : "Identifiants incorrects",
     "Bad HTTP method" : "Mauvaise méthode HTTP",
     "Connected accounts" : "Comptes connectés",
@@ -15,7 +17,6 @@ OC.L10N.register(
     "Who?" : "Qui ?",
     "Users or groups" : "Utilisateurs ou groupes",
     "Impossible to get user/group/circle list" : "Impossible d'obtenir la liste d'utilisateurs/groupes/cercles",
-    "https://app.documenso.com/" : "https://app.documenso.com/",
     "Access token" : "Jeton d'accès",
     "Connected as {user}" : "Connecté en tant que {user}"
 },

@@ -1,4 +1,6 @@
 { "translations": {
+    "Completed" : "Críochnaithe",
+    "Draft" : "Dréacht",
     "Bad credentials" : "Dintiúir dona",
     "Bad HTTP method" : "Droch-mhodh HTTP",
     "Connected accounts" : "Cuntais nasctha",
@@ -22,7 +24,6 @@
     "Documenso integration" : "Comhtháthú Documenso",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Chun comhartha rochtana a chruthú, téigh chuig an rannán \"API Token\" de do shocruithe Documenso User.",
     "Documenso instance address" : "Seoladh shampla doiciméid",
-    "https://app.documenso.com/" : "https://app.documenso.com/",
     "Access token" : "Comhartha rochtana",
     "Documenso access token" : "Comhartha rochtana Documenso",
     "Connected as {user}" : "Ceangailte mar {user}",

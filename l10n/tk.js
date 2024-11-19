@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Tamamlanan",
     "Cancel" : "ýatyrmak",
     "OK" : "Bolýar"
 },

@@ -1,4 +1,5 @@
 { "translations": {
+    "Completed" : "Tamamlanan",
     "Cancel" : "ýatyrmak",
     "OK" : "Bolýar"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

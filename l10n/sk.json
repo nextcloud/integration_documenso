@@ -1,4 +1,6 @@
 { "translations": {
+    "Completed" : "Dokončené",
+    "Draft" : "Koncept",
     "Bad credentials" : "Nesprávne prihlasovacie údaje",
     "Bad HTTP method" : "Zlá metóda HTTP",
     "Connected accounts" : "Prepojené účty",

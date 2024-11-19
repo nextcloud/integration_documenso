@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "完了",
+    "Draft" : "下書き",
     "Bad credentials" : "不正な資格情報",
     "Connected accounts" : "接続済みアカウント",
     "Cancel" : "キャンセル",

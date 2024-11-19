@@ -1,4 +1,5 @@
 { "translations": {
+    "Completed" : "Concluída",
     "Bad credentials" : "Credenciais inválidas",
     "Bad HTTP method" : "Método HTTP incorreto",
     "Cancel" : "Cancelar",

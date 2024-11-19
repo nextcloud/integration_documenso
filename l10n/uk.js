@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Виконано",
+    "Draft" : "Чернетка",
     "Bad credentials" : "Погані дані авторизації",
     "Bad HTTP method" : "Поганий метод HTTP",
     "Connected accounts" : "Підключені облікові записи",

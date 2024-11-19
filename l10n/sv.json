@@ -1,4 +1,6 @@
 { "translations": {
+    "Completed" : "Slutförd",
+    "Draft" : "Utkast",
     "Bad credentials" : "Ogiltiga inloggningsuppgifter",
     "Bad HTTP method" : "Felaktig HTTP-metod",
     "Connected accounts" : "Anslutna konton",

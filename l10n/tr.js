@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Tamamlanmış",
+    "Draft" : "Taslak",
     "Bad credentials" : "Kimlik doğrulama bilgileri hatalı",
     "Bad HTTP method" : "HTTP yöntemi hatalı",
     "Connected accounts" : "Bağlı hesaplar",

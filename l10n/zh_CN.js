@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "已完成",
+    "Draft" : "草稿",
     "Bad credentials" : "错误的凭据",
     "Bad HTTP method" : "错误的 HTTP 方法",
     "Connected accounts" : "已关联的账号",
@@ -24,7 +26,6 @@ OC.L10N.register(
     "Documenso integration" : "Documenso 集成",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "要创建访问令牌，请转到 Documenso 用户设置的“API 令牌”部分。",
     "Documenso instance address" : "Documenso 实例地址",
-    "https://app.documenso.com/" : "https://app.documenso.com/",
     "Access token" : "访问令牌",
     "Documenso access token" : "Documenso 访问令牌",
     "Connected as {user}" : "已作为{user}连接",

@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "تاماملاندى",
+    "Draft" : "لايىھە",
     "Bad credentials" : "ناچار كىنىشكا",
     "Bad HTTP method" : "ناچار HTTP ئۇسۇلى",
     "Connected accounts" : "ئۇلانغان ھېساباتلار",

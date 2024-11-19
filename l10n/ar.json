@@ -22,7 +22,6 @@
     "Documenso integration" : "التكامل مع Documenso",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "لإنشاء أَمَارَة للوصول access token، إذهب إلى قسم \"API Token\" في إعدادات المستخدم في Documenso.",
     "Documenso instance address" : "عنوان خادوم Documenso",
-    "https://app.documenso.com/" : "https://app.documenso.com/",
     "Access token" : "أَمَارَة الوصول access token",
     "Documenso access token" : "أَمَارَة الوصول access token إلى Documenso",
     "Connected as {user}" : "متّصلٌ بصفته {user}",

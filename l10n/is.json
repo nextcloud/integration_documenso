@@ -1,4 +1,5 @@
 { "translations": {
+    "Completed" : "Lokið",
     "Bad credentials" : "Gölluð auðkenni",
     "Connected accounts" : "Tengdir aðgangar",
     "Cancel" : "Hætta við",

@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Voltooid",
+    "Draft" : "Concept",
     "Bad credentials" : "Foute inloggegevens",
     "Bad HTTP method" : "Foute HTTP methode",
     "Connected accounts" : "Verbonden accounts",

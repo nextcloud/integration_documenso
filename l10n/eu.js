@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Osatua",
+    "Draft" : "Zirriborroa",
     "Bad credentials" : "Kredentzial okerrak",
     "Bad HTTP method" : "HTTP metodo okerra",
     "Connected accounts" : "Konektatutako kontuak",

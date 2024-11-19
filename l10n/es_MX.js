@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Completado",
     "Cancel" : "Cancelar",
     "OK" : "Aceptar",
     "No recommendations. Start typing." : "Sin recomendaciones. Empiece a escribir."

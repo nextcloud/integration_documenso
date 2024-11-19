@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "დასრულებული",
     "Cancel" : "გაუქმება",
     "OK" : "ნორმალური"
 },

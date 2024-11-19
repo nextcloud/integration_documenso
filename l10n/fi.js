@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Valmiit",
+    "Draft" : "Luonnos",
     "Bad credentials" : "Virheelliset kirjautumistiedot",
     "Bad HTTP method" : "Virheellinen HTTP-metodi",
     "Connected accounts" : "Yhdistetyt tilit",
