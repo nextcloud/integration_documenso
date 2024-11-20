@@ -1,7 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
-    "Completed" : "Benötigt keine Übersetzung. Hier wird nur die formelle Übersetzung verwendet (de_DE).",
+    "Completed" : "Fertiggestellt",
     "Draft" : "Entwurf",
     "Bad credentials" : "Falsche Anmeldeinformationen",
     "Bad HTTP method" : "Ungültige HTTP-Methode",

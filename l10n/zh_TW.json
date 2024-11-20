@@ -1,6 +1,12 @@
 { "translations": {
+    "Documenso" : "Documenso",
+    "No documents" : "沒有文件",
+    "Documenso is not connected" : "未連結 Documenso",
+    "Documenso service not available" : "無法使用 Documenso 服務",
     "Completed" : "已完成",
     "Draft" : "草稿",
+    "Waiting for signatures" : "等待簽署",
+    "More documents" : "更多文件",
     "Bad credentials" : "錯誤的憑證",
     "Bad HTTP method" : "錯誤的 HTTP 方法",
     "Connected accounts" : "已連結的帳號",

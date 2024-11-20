@@ -1,4 +1,12 @@
 { "translations": {
+    "Documenso" : "Documenso",
+    "No documents" : "لا توجد مستندات",
+    "Documenso is not connected" : "Documenso غير متصل",
+    "Documenso service not available" : "خدمة Documenso غير متاحة",
+    "Completed" : "مُكتمل",
+    "Draft" : "مبدئي",
+    "Waiting for signatures" : "في انتظار التواقيع",
+    "More documents" : "مستندات أخرى",
     "Bad credentials" : "بيانات تسجيل الدخول غير صحيحة",
     "Bad HTTP method" : "وظيفة HTTP  غير صحيحة",
     "Connected accounts" : "حسابات مترابطة",
