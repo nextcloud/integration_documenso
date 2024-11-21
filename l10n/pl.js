@@ -1,8 +1,12 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Documenso" : "Documenso",
+    "No documents" : "Brak dokumentów",
     "Completed" : "Zakończone",
     "Draft" : "Wersja robocza",
+    "Waiting for signatures" : "Oczekiwanie na podpisy",
+    "More documents" : "Więcej dokumentów",
     "Bad credentials" : "Złe poświadczenia",
     "Bad HTTP method" : "Zła metoda HTTP",
     "Connected accounts" : "Połączone konta",
