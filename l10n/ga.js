@@ -1,8 +1,14 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Documenso" : "Documenso",
+    "No documents" : "Uimh doiciméid",
+    "Documenso is not connected" : "Níl Documenso ceangailte",
+    "Documenso service not available" : "Níl seirbhís Documenso ar fáil",
     "Completed" : "Críochnaithe",
     "Draft" : "Dréacht",
+    "Waiting for signatures" : "Ag fanacht le sínithe",
+    "More documents" : "Tuilleadh doiciméad",
     "Bad credentials" : "Dintiúir dona",
     "Bad HTTP method" : "Droch-mhodh HTTP",
     "Connected accounts" : "Cuntais nasctha",

@@ -3,6 +3,8 @@ OC.L10N.register(
     {
     "Completed" : "Užbaigta",
     "Draft" : "Juodraštis",
+    "Waiting for signatures" : "Laukiama parašų",
+    "More documents" : "Daugiau dokumentų",
     "Bad credentials" : "Blogi prisijungimo duomenys",
     "Bad HTTP method" : "Blogas HTTP metodas",
     "Connected accounts" : "Prijungtos paskyros",
