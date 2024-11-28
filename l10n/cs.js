@@ -1,7 +1,14 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Documenso" : "Documenso",
+    "No documents" : "Žádné dokumenty",
+    "Documenso is not connected" : "Documenso není připojeno",
+    "Documenso service not available" : "Služba Documenso není k dispozici",
+    "Completed" : "Dokončeno",
     "Draft" : "Koncept",
+    "Waiting for signatures" : "Čeká se na podpisy",
+    "More documents" : "Další dokumenty",
     "Bad credentials" : "Nesprávné přihlašovací údaje",
     "Bad HTTP method" : "Nesprávná HTTP metoda",
     "Connected accounts" : "Propojené účty",
