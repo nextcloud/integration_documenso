@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Documenso" : "Documenso",
     "Completed" : "Osatua",
     "Draft" : "Zirriborroa",
     "Bad credentials" : "Kredentzial okerrak",
