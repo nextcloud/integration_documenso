@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Fuldført",
     "Connected accounts" : "Forbundne konti",
     "Cancel" : "Annullér",
     "OK" : "OK",

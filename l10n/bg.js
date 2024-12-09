@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Completed" : "Завършен",
     "Draft" : "Чернова",
     "Bad credentials" : "Лоши идентификационни данни",
     "Bad HTTP method" : "Лош HTTP метод",
