@@ -1,9 +1,16 @@
 { "translations": {
+    "No documents" : "Ingen dokumenter",
     "Completed" : "Fuldført",
+    "Draft" : "Kladde",
     "Connected accounts" : "Forbundne konti",
+    "Users or email addresses" : "Brugere eller e-mailadresser",
+    "Nextcloud users or email addresses" : "Nextcloud brugere eller e-mailadresser",
     "Cancel" : "Annullér",
     "OK" : "OK",
     "No recommendations. Start typing." : "Ingen anbefalinger. Begynd at skrive.",
+    "Who?" : "Hvem?",
+    "Users or groups" : "Brugere af grupper",
+    "Impossible to get user/group/circle list" : "Umuligt at hente bruger/gruppe/cirkel liste",
     "Connected as {user}" : "Forbundet som {user}"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
