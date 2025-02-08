@@ -12,6 +12,7 @@ OC.L10N.register(
     "OK" : "OK",
     "No recommendations. Start typing." : "Žiadne odporúčania. Môžete začať písať.",
     "Who?" : "Kto?",
+    "Users or groups" : "Užívatelia lebo skupiny",
     "Impossible to get user/group/circle list" : "Nie je možné získať zoznam používateľov/skupín/kruhov",
     "Access token" : "Prístupový token",
     "Connected as {user}" : "Pripojený ako {user}"
