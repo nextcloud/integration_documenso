@@ -2,6 +2,7 @@ OC.L10N.register(
     "integration_documenso",
     {
     "Completed" : "Lokið",
+    "Draft" : "Drög",
     "Bad credentials" : "Gölluð auðkenni",
     "Connected accounts" : "Tengdir aðgangar",
     "Cancel" : "Hætta við",
