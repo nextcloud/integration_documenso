@@ -1,7 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
-    "Cancel" : "Canzelar",
+    "Cancel" : "Cancelar",
     "OK" : "OK"
 },
 "nplurals=2; plural=(n != 1);");
