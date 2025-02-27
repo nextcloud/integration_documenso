@@ -10,9 +10,9 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Uporabniki Nextcloud oziroma elektronski naslovi",
     "Cancel" : "Prekliči",
     "OK" : "V redu",
-    "No recommendations. Start typing." : "Seznam ni na voljo, poskusite z vpisom.",
     "Who?" : "Kdo?",
     "Impossible to get user/group/circle list" : "Ni mogoče pridobiti seznama uporabnikov skupin ali kroga",
+    "No recommendations. Start typing." : "Seznam ni na voljo, poskusite z vpisom.",
     "Access token" : "Žeton dostopa",
     "Connected as {user}" : "Povezan je uporabniški račun {user}"
 },

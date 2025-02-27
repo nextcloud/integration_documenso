@@ -12,6 +12,8 @@
     "Connected accounts" : "Account connessi",
     "Integration Documenso" : "Integrazione di Documenso",
     "Sign files via Documenso Service." : "Firma i file tramite il servizio Documenso.",
+    "Failed to request signature with Documenso" : "Impossibile richiedere la firma con Documenso",
+    "Please allow pop-up windows." : "Si prega di consentire finestre pop-up.",
     "Request a signature via Documenso" : "Richiedi una firma tramite Documenso",
     "Users or email addresses" : "Utenti o indirizzi email",
     "Nextcloud users or email addresses" : "Utenti di Nextcloud o indirizzi email",
@@ -21,12 +23,12 @@
     "Send document" : "Invia documento",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Ad alcuni utenti non era stato assegnato un indirizzo e-mail al proprio account. Non sono stati aggiunti come firmatari.",
     "OK" : "OK",
-    "Failed to request signature with Documenso" : "Impossibile richiedere la firma con Documenso",
-    "Please allow pop-up windows." : "Si prega di consentire finestre pop-up.",
-    "No recommendations. Start typing." : "Nessun consiglio. Inizia a scrivere.",
     "Who?" : "Chi?",
     "Users or groups" : "Utenti o gruppi",
     "Impossible to get user/group/circle list" : "Impossibile recuperare la lista utenti/gruppi/cerchie",
+    "No recommendations. Start typing." : "Nessun consiglio. Inizia a scrivere.",
+    "Documenso options saved" : "Opzioni di documenso salvate",
+    "Failed to save Documenso options" : "Impossibile salvare le opzioni di Documenso",
     "Documenso integration" : "Integrazione di Documenso",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Per creare un token di accesso, vai alla sezione \"Token API\" delle impostazioni utente di Documenso.",
     "Documenso instance address" : "Indirizzo istanza Documenso",
@@ -34,8 +36,6 @@
     "Documenso access token" : "Token di accesso a Documenso",
     "Connected as {user}" : "Connesso come {user}",
     "Disconnect from Documenso" : "Disconnetti da Documenso",
-    "Documenso options saved" : "Opzioni di documenso salvate",
-    "Failed to save Documenso options" : "Impossibile salvare le opzioni di Documenso",
     "Request signature with Documenso" : "Richiedi firma con Documenso"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

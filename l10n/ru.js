@@ -10,9 +10,9 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Пользователи Nextcloud или адреса email",
     "Cancel" : "Отмена",
     "OK" : "ОК",
-    "No recommendations. Start typing." : "Начните вводить имя...",
     "Who?" : "Кто?",
     "Impossible to get user/group/circle list" : "Невозможно получить список пользователей/групп/кругов",
+    "No recommendations. Start typing." : "Начните вводить имя...",
     "Access token" : "Токен доступа",
     "Connected as {user}" : "Подключено под именем {user}"
 },

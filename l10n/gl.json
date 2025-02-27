@@ -12,6 +12,8 @@
     "Connected accounts" : "Contas conectadas",
     "Integration Documenso" : "Integración de Documenso",
     "Sign files via Documenso Service." : "Asinar ficheiros a través do servizo de Documenso.",
+    "Failed to request signature with Documenso" : "Produciuse un fallo ao solicitar a sinatura con Documenso",
+    "Please allow pop-up windows." : "Permita as xanelas emerxentes.",
     "Request a signature via Documenso" : "Solicitar unha sinatura a través de Documenso",
     "Users or email addresses" : "Usuarios ou enderezos de correo-e",
     "Nextcloud users or email addresses" : "Usuarios de Nextcloud ou enderezos de correo-e",
@@ -21,12 +23,12 @@
     "Send document" : "Enviar o documento",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Algúns usuarios non tiñan un enderezo de correo asignado á súa conta. Non foron engadidos como asinantes.",
     "OK" : "Aceptar",
-    "Failed to request signature with Documenso" : "Produciuse un fallo ao solicitar a sinatura con Documenso",
-    "Please allow pop-up windows." : "Permita as xanelas emerxentes.",
-    "No recommendations. Start typing." : "Non hai recomendacións. Comece a escribir.",
     "Who?" : "Quen?",
     "Users or groups" : "Usuarios ou grupos",
     "Impossible to get user/group/circle list" : "Non é posíbel obter a lista de usuarios/grupos/círculos",
+    "No recommendations. Start typing." : "Non hai recomendacións. Comece a escribir.",
+    "Documenso options saved" : "Gardáronse as opcións de Documenso",
+    "Failed to save Documenso options" : "Produciuse un fallo ao gardar as opcións de Documenso",
     "Documenso integration" : "Integración de Documenso",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Para crear un testemuño de acceso, vaia á sección «Testemuño da API» da súa configuración de usuario de Documenso.",
     "Documenso instance address" : "Enderezo da instancia de Documenso",
@@ -34,8 +36,6 @@
     "Documenso access token" : "Testemuño de acceso a Documenso",
     "Connected as {user}" : "Conectado como {user}",
     "Disconnect from Documenso" : "Desconectar de Documenso",
-    "Documenso options saved" : "Gardáronse as opcións de Documenso",
-    "Failed to save Documenso options" : "Produciuse un fallo ao gardar as opcións de Documenso",
     "Request signature with Documenso" : "Solicita a sinatura con Documenso"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

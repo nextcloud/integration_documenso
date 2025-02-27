@@ -10,8 +10,8 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Χρήστες Nextcloud ή διευθύνσεις ηλεκτρονικού ταχυδρομείου",
     "Cancel" : "Ακύρωση",
     "OK" : "ΟΚ",
-    "No recommendations. Start typing." : "Δεν υπάρχουν συστάσεις. Αρχίστε να πληκτρολογείτε.",
     "Who?" : "Ποιος;",
+    "No recommendations. Start typing." : "Δεν υπάρχουν συστάσεις. Αρχίστε να πληκτρολογείτε.",
     "Access token" : "Διακριτικό πρόσβασης",
     "Connected as {user}" : "Συνδεδεμένος ως {user}"
 },

@@ -16,10 +16,10 @@
     "Send document" : "Send dokument",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Nogle brugere havde ikke tildelt en mailadresse til deres konto. De blev ikke tilføjet som underskrivere.",
     "OK" : "OK",
-    "No recommendations. Start typing." : "Ingen anbefalinger. Begynd at skrive.",
     "Who?" : "Hvem?",
     "Users or groups" : "Brugere af grupper",
     "Impossible to get user/group/circle list" : "Umuligt at hente bruger/gruppe/cirkel liste",
+    "No recommendations. Start typing." : "Ingen anbefalinger. Begynd at skrive.",
     "Access token" : "Adgangstoken",
     "Connected as {user}" : "Forbundet som {user}"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

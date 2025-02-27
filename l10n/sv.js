@@ -10,10 +10,10 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Nextcloud-användare eller e-postadresser",
     "Cancel" : "Avbryt",
     "OK" : "OK",
-    "No recommendations. Start typing." : "Inga rekommendationer. Börja skriva.",
     "Who?" : "Vem?",
     "Users or groups" : "Användare och grupper",
     "Impossible to get user/group/circle list" : "Omöjligt att få lista över användare/grupp/cirklar",
+    "No recommendations. Start typing." : "Inga rekommendationer. Börja skriva.",
     "Access token" : "Åtkomst-token",
     "Connected as {user}" : "Ansluten som {user}"
 },

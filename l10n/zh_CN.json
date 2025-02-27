@@ -6,6 +6,8 @@
     "Connected accounts" : "已关联的账号",
     "Integration Documenso" : "集成 Documenso",
     "Sign files via Documenso Service." : "通过 Documenso 服务对文件进行签名。",
+    "Failed to request signature with Documenso" : "无法向 Documenso 请求签名",
+    "Please allow pop-up windows." : "请允许弹出窗口。",
     "Request a signature via Documenso" : "通过 Documenso 请求签名",
     "Users or email addresses" : "用户或电子邮箱地址",
     "Nextcloud users or email addresses" : "Nextcloud 用户或电子邮箱地址",
@@ -15,12 +17,12 @@
     "Send document" : "发送文档",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "一些用户没有为其帐号填写邮箱地址。他们没有被添加为签名者。",
     "OK" : "确定",
-    "Failed to request signature with Documenso" : "无法向 Documenso 请求签名",
-    "Please allow pop-up windows." : "请允许弹出窗口。",
-    "No recommendations. Start typing." : "无建议。开始输入。",
     "Who?" : "谁？",
     "Users or groups" : "用户或群组",
     "Impossible to get user/group/circle list" : "无法获得用户 / 群组 / 圈子列表",
+    "No recommendations. Start typing." : "无建议。开始输入。",
+    "Documenso options saved" : "Documenso 选项已保存",
+    "Failed to save Documenso options" : "无法保存 Documenso 选项",
     "Documenso integration" : "Documenso 集成",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "要创建访问令牌，请转到 Documenso 用户设置的“API 令牌”部分。",
     "Documenso instance address" : "Documenso 实例地址",
@@ -28,8 +30,6 @@
     "Documenso access token" : "Documenso 访问令牌",
     "Connected as {user}" : "已作为{user}连接",
     "Disconnect from Documenso" : "断开与 Documenso 的连接",
-    "Documenso options saved" : "Documenso 选项已保存",
-    "Failed to save Documenso options" : "无法保存 Documenso 选项",
     "Request signature with Documenso" : "请求 Documenso 签名"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

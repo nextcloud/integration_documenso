@@ -9,8 +9,8 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Utentes de Nextcloud o indiritzos de posta eletrònica",
     "Cancel" : "Annulla",
     "OK" : "AB",
-    "No recommendations. Start typing." : "Peruna racumandatzione. Cumintza a iscrìere.",
     "Who?" : "Chie?",
+    "No recommendations. Start typing." : "Peruna racumandatzione. Cumintza a iscrìere.",
     "Access token" : "Token de atzessu",
     "Connected as {user}" : "Connètidu comente {user}"
 },

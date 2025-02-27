@@ -10,9 +10,9 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Nextcloud users or email addresses",
     "Cancel" : "منصرف شدن",
     "OK" : "مورد قبول",
-    "No recommendations. Start typing." : "هیچ توصیه‌ای وجود ندارد. شروع به نوشتن کنید.",
     "Who?" : "Who?",
     "Impossible to get user/group/circle list" : "Impossible to get user/group/circle list",
+    "No recommendations. Start typing." : "هیچ توصیه‌ای وجود ندارد. شروع به نوشتن کنید.",
     "Access token" : "Access token",
     "Connected as {user}" : "متصل به عنوان {user}"
 },

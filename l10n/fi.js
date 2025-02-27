@@ -10,8 +10,8 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Nextcloud-käyttäjät tai sähköpostiosoitteet",
     "Cancel" : "Peruuta",
     "OK" : "OK",
-    "No recommendations. Start typing." : "Ei suosituksia. Aloita kirjoittaminen.",
     "Who?" : "Kuka?",
+    "No recommendations. Start typing." : "Ei suosituksia. Aloita kirjoittaminen.",
     "Access token" : "Käyttöpoletti",
     "Connected as {user}" : "Yhdistetty käyttäjänä {user}"
 },
