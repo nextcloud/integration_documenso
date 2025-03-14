@@ -4,7 +4,7 @@ OC.L10N.register(
     "Completed" : "Pabeigts",
     "Bad credentials" : "Nederīgi pieteikšanās dati",
     "Bad HTTP method" : "Nederīgs HTTP pieprasījuma veids",
-    "Connected accounts" : "Savienotie konti",
+    "Connected accounts" : "Sasaistītie konti",
     "Integration Documenso" : "Documenso iekļaušana",
     "Sign files via Documenso Service." : "Datņu parakstīšana ar Documenso pakalpojumu.",
     "Request a signature via Documenso" : "Pieprasīt parakstu caur Documenso",
