@@ -1,12 +1,19 @@
 { "translations": {
+    "Documenso" : "Dokumenter",
     "No documents" : "Ingen dokumenter",
+    "Documenso is not connected" : "Documenso er ikke forbundet",
+    "Documenso service not available" : "Documenso service ikke tilgængelig",
     "Completed" : "Gennemført",
     "Draft" : "Kladde",
+    "Waiting for signatures" : "Venter på underskrifter",
+    "More documents" : "Flere dokumenter",
     "Bad credentials" : "Forkerte legitimationsoplysninger",
     "Bad HTTP method" : "Dårlig HTTP metode",
     "Connected accounts" : "Forbundne konti",
     "Integration Documenso" : "Integration Documenso",
     "Sign files via Documenso Service." : "Signer filer via Documenso service.",
+    "Failed to request signature with Documenso" : "Kunne ikke anmode om underskrift med Documenso",
+    "Please allow pop-up windows." : "Vær venlig at tillade popup vinduer.",
     "Request a signature via Documenso" : "Anmod om en underskrift via Documenso",
     "Users or email addresses" : "Brugere eller e-mailadresser",
     "Nextcloud users or email addresses" : "Nextcloud brugere eller e-mailadresser",
@@ -20,7 +27,15 @@
     "Users or groups" : "Brugere af grupper",
     "Impossible to get user/group/circle list" : "Umuligt at hente bruger/gruppe/cirkel liste",
     "No recommendations. Start typing." : "Ingen anbefalinger. Begynd at skrive.",
+    "Documenso options saved" : "Indstillinger for Documenso gemt",
+    "Failed to save Documenso options" : "Kunne ikke gemme Documenso indstillinger",
+    "Documenso integration" : "Documensointegration",
+    "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "For at oprette en adgang token, gå til \"API Token\" afsnit af din Documenso Brugerindstillinger.",
+    "Documenso instance address" : "Documenso instance address",
     "Access token" : "Adgangstoken",
-    "Connected as {user}" : "Forbundet som {user}"
+    "Documenso access token" : "Documenso access token",
+    "Connected as {user}" : "Forbundet som {user}",
+    "Disconnect from Documenso" : "Afbryd forbindelsen fra Documenso",
+    "Request signature with Documenso" : "Anmoder om underskrift med Documenso"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
