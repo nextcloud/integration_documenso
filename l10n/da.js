@@ -1,10 +1,10 @@
 OC.L10N.register(
     "integration_documenso",
     {
-    "Documenso" : "Dokumenter",
+    "Documenso" : "Documenso",
     "No documents" : "Ingen dokumenter",
     "Documenso is not connected" : "Documenso er ikke forbundet",
-    "Documenso service not available" : "Documenso service ikke tilgængelig",
+    "Documenso service not available" : "Documenso tjeneste ikke tilgængelig",
     "Completed" : "Gennemført",
     "Draft" : "Kladde",
     "Waiting for signatures" : "Venter på underskrifter",
