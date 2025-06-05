@@ -1,5 +1,6 @@
 { "translations": {
     "Completed" : "Të plotësuara",
-    "Cancel" : "Anuloje"
+    "Cancel" : "Anuloje",
+    "OK" : "OK"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

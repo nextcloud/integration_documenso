@@ -1,6 +1,7 @@
 { "translations": {
     "Completed" : "Fullført",
     "Connected accounts" : "Tilkopla kontoar",
+    "Cancel" : "Cancel",
     "OK" : "Greitt"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

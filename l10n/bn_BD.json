@@ -1,5 +1,6 @@
 { "translations": {
     "Completed" : "সুসম্পন্ন",
-    "Cancel" : "বাতিল করুন"
+    "Cancel" : "বাতিল করুন",
+    "OK" : "OK"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

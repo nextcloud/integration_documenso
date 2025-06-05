@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Completed" : "සම්පුර්ණයි",
     "Connected accounts" : "සම්බන්ධිත ගිණුම්",
-    "Cancel" : "අවලංගු"
+    "Cancel" : "අවලංගු",
+    "OK" : "OK"
 },
 "nplurals=2; plural=(n != 1);");

@@ -1,5 +1,6 @@
 { "translations": {
     "Completed" : "Ավարտվեց",
-    "Cancel" : "չեղարկել"
+    "Cancel" : "չեղարկել",
+    "OK" : "OK"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

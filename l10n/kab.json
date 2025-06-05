@@ -1,5 +1,6 @@
 { "translations": {
     "Completed" : "Yemmed",
+    "Cancel" : "Cancel",
     "OK" : "IH"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
