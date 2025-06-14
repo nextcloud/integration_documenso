@@ -1,6 +1,7 @@
 { "translations": {
     "Completed" : "Kamilika",
     "Cancel" : "Cancel",
-    "OK" : "OK"
+    "OK" : "OK",
+    "No recommendations. Start typing." : "Hakuna maoni. Anza kuchapisha"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Completed" : "Kamilika",
     "Cancel" : "Cancel",
-    "OK" : "OK"
+    "OK" : "OK",
+    "No recommendations. Start typing." : "Hakuna maoni. Anza kuchapisha"
 },
 "nplurals=2; plural=(n != 1);");
