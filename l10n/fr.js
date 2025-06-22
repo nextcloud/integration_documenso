@@ -1,11 +1,15 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Documenso" : "Documenso",
+    "No documents" : "Aucun document",
     "Completed" : "Terminé",
     "Draft" : "Brouillon",
+    "More documents" : "Plus de documents",
     "Bad credentials" : "Identifiants incorrects",
     "Bad HTTP method" : "Mauvaise méthode HTTP",
     "Connected accounts" : "Comptes connectés",
+    "Integration Documenso" : "Intégration de Documenso",
     "Please allow pop-up windows." : "Veuillez autoriser les fenêtres pop-up.",
     "Users or email addresses" : "Utilisateurs ou adresses e-mail",
     "Nextcloud users or email addresses" : "Utilisateurs Nextcloud ou adresses mail",
@@ -17,6 +21,7 @@ OC.L10N.register(
     "Users or groups" : "Utilisateurs ou groupes",
     "Impossible to get user/group/circle list" : "Impossible d'obtenir la liste d'utilisateurs/groupes/cercles",
     "No recommendations. Start typing." : "Aucune suggestion. Commencez à écrire.",
+    "Documenso integration" : "Intégration de Documenso",
     "Access token" : "Jeton d'accès",
     "Connected as {user}" : "Connecté en tant que {user}"
 },
