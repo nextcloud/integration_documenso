@@ -5,6 +5,7 @@ OC.L10N.register(
     "No documents" : "Aucun document",
     "Completed" : "Terminé",
     "Draft" : "Brouillon",
+    "Waiting for signatures" : "En attente des signatures",
     "More documents" : "Plus de documents",
     "Bad credentials" : "Identifiants incorrects",
     "Bad HTTP method" : "Mauvaise méthode HTTP",
@@ -13,6 +14,7 @@ OC.L10N.register(
     "Please allow pop-up windows." : "Veuillez autoriser les fenêtres pop-up.",
     "Users or email addresses" : "Utilisateurs ou adresses e-mail",
     "Nextcloud users or email addresses" : "Utilisateurs Nextcloud ou adresses mail",
+    "Documenso workflow" : "workflow Documenso",
     "Cancel" : "Annuler",
     "Send document" : "Envoyer le document",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Certains utilisateus n'ont pas d'adresse email associée à leur compte, ils ne seront donc pas signataire.",
@@ -23,6 +25,8 @@ OC.L10N.register(
     "No recommendations. Start typing." : "Aucune suggestion. Commencez à écrire.",
     "Documenso integration" : "Intégration de Documenso",
     "Access token" : "Jeton d'accès",
-    "Connected as {user}" : "Connecté en tant que {user}"
+    "Documenso access token" : "jeton d'accès Documenso",
+    "Connected as {user}" : "Connecté en tant que {user}",
+    "Disconnect from Documenso" : "Déconnecter de Documenso"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
