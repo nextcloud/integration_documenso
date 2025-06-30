@@ -3,6 +3,7 @@
     errorBaseline="tests/psalm-baseline.xml"
     errorLevel="3"
     resolveFromConfigFile="true"
+    ensureOverrideAttribute="false"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
@@ -18,15 +19,6 @@
 	<extraFiles>
 		<directory name="vendor"/>
 	</extraFiles>
-    <issueHandlers>
-		<UndefinedClass>
-			<errorLevel type="suppress">
-                <referencedClass name="GuzzleHttp\Exception\ConnectException" />
-                <referencedClass name="GuzzleHttp\Exception\ClientException" />
-                <referencedClass name="GuzzleHttp\Exception\ServerException" />
-			</errorLevel>
-		</UndefinedClass>
-	</issueHandlers>
     <stubs>
 		<file name="tests/stubs/oc_hooks_emitter.php" />
         <file name="tests/stubs/oca_files_event.php" />
