@@ -22,7 +22,7 @@
 			</div>
 			<div class="line">
 				<label for="documenso-token">
-					<KeyIcon :size="20" class="icon" />
+					<KeyOutlineIcon :size="20" class="icon" />
 					{{ t('integration_documenso', 'Access token') }}
 				</label>
 				<input id="documenso-token"
@@ -51,7 +51,7 @@
 
 <script>
 import EarthIcon from 'vue-material-design-icons/Earth.vue'
-import KeyIcon from 'vue-material-design-icons/Key.vue'
+import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
 import CloseIcon from 'vue-material-design-icons/Close.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 
@@ -73,7 +73,7 @@ export default {
 		NcButton,
 		DocumensoIcon,
 		EarthIcon,
-		KeyIcon,
+		KeyOutlineIcon,
 		CloseIcon,
 		CheckIcon,
 	},
