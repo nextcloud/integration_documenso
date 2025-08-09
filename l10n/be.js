@@ -1,6 +1,7 @@
 OC.L10N.register(
     "integration_documenso",
     {
+    "Draft" : "Чарнавік",
     "Cancel" : "Скасаваць",
     "OK" : "OK",
     "No recommendations. Start typing." : "Няма рэкамендацый. Пачніце друкаваць."

@@ -11,6 +11,7 @@ OC.L10N.register(
     "Cancel" : "Annuleren",
     "OK" : "OK",
     "Who?" : "Wie?",
+    "Users or groups" : "Gebruikers of groepen",
     "Impossible to get user/group/circle list" : "Onmogelijk om de gebruiker/groep/kring-lijst aan te vragen",
     "No recommendations. Start typing." : "Geen aanbevelingen. Begin te typen.",
     "Access token" : "Access token",
