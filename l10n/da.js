@@ -32,12 +32,12 @@ OC.L10N.register(
     "Documenso options saved" : "Indstillinger for Documenso gemt",
     "Failed to save Documenso options" : "Kunne ikke gemme Documenso indstillinger",
     "Documenso integration" : "Documensointegration",
-    "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "For at oprette en adgang token, gå til \"API Token\" afsnit af din Documenso Brugerindstillinger.",
-    "Documenso instance address" : "Documenso instance address",
+    "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "For at oprette en adgangstoken, gå til sektionen \"API Token\" i din Documenso brugerindstillinger.",
+    "Documenso instance address" : "Documenso instansadresse",
     "Access token" : "Adgangstoken",
-    "Documenso access token" : "Documenso access token",
+    "Documenso access token" : "Documenso adgangstoken",
     "Connected as {user}" : "Forbundet som {user}",
     "Disconnect from Documenso" : "Afbryd forbindelsen fra Documenso",
-    "Request signature with Documenso" : "Anmoder om underskrift med Documenso"
+    "Request signature with Documenso" : "Anmod om underskrift med Documenso"
 },
 "nplurals=2; plural=(n != 1);");
