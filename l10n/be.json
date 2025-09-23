@@ -3,6 +3,9 @@
     "Cancel" : "Скасаваць",
     "OK" : "OK",
     "Who?" : "Хто?",
-    "No recommendations. Start typing." : "Няма рэкамендацый. Пачніце друкаваць."
+    "No recommendations. Start typing." : "Няма рэкамендацый. Пачніце друкаваць.",
+    "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Каб стварыць токен доступу, перайдзіце ў раздзел \"Токен API\" у наладах карыстальніка Documenso.",
+    "Access token" : "Токен доступу",
+    "Documenso access token" : "Токен доступу да Documenso"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }
