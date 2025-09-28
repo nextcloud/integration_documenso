@@ -2,6 +2,7 @@
     "Completed" : "Yemmed",
     "Draft" : "Arewway",
     "Cancel" : "Cancel",
-    "OK" : "IH"
+    "OK" : "IH",
+    "Connected as {user}" : "D uqqin am {user}"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

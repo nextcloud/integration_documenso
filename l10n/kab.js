@@ -4,6 +4,7 @@ OC.L10N.register(
     "Completed" : "Yemmed",
     "Draft" : "Arewway",
     "Cancel" : "Cancel",
-    "OK" : "IH"
+    "OK" : "IH",
+    "Connected as {user}" : "D uqqin am {user}"
 },
 "nplurals=2; plural=(n != 1);");
