@@ -1,6 +1,7 @@
 { "translations": {
     "Completed" : "ສຳເລັດ",
     "Cancel" : "ຍົກເລີກ",
-    "OK" : "ຕົກລົງ"
+    "OK" : "ຕົກລົງ",
+    "No recommendations. Start typing." : "ບໍ່ມີຄຳແນະນຳ. ເລີ່ມພິມໄດ້ເລີຍ."
 },"pluralForm" :"nplurals=1; plural=0;"
 }

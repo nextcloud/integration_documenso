@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Completed" : "ສຳເລັດ",
     "Cancel" : "ຍົກເລີກ",
-    "OK" : "ຕົກລົງ"
+    "OK" : "ຕົກລົງ",
+    "No recommendations. Start typing." : "ບໍ່ມີຄຳແນະນຳ. ເລີ່ມພິມໄດ້ເລີຍ."
 },
 "nplurals=1; plural=0;");
