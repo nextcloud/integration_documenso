@@ -2,6 +2,7 @@ OC.L10N.register(
     "integration_documenso",
     {
     "Completed" : "ສຳເລັດ",
+    "Draft" : "Draft",
     "Cancel" : "ຍົກເລີກ",
     "OK" : "ຕົກລົງ",
     "No recommendations. Start typing." : "ບໍ່ມີຄຳແນະນຳ. ເລີ່ມພິມໄດ້ເລີຍ."

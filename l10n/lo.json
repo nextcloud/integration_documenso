@@ -1,5 +1,6 @@
 { "translations": {
     "Completed" : "ສຳເລັດ",
+    "Draft" : "Draft",
     "Cancel" : "ຍົກເລີກ",
     "OK" : "ຕົກລົງ",
     "No recommendations. Start typing." : "ບໍ່ມີຄຳແນະນຳ. ເລີ່ມພິມໄດ້ເລີຍ."
