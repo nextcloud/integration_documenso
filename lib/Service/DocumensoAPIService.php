@@ -111,7 +111,6 @@ class DocumensoAPIService {
 
 	public function requestUploadEndpoint(File $file, string $ccUserId,
 		array $signers, ): array {
-		$token = $this->utilsService->getEncryptedUserValue($ccUserId, 'token');
 		$baseUrl = $this->config->getUserValue($ccUserId, Application::APP_ID, 'url');
 
 		/** @var array<string, string|string[]> $envelope */
@@ -124,7 +123,7 @@ class DocumensoAPIService {
 		];
 
 		$endPoint = 'api/v1/documents';
-		return $this->apiRequest($baseUrl, $token, $endPoint, $envelope, 'POST');
+		return $this->apiRequest($baseUrl, $ccUserId, $endPoint, $envelope, 'POST');
 	}
 
 	/**
@@ -151,7 +150,7 @@ class DocumensoAPIService {
 			$baseUrl = $this->config->getUserValue($ccUserId, Application::APP_ID, 'url');
 			return [
 				'body' => json_decode($body, true),
-				'documentUrl' => $baseUrl . 'documents/' . $uploadEndpoint['documentId'] . '/edit',
+				'documensoUrl' => $baseUrl,
 			];
 		}
 	}
@@ -170,7 +169,7 @@ class DocumensoAPIService {
 		$params = [
 			'perPage' => 10,
 		];
-		return $this->apiRequest($baseUrl, $token, $endPoint, $params);
+		return $this->apiRequest($baseUrl, $userId, $endPoint, $params);
 	}
 
 	/**
@@ -182,8 +181,9 @@ class DocumensoAPIService {
 	 * @return array request result
 	 * @throws Exception
 	 */
-	public function apiRequest(string $baseUrl, string $token,
+	public function apiRequest(string $baseUrl, string $userId,
 		string $endPoint = '', array $params = [], string $method = 'GET'): array {
+		$token = $this->utilsService->getEncryptedUserValue($userId, 'token');
 
 		$url = $baseUrl . $endPoint;
 		$options = [
