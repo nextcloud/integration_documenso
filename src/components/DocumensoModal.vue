@@ -25,7 +25,7 @@
 					@update:value="updateSelectedItems($event)" />
 				<NcEmptyContent
 					:name="t('integration_documenso', 'Documenso workflow')"
-					:description="t('integration_documenso', 'The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing.')">
+					:description="t('integration_documenso', 'The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode.')">
 					<template #icon>
 						<DocumensoIcon />
 					</template>
@@ -97,7 +97,7 @@ export default {
 			fileId: 0,
 			selectedItems: [],
 			showDialog: false,
-			documentUrl: '',
+			documensoUrl: '',
 		}
 	},
 
@@ -143,7 +143,7 @@ export default {
 			}
 			const url = generateUrl('/apps/integration_documenso/documenso/standalone-sign/' + this.fileId)
 			axios.put(url, req).then((response) => {
-				this.documentUrl = response.data.documentUrl
+				this.documensoUrl = response.data.documensoUrl
 
 				if (response.data.missingMailCount === 0) {
 					this.openDocumentTab()
@@ -167,7 +167,7 @@ export default {
 		},
 		openDocumentTab() {
 			try {
-				window.open(this.documentUrl, '_blank').focus()
+				window.open(this.documensoUrl, '_blank').focus()
 			} catch (error) {
 				showError(t('integration_documenso', 'Please allow pop-up windows.'))
 			}

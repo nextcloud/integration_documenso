@@ -29,7 +29,7 @@ class Personal implements ISettings {
 		$token = $token === '' ? '' : $this->crypto->decrypt($token);
 		$userName = $this->config->getUserValue($this->userId, Application::APP_ID, 'user_name');
 		$url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url');
-		
+
 		$userConfig = [
 			// don't expose the token to the user
 			'token' => $token === '' ? '' : 'dummyToken',
