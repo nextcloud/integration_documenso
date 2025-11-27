@@ -75,7 +75,6 @@ class DocumensoAPIService {
 				$missingMailCount ++;
 			}
 		}
-		
 
 		// cc user is the one who requested the signature
 		$ccUser = $this->userManager->get($ccUserId);
