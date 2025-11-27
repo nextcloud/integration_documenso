@@ -102,7 +102,7 @@ class DocumensoWidget implements IButtonWidget, IIconWidget, IReloadableWidget {
 			$emptyMessage = $this->l10n->t('Documenso service not available');
 		} else {
 			foreach ($response['documents'] as $document) {
-				$documentUrl = $url . 'documents/' . $document['id'];
+				$documensoUrl = $url;
 				$icon = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $document['title'], 'size' => 44, 'darkTheme' => true,]);
 				$overlayIcon = $this->urlGenerator->imagePath('integration_documenso', 'dash_pending.svg');
 				$status = $document['status'];
@@ -120,7 +120,7 @@ class DocumensoWidget implements IButtonWidget, IIconWidget, IReloadableWidget {
 					$overlayIcon = $this->urlGenerator->imagePath('integration_documenso', 'app_dark.svg');
 				}
 
-				$items[] = new WidgetItem($document['title'], $subtitle, $documentUrl, $icon, '', $overlayIcon);
+				$items[] = new WidgetItem($document['title'], $subtitle, $documensoUrl, $icon, '', $overlayIcon);
 			}
 		}
 
