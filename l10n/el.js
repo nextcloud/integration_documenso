@@ -20,7 +20,6 @@ OC.L10N.register(
     "Users or email addresses" : "Χρήστες και διευθύνσεις ηλεκτρονικού ταχυδρομείου",
     "Nextcloud users or email addresses" : "Χρήστες Nextcloud ή διευθύνσεις ηλεκτρονικού ταχυδρομείου",
     "Documenso workflow" : "Ροή εργασίας Documenso",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "Το έγγραφο και οι παραλήπτες θα αποσταλούν στο Documenso. Θα ανοίξει μια νέα καρτέλα όπου μπορείτε να τοποθετήσετε τα πεδία υπογραφής και να στείλετε το έγγραφο για υπογραφή.",
     "Cancel" : "Ακύρωση",
     "Send document" : "Αποστολή εγγράφου",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Ορισμένοι χρήστες δεν είχαν διεύθυνση email συνδεδεμένη με το λογαριασμό τους. Δεν προστέθηκαν ως υπογράφοντες.",

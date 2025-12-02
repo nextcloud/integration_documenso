@@ -20,7 +20,6 @@ OC.L10N.register(
     "Users or email addresses" : "ئىشلەتكۈچى ياكى ئېلخەت ئادىرسى",
     "Nextcloud users or email addresses" : "Nextcloud ئىشلەتكۈچىلەر ياكى ئېلىخەت ئادىرسى",
     "Documenso workflow" : "Documenso ئىش تەرتىپى",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "ھۆججەت ۋە تاپشۇرۇۋالغۇچىلار Documenso غا ئەۋەتىلىدۇ. ئىمزا قويۇش بوشلۇقىنى قويۇپ، ھۆججەتنى ئىمزا قويۇشقا ئەۋەتەلەيدىغان يېڭى بەت ئېچىلىدۇ.",
     "Cancel" : "بىكار قىلىش",
     "Send document" : "ھۆججەت ئەۋەت",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "بەزى ئىشلەتكۈچىلەرنىڭ ھېساباتىغا پوچتا ئادرېسى بېكىتىلمىگەن. ئۇلار ئىمزا قويغۇچى سۈپىتىدە قوشۇلمىغان.",

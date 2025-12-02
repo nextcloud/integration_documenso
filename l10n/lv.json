@@ -18,7 +18,6 @@
     "Users or email addresses" : "Lietotāji vai e-pasta adreses",
     "Nextcloud users or email addresses" : "Nextcloud lietotāji vai e-pasta adreses",
     "Documenso workflow" : "Documenso darbplūsma",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "Dokuments un saņēmēji tiks nosūtītu uz Documenso. Tiks atvērta jauna cilne, kurā varēs ievietot paraksta laukus un nosūtīt dokumentu parakstīšanai.",
     "Cancel" : "Atcelt",
     "Send document" : "Nosūtīt dokumentu",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Dažu lietotāju kontā nebija norādīta e-pasta adrese. Viņi netika pievienoti kā parakstītāji.",

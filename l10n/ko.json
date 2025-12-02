@@ -12,7 +12,6 @@
     "Users or email addresses" : "사용자들 혹은 이메일 주소",
     "Nextcloud users or email addresses" : "Nextcloud 사용자들 혹은 이메일 주소",
     "Documenso workflow" : "Documenso 워크플로",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "문서와 영수증이 Documenso로 보내집니다. 서명을 넣고 문서를 전송할 수 있는 새 탭이 열립니다.",
     "Cancel" : "취소",
     "Send document" : "문서 전송",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "일부 사용자는 계정에 메일 주소를 가지고 있지 않습니다. 해당 사용자는 서명자로 추가되지 않았습니다.",

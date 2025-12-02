@@ -18,7 +18,6 @@
     "Users or email addresses" : "使用者或電子郵件",
     "Nextcloud users or email addresses" : "Nextcloud 使用者或電子郵件地址",
     "Documenso workflow" : "Documenso 工作流程",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "文件與收件者將會傳送到 Documenso。將會開啟新分頁，您可以在其中放置簽名欄位，並傳送文件以供簽署。",
     "Cancel" : "取消",
     "Send document" : "傳送文件",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "部份使用者的帳號沒有電子郵件地址。他們未被新增為簽名者。",

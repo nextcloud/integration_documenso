@@ -18,7 +18,6 @@
     "Users or email addresses" : "Úsáideoirí nó seoltaí ríomhphoist",
     "Nextcloud users or email addresses" : "Úsáideoirí Nextcloud nó seoltaí ríomhphoist",
     "Documenso workflow" : "Documenso sreabhadh oibre",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "Seolfar an doiciméad agus na faighteoirí chuig Documenso. Osclófar cluaisín nua inar féidir leat na réimsí sínithe a chur agus an doiciméad a sheoladh le síniú.",
     "Cancel" : "Cealaigh",
     "Send document" : "Seol doiciméad",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Ní raibh seoladh ríomhphoist sannta ag roinnt úsáideoirí dá gcuntas. Níor cuireadh leo mar shínitheoirí.",

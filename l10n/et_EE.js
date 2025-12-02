@@ -20,7 +20,6 @@ OC.L10N.register(
     "Users or email addresses" : "Kasutajad või e-posti aadressid",
     "Nextcloud users or email addresses" : "Nextcloudi kasutajad või e-posti aadressid",
     "Documenso workflow" : "Documenso töövoog",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "Dokument ja allkirjastajate andmed saadetakse Documenso teenusele. Avaneb uus vahekaart, kuhu saad lisada allkirja väljad ning edastada dokumendi allkirjastamisele.",
     "Cancel" : "Tühista",
     "Send document" : "Saada dokument",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Mõne kasutaja andmete juures polnud e-posti aadressi. Nemad jäid allkirjastajate hulka lisamata.",

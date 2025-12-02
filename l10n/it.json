@@ -18,7 +18,6 @@
     "Users or email addresses" : "Utenti o indirizzi email",
     "Nextcloud users or email addresses" : "Utenti di Nextcloud o indirizzi email",
     "Documenso workflow" : "Documenso workflow",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "Il documento e i destinatari saranno inviati a Documenso. Si aprirà una nuova scheda in cui potrai inserire i campi firma e inviare il documento per la firma.",
     "Cancel" : "Annulla",
     "Send document" : "Invia documento",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Ad alcuni utenti non era stato assegnato un indirizzo e-mail al proprio account. Non sono stati aggiunti come firmatari.",

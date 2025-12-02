@@ -20,7 +20,6 @@ OC.L10N.register(
     "Users or email addresses" : "Používatelia alebo e-mailové adresy",
     "Nextcloud users or email addresses" : "Používatelia Nextcloudu alebo emailové adresy",
     "Documenso workflow" : "Proces práce v Documenso",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "Dokument a jeho príjemcovia budú odoslaní do služby Documenso. Otvorí sa nová karta, kde môžete zadať polia pre podpis a odoslať dokument na podpis.",
     "Cancel" : "Zrušiť",
     "Send document" : "Odoslať dokument",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Niektorí užívatelia nemali k svojmu účtu priradenú e-mailovú adresu. Neboli pridaní ako signatári.",

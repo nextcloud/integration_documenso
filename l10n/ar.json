@@ -18,7 +18,6 @@
     "Users or email addresses" : "المستخدِمون أو عناوين البريد الالكتروني",
     "Nextcloud users or email addresses" : "مستخدِمو نكست كلاود أو عناوين البريد الالكتروني",
     "Documenso workflow" : "التدفق الإجرائي في Documenso",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "سيتم إرسال المستند و المستلمين إلى Documenso. سوف يتم فتح تبويبة جديدة حيث يمكنك وضع خانات التوقيع و إرسال المستند للتوقيع.",
     "Cancel" : "إلغاء",
     "Send document" : "إرسال المستند",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "بعض المستخدِمين لا يملكون حسابات بريد إلكتروني مربوطة مع حساباتهم. هؤلاء لا يمكن إضافتهم كمُوقِّعِين.",

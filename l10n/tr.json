@@ -18,7 +18,6 @@
     "Users or email addresses" : "Kullanıcılar ya da e-posta adresleri",
     "Nextcloud users or email addresses" : "Nextcloud kullanıcıları ya da e-posta adresleri",
     "Documenso workflow" : "Documenso iş akışı",
-    "The document and recipients will be sent to Documenso. A new tab will open where you can place the signature fields and send the document for signing." : "Belge ve alıcılar Documenso üzerine gönderilir. İmza alanlarını yerleştirebileceğiniz ve belgeyi imzalamak üzere gönderebileceğiniz yeni bir sekme açılacak.",
     "Cancel" : "İptal",
     "Send document" : "Belgeyi gönder",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Bazı kullanıcıların hesaplarına atanmış bir e-posta adresi yoktu. İmzalayan olarak eklenmediler.",
