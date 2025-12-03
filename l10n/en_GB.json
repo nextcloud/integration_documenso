@@ -18,6 +18,7 @@
     "Users or email addresses" : "Users or email addresses",
     "Nextcloud users or email addresses" : "Nextcloud users or email addresses",
     "Documenso workflow" : "Documenso workflow",
+    "The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode." : "The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode.",
     "Cancel" : "Cancel",
     "Send document" : "Send document",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Some users did not have a mail address assigned to their account. They were not added as signers.",

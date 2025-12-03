@@ -20,6 +20,7 @@ OC.L10N.register(
     "Users or email addresses" : "用戶名稱或電郵地址",
     "Nextcloud users or email addresses" : "Nextcloud 用戶名稱或電郵地址",
     "Documenso workflow" : "Documenso 工作流程",
+    "The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode." : "文件與收件者將會傳送到 Documenso。系統將開啟新分頁顯示您的 Documenso 概覽頁面。若需放置簽名欄位並傳送文件進行簽署，請以編輯模式開啟已上傳的文件。",
     "Cancel" : "取消",
     "Send document" : "傳送文件",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "部份使用者的帳號沒有電子郵件地址。他們未被新增為簽名者。",

@@ -18,6 +18,7 @@
     "Users or email addresses" : "Kasutajad või e-posti aadressid",
     "Nextcloud users or email addresses" : "Nextcloudi kasutajad või e-posti aadressid",
     "Documenso workflow" : "Documenso töövoog",
+    "The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode." : "Dokument ja allkirjastajate andmed saadetakse Documenso teenusele. Avaneb uus vahekaart Documenso ülevaatega. Allkirjaväljade lisamiseks ning dokumendi edastamiseks allkirjastamisele palun ava dokument muutmisvaates.",
     "Cancel" : "Tühista",
     "Send document" : "Saada dokument",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Mõne kasutaja andmete juures polnud e-posti aadressi. Nemad jäid allkirjastajate hulka lisamata.",
