@@ -20,6 +20,7 @@ OC.L10N.register(
     "Users or email addresses" : "Kullanıcılar ya da e-posta adresleri",
     "Nextcloud users or email addresses" : "Nextcloud kullanıcıları ya da e-posta adresleri",
     "Documenso workflow" : "Documenso iş akışı",
+    "The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode." : "Belge ve alıcılar Documenso üzerine gönderilir. Documenso özetiniz ile yeni bir sekme açılır. İmza alanlarını yerleştirmek ve belgeyi imzalanmaya göndermek için lütfen yüklenen dosyayı düzenleme kipinde açın.",
     "Cancel" : "İptal",
     "Send document" : "Belgeyi gönder",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Bazı kullanıcıların hesaplarına atanmış bir e-posta adresi yoktu. İmzalayan olarak eklenmediler.",
