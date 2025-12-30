@@ -4,34 +4,35 @@
 			<DocumensoIcon class="icon" />
 			{{ t('integration_documenso', 'Documenso integration') }}
 		</h2>
-		<p class="settings-hint">
-			{{ t('integration_documenso', 'To create an access token, go to the "API Token" section of your Documenso User settings.') }}
-		</p>
 		<div id="documenso-content">
-			<div class="line">
-				<label for="documenso-url">
-					<EarthIcon :size="20" class="icon" />
-					{{ t('integration_documenso', 'Documenso instance address') }}
-				</label>
-				<input id="documenso-url"
-					v-model="state.url"
-					type="text"
-					:disabled="connected === true"
-					placeholder="https://app.documenso.com/"
-					@input="onInput">
-			</div>
-			<div class="line">
-				<label for="documenso-token">
-					<KeyOutlineIcon :size="20" class="icon" />
-					{{ t('integration_documenso', 'Access token') }}
-				</label>
-				<input id="documenso-token"
-					v-model="state.token"
-					type="password"
-					:disabled="connected === true"
-					:placeholder="t('integration_documenso', 'Documenso access token')"
-					@input="onInput">
-			</div>
+			<NcNoteCard type="info">
+				{{ t('integration_documenso', 'To create an access token, go to the "API Token" section of your Documenso User settings.') }}
+			</NcNoteCard>
+			<NcTextField
+				v-model="state.url"
+				:label="t('integration_documenso', 'Documenso instance address')"
+				placeholder="https://app.documenso.com/"
+				:disabled="connected === true"
+				:show-trailing-button="!!state.url"
+				@trailing-button-click="state.url = ''; onInput()"
+				@update:model-value="onInput">
+				<template #icon>
+					<EarthIcon :size="20" />
+				</template>
+			</NcTextField>
+			<NcTextField
+				v-model="state.token"
+				type="password"
+				:label="t('integration_documenso', 'Access token')"
+				:placeholder="t('integration_documenso', 'Documenso access token')"
+				:disabled="connected === true"
+				:show-trailing-button="!!state.token"
+				@trailing-button-click="state.token = ''; onInput()"
+				@update:model-value="onInput">
+				<template #icon>
+					<KeyOutlineIcon :size="20" />
+				</template>
+			</NcTextField>
 			<div v-if="connected" class="line">
 				<label class="documenso-connected">
 					<CheckIcon :size="20" class="icon" />
@@ -56,7 +57,10 @@ import CloseIcon from 'vue-material-design-icons/Close.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 
 import DocumensoIcon from './icons/DocumensoIcon.vue'
+
 import NcButton from '@nextcloud/vue/components/NcButton'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -71,6 +75,8 @@ export default {
 
 	components: {
 		NcButton,
+		NcNoteCard,
+		NcTextField,
 		DocumensoIcon,
 		EarthIcon,
 		KeyOutlineIcon,
@@ -143,27 +149,23 @@ export default {
 
 <style scoped lang="scss">
 #documenso_prefs {
-	#documenso-content {
-		margin-left: 40px;
-	}
-	h2,
-	.line,
-	.settings-hint {
+	h2 {
 		display: flex;
 		align-items: center;
-		.icon {
-			margin-right: 4px;
-		}
+		justify-content: start;
+		gap: 8px;
 	}
+	#documenso-content {
+		margin-left: 40px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		max-width: 800px;
 
-	.line {
-		> label {
-			width: 300px;
+		.line {
 			display: flex;
 			align-items: center;
-		}
-		> input {
-			width: 250px;
+			gap: 8px;
 		}
 	}
 }
