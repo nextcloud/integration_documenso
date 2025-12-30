@@ -1,14 +1,18 @@
 import DocumensoModal from './components/DocumensoModal.vue'
 
 import axios from '@nextcloud/axios'
-import { generateUrl } from '@nextcloud/router'
+import { generateUrl, linkTo } from '@nextcloud/router'
 
-import Vue from 'vue'
-import './bootstrap.js'
+import { createApp } from 'vue'
 import {
 	registerFileAction, Permission, FileAction, FileType,
 } from '@nextcloud/files'
 import DocumensoIcon from '../img/app-dark.svg'
+
+import { getCSPNonce } from '@nextcloud/auth'
+
+__webpack_nonce__ = getCSPNonce() // eslint-disable-line
+__webpack_public_path__ = linkTo('integration_zulip', 'js/') // eslint-disable-line
 
 if (!OCA.Documenso) {
 	/**
@@ -50,12 +54,9 @@ const modalElement = document.createElement('div')
 modalElement.id = modalId
 document.body.append(modalElement)
 
-OCA.Documenso.DocumensoModalVue = new Vue({
-	el: modalElement,
-	render: h => {
-		return h(DocumensoModal)
-	},
-})
+const app = createApp(DocumensoModal)
+app.mixin({ methods: { t, n } })
+OCA.Documenso.DocumensoModalVue = app.mount(modalElement)
 
 // is Documenso configured?
 const urlDs = generateUrl('/apps/integration_documenso/info')
