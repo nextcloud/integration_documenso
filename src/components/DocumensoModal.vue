@@ -35,7 +35,7 @@
 						@click="closeRequestModal">
 						{{ t('integration_documenso', 'Cancel') }}
 					</NcButton>
-					<NcButton type="primary"
+					<NcButton variant="primary"
 						:disabled="!canValidate"
 						@click="onSignClick">
 						{{ t('integration_documenso', 'Send document') }}
@@ -45,10 +45,10 @@
 					</NcButton>
 				</div>
 				<NcDialog
-					:open.sync="showDialog"
+					v-model:open="showDialog"
 					name="Warning"
 					:message="t('integration_documenso', 'Some users did not have a mail address assigned to their account. They were not added as signers.')"
-					:can-close="false">
+					:no-close="true">
 					<template #actions>
 						<NcButton
 							@click="missingMailConfirmation">
@@ -62,11 +62,11 @@
 </template>
 
 <script>
-import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcDialog from '@nextcloud/vue/dist/Components/NcDialog.js'
-import NcLoadingIcon from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
-import NcEmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import NcModal from '@nextcloud/vue/components/NcModal'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcDialog from '@nextcloud/vue/components/NcDialog'
+import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
+import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
 
 import MultiselectWho from './MultiselectWho.vue'
 import DocumensoIcon from './icons/DocumensoIcon.vue'
