@@ -3,7 +3,7 @@
 		class="documenso-multiselect"
 		label="displayName"
 		track-by="trackKey"
-		:value="value"
+		:model-value="value"
 		:multiple="true"
 		:clear-on-select="true"
 		:loading="loadingSuggestions"
@@ -14,7 +14,7 @@
 		:aria-label-combobox="label"
 		v-bind="$attrs"
 		@search="asyncFind"
-		@input="$emit('update:value', $event)">
+		@update:model-value="$emit('update:value', $event)">
 		<template #option="option">
 			<div class="multiselect-option">
 				<NcAvatar v-if="option.type === 'user'"
@@ -47,9 +47,9 @@ import { generateOcsUrl } from '@nextcloud/router'
 import { showError } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
 
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
-import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js'
-import NcHighlight from '@nextcloud/vue/dist/Components/NcHighlight.js'
+import NcAvatar from '@nextcloud/vue/components/NcAvatar'
+import NcSelect from '@nextcloud/vue/components/NcSelect'
+import NcHighlight from '@nextcloud/vue/components/NcHighlight'
 
 export default {
 	name: 'MultiselectWho',

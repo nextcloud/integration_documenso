@@ -1,6 +1,6 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import PersonalSettings from './components/PersonalSettings.vue'
-Vue.mixin({ methods: { t, n } })
 
-const View = Vue.extend(PersonalSettings)
-new View().$mount('#documenso_prefs')
+const app = createApp(PersonalSettings)
+app.mixin({ methods: { t, n } })
+app.mount('#documenso_prefs')

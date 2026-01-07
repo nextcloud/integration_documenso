@@ -17,7 +17,7 @@
 	<screenshot>https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_3.png?raw=true</screenshot>
 	<screenshot>https://github.com/nextcloud/integration_documenso/blob/main/img/screenshot_documenso_4.png?raw=true</screenshot>
 	<dependencies>
-		<nextcloud min-version="29" max-version="32"/>
+		<nextcloud min-version="33" max-version="33"/>
 	</dependencies>
 	<settings>
 		<personal>OCA\Documenso\Settings\Personal</personal>
