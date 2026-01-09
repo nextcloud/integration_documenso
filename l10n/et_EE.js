@@ -32,7 +32,7 @@ OC.L10N.register(
     "Documenso options saved" : "Documenso eelistused on salvestatud",
     "Failed to save Documenso options" : "Documenso eelistuste salvestamine ei õnnestunud",
     "Documenso integration" : "Documenso lõiming",
-    "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Tunnusloe loomiseks ava Documenso kasutajaseadistused ning klõpsi seal valikut „APU tunnusluba“ (API Token).",
+    "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Tunnusloa loomiseks ava Documenso kasutajaseadistused ning klõpsi seal valikut „API tunnusluba“ (API Token).",
     "Documenso instance address" : "Documenso serveri aadress",
     "Access token" : "Tunnusluba",
     "Documenso access token" : "Documenso tunnusluba",
