@@ -33,7 +33,7 @@
 		"php": "^8.2"
 	},
 	"require-dev": {
-		"nextcloud/ocp": "dev-stable30",
+		"nextcloud/ocp": "dev-master",
 		"guzzlehttp/guzzle": "^7.8",
 		"roave/security-advisories": "dev-latest"
 	},
