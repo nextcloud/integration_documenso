@@ -8,6 +8,8 @@ OC.L10N.register(
     "Connected accounts" : "Akun terhubung",
     "Cancel" : "Batal",
     "OK" : "Oke",
+    "Who?" : "Siapa?",
+    "Impossible to get user/group/circle list" : "Tidak dapat memperoleh daftar pengguna/grup/lingkaran",
     "No recommendations. Start typing." : "Tidak ada saran. Mulai mengetik.",
     "Connected as {user}" : "Terhubung sebagai {user}"
 },
