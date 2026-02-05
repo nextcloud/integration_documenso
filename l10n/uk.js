@@ -9,7 +9,7 @@ OC.L10N.register(
     "Draft" : "Чернетка",
     "Waiting for signatures" : "Чекаємо на підписи",
     "More documents" : "Більше документів",
-    "Bad credentials" : "Погані дані авторизації",
+    "Bad credentials" : "Неправильні дані авторизації",
     "Bad HTTP method" : "Поганий метод HTTP",
     "Connected accounts" : "Підключені облікові записи",
     "Integration Documenso" : "Інтеграція Documenso",
