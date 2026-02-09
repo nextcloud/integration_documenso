@@ -93,9 +93,11 @@ class DocumensoAPIService {
 		if (isset($uploadEndpoint['error'])) {
 			return $uploadEndpoint;
 		};
-
 		$response = $this->uploadFile($file, $uploadEndpoint, $ccUserId);
 		$response['missingMailCount'] = $missingMailCount;
+		$response['embeddingToken'] = $this->requestEmbeddingToken($ccUserId);
+		$response['host'] = $this->config->getUserValue($ccUserId, Application::APP_ID, 'url');
+		$response['documentId'] = $uploadEndpoint['documentId'];
 		return $response;
 	}
 
@@ -152,6 +154,26 @@ class DocumensoAPIService {
 				'documensoUrl' => $baseUrl,
 			];
 		}
+	}
+
+	/**
+	 * Request a presigned embedding token for embedded authoring/signing
+	 * See https://openapi.documenso.com/reference#tag/embedding/post/embedding/create-presign-token
+	 *
+	 * @param string $userId
+	 * @return string|null The presign token on success, null on error
+	 */
+	public function requestEmbeddingToken(string $userId): ?string {
+		$baseUrl = $this->config->getUserValue($userId, Application::APP_ID, 'url');
+		$endPoint = 'api/v2/embedding/create-presign-token';
+		$result = $this->apiRequest($baseUrl, $userId, $endPoint, ['expiresIn' => 60,'scope' => ''], 'POST');
+
+		if (isset($result['error'])) {
+			$this->logger->warning('Failed to create embedding presign token: ' . $result['error'], ['app' => Application::APP_ID]);
+			return null;
+		}
+
+		return isset($result['token']) && is_string($result['token']) ? $result['token'] : null;
 	}
 
 	/**
