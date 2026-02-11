@@ -2,6 +2,7 @@ OC.L10N.register(
     "integration_documenso",
     {
     "Completed" : "Završeno",
+    "Draft" : "Skica",
     "Bad credentials" : "Pogrešne vjerodajnice",
     "Bad HTTP method" : "Pogrešna metoda HTTP-a",
     "Connected accounts" : "Povezani računi",
