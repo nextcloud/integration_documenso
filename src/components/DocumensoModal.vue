@@ -1,7 +1,7 @@
 <template>
 	<div class="documenso-modal-container">
 		<NcModal v-if="show"
-			size="normal"
+			:size="showIframe ? 'full' : 'normal'"
 			label-id="documenso-modal-title"
 			@close="closeRequestModal">
 			<div class="documenso-modal-content">
@@ -11,52 +11,63 @@
 						{{ t('integration_documenso', 'Request a signature via Documenso') }}
 					</span>
 				</h2>
-				<span class="field-label">
-					{{ t('integration_documenso', 'Users or email addresses') }}
-				</span>
-				<MultiselectWho
-					ref="multiselect"
-					class="userInput"
-					:value="selectedItems"
-					:types="[0]"
-					:enable-emails="true"
-					:placeholder="t('integration_documenso', 'Nextcloud users or email addresses')"
-					:label="t('integration_documenso', 'Users or email addresses')"
-					@update:value="updateSelectedItems($event)" />
-				<NcEmptyContent
-					:name="t('integration_documenso', 'Documenso workflow')"
-					:description="t('integration_documenso', 'The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode.')">
-					<template #icon>
-						<DocumensoIcon />
-					</template>
-				</NcEmptyContent>
-				<div class="documenso-footer">
-					<NcButton
-						@click="closeRequestModal">
-						{{ t('integration_documenso', 'Cancel') }}
-					</NcButton>
-					<NcButton variant="primary"
-						:disabled="!canValidate"
-						@click="onSignClick">
-						{{ t('integration_documenso', 'Send document') }}
-						<template v-if="loading" #icon>
-							<NcLoadingIcon />
+				<template v-if="!showIframe">
+					<span class="field-label">
+						{{ t('integration_documenso', 'Users or email addresses') }}
+					</span>
+					<MultiselectWho
+						ref="multiselect"
+						class="userInput"
+						:value="selectedItems"
+						:types="[0]"
+						:enable-emails="true"
+						:placeholder="t('integration_documenso', 'Nextcloud users or email addresses')"
+						:label="t('integration_documenso', 'Users or email addresses')"
+						@update:value="updateSelectedItems($event)" />
+					<NcEmptyContent
+						:name="t('integration_documenso', 'Documenso workflow')"
+						:description="t('integration_documenso', 'The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode.')">
+						<template #icon>
+							<DocumensoIcon />
 						</template>
-					</NcButton>
-				</div>
-				<NcDialog
-					v-model:open="showDialog"
-					name="Warning"
-					:message="t('integration_documenso', 'Some users did not have a mail address assigned to their account. They were not added as signers.')"
-					:no-close="true">
-					<template #actions>
+					</NcEmptyContent>
+					<div class="documenso-footer">
 						<NcButton
-							@click="missingMailConfirmation">
-							{{ t('integration_documenso', 'OK') }}
+							@click="closeRequestModal">
+							{{ t('integration_documenso', 'Cancel') }}
 						</NcButton>
-					</template>
-				</NcDialog>
+						<NcButton variant="primary"
+							:disabled="!canValidate"
+							@click="onSignClick">
+							{{ t('integration_documenso', 'Send document') }}
+							<template v-if="loading" #icon>
+								<NcLoadingIcon />
+							</template>
+						</NcButton>
+					</div>
+				</template>
+				<template v-else>
+					<EmbedUpdateDocumentV1
+						class="documenso-embed-iframe"
+						:host="host"
+						:presign-token="embeddingToken"
+						:document-id="documentId"
+						:only-edit-fields="true"
+						:on-document-updated="closeRequestModal" />
+				</template>
 			</div>
+			<NcDialog
+				v-model:open="showDialog"
+				name="Warning"
+				:message="t('integration_documenso', 'Some users did not have a mail address assigned to their account. They were not added as signers.')"
+				:no-close="true">
+				<template #actions>
+					<NcButton
+						@click="missingMailConfirmation">
+						{{ t('integration_documenso', 'OK') }}
+					</NcButton>
+				</template>
+			</NcDialog>
 		</NcModal>
 	</div>
 </template>
@@ -67,14 +78,13 @@ import NcButton from '@nextcloud/vue/components/NcButton'
 import NcDialog from '@nextcloud/vue/components/NcDialog'
 import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
 import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
-
+import { EmbedUpdateDocumentV1 } from '@documenso/embed-vue'
 import MultiselectWho from './MultiselectWho.vue'
 import DocumensoIcon from './icons/DocumensoIcon.vue'
 
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 import { showError } from '@nextcloud/dialogs'
-
 export default {
 	name: 'DocumensoModal',
 
@@ -86,6 +96,7 @@ export default {
 		NcLoadingIcon,
 		NcEmptyContent,
 		NcDialog,
+		EmbedUpdateDocumentV1,
 	},
 
 	props: [],
@@ -98,12 +109,18 @@ export default {
 			selectedItems: [],
 			showDialog: false,
 			documensoUrl: '',
+			embeddingToken: '',
+			documentId: 0,
+			host: '',
 		}
 	},
 
 	computed: {
 		canValidate() {
 			return this.selectedItems.length > 0
+		},
+		showIframe() {
+			return this.embeddingToken !== ''
 		},
 	},
 
@@ -124,6 +141,9 @@ export default {
 		closeRequestModal() {
 			this.selectedItems = []
 			this.show = false
+			this.host = ''
+			this.documentId = 0
+			this.embeddingToken = ''
 		},
 		setFileId(fileId) {
 			this.fileId = fileId
@@ -144,6 +164,9 @@ export default {
 			const url = generateUrl('/apps/integration_documenso/documenso/standalone-sign/' + this.fileId)
 			axios.put(url, req).then((response) => {
 				this.documensoUrl = response.data.documensoUrl
+				this.host = response.data.host
+				this.documentId = response.data.documentId
+				this.embeddingToken = response.data.embeddingToken ?? ''
 
 				if (response.data.missingMailCount === 0) {
 					this.openDocumentTab()
@@ -166,6 +189,10 @@ export default {
 
 		},
 		openDocumentTab() {
+			// Only open in new tab as a fallback
+			if (this.embeddingToken !== '') {
+				return
+			}
 			try {
 				window.open(this.documensoUrl, '_blank').focus()
 			} catch (error) {
@@ -178,11 +205,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.documenso-embed-iframe {
+	height: 100%;
+	padding-bottom: 16px;
+}
+
 .documenso-modal-content {
 	padding: 16px;
 	// min-height: 400px;
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 
 	input[type='text'] {
 		width: 100%;
