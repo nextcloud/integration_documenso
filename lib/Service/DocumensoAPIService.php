@@ -212,7 +212,7 @@ class DocumensoAPIService {
 	 * @param string $baseUrl
 	 * @param string $token
 	 * @param string $endPoint
-	 * @param array<string, string|string[]> $params
+	 * @param array<string, string[]|string|int|bool> $params
 	 * @param string $method
 	 * @return array request result
 	 * @throws Exception
