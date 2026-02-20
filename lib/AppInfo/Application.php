@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace OCA\Documenso\AppInfo;
 
 use OCA\Documenso\Dashboard\DocumensoWidget;
+use OCA\Documenso\Listener\ContentSecurityPolicyListener;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\EventDispatcher\IEventDispatcher;
+use OCP\Security\CSP\AddContentSecurityPolicyEvent;
 use OCP\Util;
 
 class Application extends App implements IBootstrap {
@@ -32,6 +34,7 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerDashboardWidget(DocumensoWidget::class);
+		$context->registerEventListener(AddContentSecurityPolicyEvent::class, ContentSecurityPolicyListener::class);
 	}
 
 	public function boot(IBootContext $context): void {
