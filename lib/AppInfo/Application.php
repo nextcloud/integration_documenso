@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace OCA\Documenso\AppInfo;
 
 use OCA\Documenso\Dashboard\DocumensoWidget;
-use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCA\Documenso\Listener\ContentSecurityPolicyListener;
+use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
