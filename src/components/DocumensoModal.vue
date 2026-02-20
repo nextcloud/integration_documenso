@@ -53,7 +53,7 @@
 						:presign-token="embeddingToken"
 						:document-id="documentId"
 						:only-edit-fields="true"
-						:on-document-updated="closeRequestModal" />
+						:on-document-updated="onDocumentUpdated" />
 				</template>
 			</div>
 			<NcDialog
@@ -65,6 +65,25 @@
 					<NcButton
 						@click="missingMailConfirmation">
 						{{ t('integration_documenso', 'OK') }}
+					</NcButton>
+				</template>
+			</NcDialog>
+			<NcDialog
+				v-model:open="showSaveChoiceDialog"
+				:name="t('integration_documenso', 'Document saved')"
+				:message="t('integration_documenso', 'Document saved. Distribute the document now or open Documenso for more details?')">
+				<template #actions>
+					<NcButton
+						:disabled="distributeLoading"
+						@click="onDistributeClick">
+						<template v-if="distributeLoading" #icon>
+							<NcLoadingIcon />
+						</template>
+						{{ t('integration_documenso', 'Distribute') }}
+					</NcButton>
+					<NcButton
+						@click="onGoToDocumensoClick">
+						{{ t('integration_documenso', 'Open in new tab') }}
 					</NcButton>
 				</template>
 			</NcDialog>
@@ -84,7 +103,7 @@ import DocumensoIcon from './icons/DocumensoIcon.vue'
 
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
-import { showError } from '@nextcloud/dialogs'
+import { showError, showSuccess } from '@nextcloud/dialogs'
 export default {
 	name: 'DocumensoModal',
 
@@ -108,6 +127,8 @@ export default {
 			fileId: 0,
 			selectedItems: [],
 			showDialog: false,
+			showSaveChoiceDialog: false,
+			distributeLoading: false,
 			documensoUrl: '',
 			embeddingToken: '',
 			documentId: 0,
@@ -141,9 +162,32 @@ export default {
 		closeRequestModal() {
 			this.selectedItems = []
 			this.show = false
+			this.showSaveChoiceDialog = false
 			this.host = ''
 			this.documentId = 0
 			this.embeddingToken = ''
+		},
+		onDocumentUpdated() {
+			this.showSaveChoiceDialog = true
+		},
+		onDistributeClick() {
+			this.distributeLoading = true
+			const url = generateUrl('/apps/integration_documenso/documenso/distribute')
+			axios.post(url, { documentId: this.documentId }).then(() => {
+				showSuccess(t('integration_documenso', 'Document distributed successfully'))
+				this.closeRequestModal()
+			}).catch((error) => {
+				console.error(error.response)
+				showError(
+					t('integration_documenso', 'Failed to distribute document')
+					+ ': ' + (error.response?.data?.response?.message ?? error.response?.data?.error ?? error.response?.request?.responseText ?? ''),
+				)
+			}).finally(() => {
+				this.distributeLoading = false
+			})
+		},
+		onGoToDocumensoClick() {
+			this.openDocumentTab(true)
 		},
 		setFileId(fileId) {
 			this.fileId = fileId
@@ -188,9 +232,9 @@ export default {
 			this.showDialog = false
 
 		},
-		openDocumentTab() {
-			// Only open in new tab as a fallback
-			if (this.embeddingToken !== '') {
+		openDocumentTab(forceOpen = false) {
+			// Only open in new tab as a fallback unless forceOpen
+			if (!forceOpen && this.embeddingToken !== '') {
 				return
 			}
 			try {

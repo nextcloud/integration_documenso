@@ -79,6 +79,29 @@ class DocumensoController extends Controller {
 	}
 
 	/**
+	 * @param int $documentId
+	 * @return DataResponse
+	 */
+	#[NoAdminRequired]
+	#[FrontpageRoute(verb: 'POST', url: '/documenso/distribute')]
+	public function distribute(int $documentId): DataResponse {
+		if ($this->userId === null) {
+			return new DataResponse(['error' => 'no user in context'], Http::STATUS_UNAUTHORIZED);
+		}
+		$token = $this->config->getUserValue($this->userId, Application::APP_ID, 'token');
+		$url = $this->config->getUserValue($this->userId, Application::APP_ID, 'url');
+		$isConnected = ($token !== '' && $url !== '');
+		if (!$isConnected) {
+			return new DataResponse(['error' => 'Documenso connected account is not configured'], Http::STATUS_UNAUTHORIZED);
+		}
+		$result = $this->documensoAPIService->distributeDocument($this->userId, $documentId);
+		if (isset($result['error'])) {
+			return new DataResponse($result, Http::STATUS_BAD_REQUEST);
+		}
+		return new DataResponse($result);
+	}
+
+	/**
 	 * Set config values
 	 *
 	 * @param array<string, string> $values

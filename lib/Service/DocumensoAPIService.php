@@ -177,6 +177,21 @@ class DocumensoAPIService {
 	}
 
 	/**
+	 * Distribute a document via Documenso (send for signing).
+	 * See https://openapi.documenso.com/reference#tag/document/post/document/distribute
+	 *
+	 * @param string $userId
+	 * @param int $documentId
+	 * @return array request result or error
+	 */
+	public function distributeDocument(string $userId, int $documentId): array {
+		$baseUrl = $this->config->getUserValue($userId, Application::APP_ID, 'url');
+		$endPoint = 'api/v2/document/distribute';
+		$body = ['documentId' => $documentId];
+		return $this->apiRequest($baseUrl, $userId, $endPoint, $body, 'POST');
+	}
+
+	/**
 	 * Get a list of all documents from Documenso
 	 * @param string $userId
 	 * @return array request result
