@@ -5,6 +5,7 @@ OC.L10N.register(
     "Draft" : "Ноорог",
     "Bad credentials" : "Буруу нэвтрэх мэдээлэл",
     "Bad HTTP method" : "Буруу HTTP арга",
+    "Connected accounts" : "Холбогдсон бүртгэлүүд",
     "Cancel" : "Цуцлах",
     "OK" : "ЗА",
     "Who?" : "Хэн?",
