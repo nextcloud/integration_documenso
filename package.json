@@ -37,7 +37,7 @@
     "@documenso/embed-vue": "^0.5.0",
     "@nextcloud/auth": "^2.5.1",
     "@nextcloud/axios": "^2.4.0",
-    "@nextcloud/dialogs": "^7.2.0",
+    "@nextcloud/dialogs": "^7.3.0",
     "@nextcloud/files": "^4.0.0",
     "@nextcloud/initial-state": "^3.0.0",
     "@nextcloud/l10n": "^3.2.0",
