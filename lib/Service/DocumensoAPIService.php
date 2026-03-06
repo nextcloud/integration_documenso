@@ -93,9 +93,11 @@ class DocumensoAPIService {
 		if (isset($uploadEndpoint['error'])) {
 			return $uploadEndpoint;
 		};
-
 		$response = $this->uploadFile($file, $uploadEndpoint, $ccUserId);
 		$response['missingMailCount'] = $missingMailCount;
+		$response['embeddingToken'] = $this->requestEmbeddingToken($ccUserId);
+		$response['host'] = $this->config->getUserValue($ccUserId, Application::APP_ID, 'url');
+		$response['documentId'] = $uploadEndpoint['documentId'];
 		return $response;
 	}
 
@@ -155,6 +157,41 @@ class DocumensoAPIService {
 	}
 
 	/**
+	 * Request a presigned embedding token for embedded authoring/signing
+	 * See https://openapi.documenso.com/reference#tag/embedding/post/embedding/create-presign-token
+	 *
+	 * @param string $userId
+	 * @return string|null The presign token on success, null on error
+	 */
+	public function requestEmbeddingToken(string $userId): ?string {
+		$baseUrl = $this->config->getUserValue($userId, Application::APP_ID, 'url');
+		$endPoint = 'api/v2/embedding/create-presign-token';
+		$result = $this->apiRequest($baseUrl, $userId, $endPoint, ['expiresIn' => 60,'scope' => ''], 'POST');
+
+		if (isset($result['error'])) {
+			$this->logger->warning('Failed to create embedding presign token: ' . $result['error'], ['app' => Application::APP_ID]);
+			return null;
+		}
+
+		return isset($result['token']) && is_string($result['token']) ? $result['token'] : null;
+	}
+
+	/**
+	 * Distribute a document via Documenso (send for signing).
+	 * See https://openapi.documenso.com/reference#tag/document/post/document/distribute
+	 *
+	 * @param string $userId
+	 * @param int $documentId
+	 * @return array request result or error
+	 */
+	public function distributeDocument(string $userId, int $documentId): array {
+		$baseUrl = $this->config->getUserValue($userId, Application::APP_ID, 'url');
+		$endPoint = 'api/v2/document/distribute';
+		$body = ['documentId' => $documentId];
+		return $this->apiRequest($baseUrl, $userId, $endPoint, $body, 'POST');
+	}
+
+	/**
 	 * Get a list of all documents from Documenso
 	 * @param string $userId
 	 * @return array request result
@@ -175,7 +212,7 @@ class DocumensoAPIService {
 	 * @param string $baseUrl
 	 * @param string $token
 	 * @param string $endPoint
-	 * @param array<string, string|string[]> $params
+	 * @param array<string, string[]|string|int|bool> $params
 	 * @param string $method
 	 * @return array request result
 	 * @throws Exception

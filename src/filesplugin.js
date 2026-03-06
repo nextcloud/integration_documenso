@@ -5,7 +5,7 @@ import { generateUrl, linkTo } from '@nextcloud/router'
 
 import { createApp } from 'vue'
 import {
-	registerFileAction, Permission, FileAction, FileType,
+	registerFileAction, Permission, FileType,
 } from '@nextcloud/files'
 import DocumensoIcon from '../img/app-dark.svg'
 
@@ -27,7 +27,7 @@ if (!OCA.Documenso) {
 	}
 }
 
-const requestSignatureAction = new FileAction({
+const requestSignatureAction = {
 	id: 'documenso-sign',
 	displayName: ({ nodes }) => {
 		return t('integration_documenso', 'Request signature with Documenso')
@@ -45,7 +45,7 @@ const requestSignatureAction = new FileAction({
 		OCA.Documenso.DocumensoModalVue.showModal()
 		return null
 	},
-})
+}
 registerFileAction(requestSignatureAction)
 
 // signature modal
