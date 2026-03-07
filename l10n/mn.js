@@ -8,6 +8,7 @@ OC.L10N.register(
     "Connected accounts" : "Холбогдсон бүртгэлүүд",
     "Cancel" : "Цуцлах",
     "OK" : "ЗА",
+    "Open in new tab" : "Шинэ таб дээр нээх",
     "Who?" : "Хэн?",
     "No recommendations. Start typing." : "Санал байхгүй. Бичиж эхлээрэй."
 },

@@ -10,6 +10,7 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Usuaris de Nextcloud o adreces electròniques",
     "Cancel" : "Cancel·la",
     "OK" : "Correcta",
+    "Open in new tab" : "Obre en una pestanya nova",
     "Who?" : "Qui?",
     "Impossible to get user/group/circle list" : "No es pot obtenir la llista d'usuari/grup/cercle",
     "No recommendations. Start typing." : "No hi ha cap recomanació. Comenceu a escriure.",

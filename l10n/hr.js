@@ -10,6 +10,7 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Korisnici Nextclouda ili adrese e-pošte",
     "Cancel" : "Odustani",
     "OK" : "U redu",
+    "Open in new tab" : "Otvori u novoj kartici",
     "Who?" : "Tko?",
     "No recommendations. Start typing." : "Nema preporuka. Započnite unos.",
     "Access token" : "Token za pristup",

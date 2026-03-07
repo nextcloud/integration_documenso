@@ -25,6 +25,7 @@ OC.L10N.register(
     "Send document" : "Saada dokument",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Mõne kasutaja andmete juures polnud e-posti aadressi. Nemad jäid allkirjastajate hulka lisamata.",
     "OK" : "Sobib",
+    "Open in new tab" : "Ava uuel vahekaardil",
     "Who?" : "Kes?",
     "Users or groups" : "Kasutajad või grupid",
     "Impossible to get user/group/circle list" : "Kasutajate, gruppide või tiimide loendi laadimine ei õnnestu",

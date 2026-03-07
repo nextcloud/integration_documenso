@@ -25,6 +25,7 @@ OC.L10N.register(
     "Send document" : "Send document",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Some users did not have a mail address assigned to their account. They were not added as signers.",
     "OK" : "OK",
+    "Open in new tab" : "Open in new tab",
     "Who?" : "Who?",
     "Users or groups" : "Users or groups",
     "Impossible to get user/group/circle list" : "Impossible to get user/group/circle list",

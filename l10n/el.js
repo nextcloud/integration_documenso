@@ -24,6 +24,7 @@ OC.L10N.register(
     "Send document" : "Αποστολή εγγράφου",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Ορισμένοι χρήστες δεν είχαν διεύθυνση email συνδεδεμένη με το λογαριασμό τους. Δεν προστέθηκαν ως υπογράφοντες.",
     "OK" : "ΟΚ",
+    "Open in new tab" : "Άνοιγμα σε νέα καρτέλα",
     "Who?" : "Ποιος;",
     "Users or groups" : "Χρήστες ή ομάδες",
     "Impossible to get user/group/circle list" : "Αδυναμία λήψης λίστας χρηστών/ομάδων/κύκλων",

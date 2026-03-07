@@ -23,6 +23,7 @@
     "Send document" : "Odeslat dokument",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Někteří uživatelé nemají u svých účtů uvedené e-mailové adresy. Nebudou proto přidání jako podepisující.",
     "OK" : "OK",
+    "Open in new tab" : "Otevřít v nové kartě",
     "Who?" : "Kdo?",
     "Users or groups" : "Uživatelé nebo skupiny",
     "Impossible to get user/group/circle list" : "Nedaří se získat seznam uživatelů/skupin/okruhů",

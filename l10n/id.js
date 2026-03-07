@@ -8,6 +8,7 @@ OC.L10N.register(
     "Connected accounts" : "Akun terhubung",
     "Cancel" : "Batal",
     "OK" : "Oke",
+    "Open in new tab" : "Buka di tab baru",
     "Who?" : "Siapa?",
     "Impossible to get user/group/circle list" : "Tidak dapat memperoleh daftar pengguna/grup/lingkaran",
     "No recommendations. Start typing." : "Tidak ada saran. Mulai mengetik.",

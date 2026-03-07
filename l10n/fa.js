@@ -10,6 +10,7 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Nextcloud users or email addresses",
     "Cancel" : "منصرف شدن",
     "OK" : "مورد قبول",
+    "Open in new tab" : "باز کردن در یک برگه جدید",
     "Who?" : "Who?",
     "Impossible to get user/group/circle list" : "Impossible to get user/group/circle list",
     "No recommendations. Start typing." : "هیچ توصیه‌ای وجود ندارد. شروع به نوشتن کنید.",

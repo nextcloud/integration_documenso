@@ -24,6 +24,7 @@ OC.L10N.register(
     "Send document" : "Надіслати документ",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Деякі користувачі не мали прив'язаної до свого облікового запису поштової адреси. Вони не були додані як підписанти.",
     "OK" : "Гаразд",
+    "Open in new tab" : "Відкрити у новій вкладці",
     "Who?" : "Хто?",
     "Users or groups" : "Користувачі або групи",
     "Impossible to get user/group/circle list" : "Неможливо отримати список користувачів/груп/колів",

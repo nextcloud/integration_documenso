@@ -25,6 +25,7 @@ OC.L10N.register(
     "Send document" : "Seol doiciméad",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Ní raibh seoladh ríomhphoist sannta ag roinnt úsáideoirí dá gcuntas. Níor cuireadh leo mar shínitheoirí.",
     "OK" : "Ceart go leor",
+    "Open in new tab" : "Oscail i gcluaisín nua",
     "Who?" : "EDS?",
     "Users or groups" : "Úsáideoirí nó grúpaí",
     "Impossible to get user/group/circle list" : "Ní féidir liosta úsáideora/grúpa/ciorcail a fháil",

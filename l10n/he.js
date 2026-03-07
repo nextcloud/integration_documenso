@@ -7,6 +7,7 @@ OC.L10N.register(
     "Connected accounts" : "חשבונות מקושרים",
     "Cancel" : "ביטול",
     "OK" : "בסדר",
+    "Open in new tab" : "פתיחה בלשונית חדשה",
     "No recommendations. Start typing." : "אין המלצות. נא להתחיל להקליד."
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

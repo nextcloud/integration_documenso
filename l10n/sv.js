@@ -10,6 +10,7 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Nextcloud-användare eller e-postadresser",
     "Cancel" : "Avbryt",
     "OK" : "OK",
+    "Open in new tab" : "Öppna i ny flik",
     "Who?" : "Vem?",
     "Users or groups" : "Användare och grupper",
     "Impossible to get user/group/circle list" : "Omöjligt att få lista över användare/grupp/cirklar",

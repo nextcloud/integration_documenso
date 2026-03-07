@@ -14,6 +14,7 @@ OC.L10N.register(
     "Cancel" : "Atsisakyti",
     "Send document" : "Siųsti dokumentą",
     "OK" : "Gerai",
+    "Open in new tab" : "Atverti naujoje kortelėje",
     "Who?" : "Kas?",
     "Users or groups" : "Naudotojai ar grupės",
     "No recommendations. Start typing." : "Rekomendacijų nėra. Pradėkite rašyti.",

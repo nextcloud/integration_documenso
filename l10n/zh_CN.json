@@ -16,6 +16,7 @@
     "Send document" : "发送文档",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "一些用户没有为其帐号填写邮箱地址。他们没有被添加为签名者。",
     "OK" : "确定",
+    "Open in new tab" : "在新标签页中打开",
     "Who?" : "谁？",
     "Users or groups" : "用户或群组",
     "Impossible to get user/group/circle list" : "无法获得用户 / 群组 / 圈子列表",

@@ -10,6 +10,7 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Nextcloud felhasználók vagy e-mail-címek",
     "Cancel" : "Mégse",
     "OK" : "Rendben",
+    "Open in new tab" : "Megnyitás új fülön",
     "Who?" : "Ki?",
     "Impossible to get user/group/circle list" : "A felhasználók/csoportok/körök lekérése nem lehetséges",
     "No recommendations. Start typing." : "Nincs javaslat. Kezdjen gépelni.",

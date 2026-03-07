@@ -18,6 +18,7 @@ OC.L10N.register(
     "Send document" : "문서 전송",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "일부 사용자는 계정에 메일 주소를 가지고 있지 않습니다. 해당 사용자는 서명자로 추가되지 않았습니다.",
     "OK" : "확인",
+    "Open in new tab" : "새 탭으로 열기",
     "Who?" : "상대방 정보",
     "Users or groups" : "사용자 혹은 그룹",
     "Impossible to get user/group/circle list" : "사용자/그룹/서클 리스트를 불러올 수 없습니다.",

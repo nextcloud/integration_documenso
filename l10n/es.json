@@ -22,6 +22,7 @@
     "Send document" : "Enviar documento",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Algunos usuarios no tenían una dirección de correo electrónico asignada a su cuenta. No fueron añadidos como firmantes.",
     "OK" : "OK",
+    "Open in new tab" : "Abrir en pestaña nueva",
     "Who?" : "¿Quién?",
     "Users or groups" : "Usuarios o grupos",
     "Impossible to get user/group/circle list" : "Imposible obtener la lista de usuarios/grupos/círculos",

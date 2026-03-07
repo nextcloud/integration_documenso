@@ -4,6 +4,7 @@ OC.L10N.register(
     "Draft" : "Чарнавік",
     "Cancel" : "Скасаваць",
     "OK" : "OK",
+    "Open in new tab" : "Адкрываць у новай укладцы",
     "Who?" : "Хто?",
     "No recommendations. Start typing." : "Няма рэкамендацый. Пачніце друкаваць.",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Каб стварыць токен доступу, перайдзіце ў раздзел \"Токен API\" у наладах карыстальніка Documenso.",

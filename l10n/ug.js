@@ -25,6 +25,7 @@ OC.L10N.register(
     "Send document" : "ھۆججەت ئەۋەت",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "بەزى ئىشلەتكۈچىلەرنىڭ ھېساباتىغا پوچتا ئادرېسى بېكىتىلمىگەن. ئۇلار ئىمزا قويغۇچى سۈپىتىدە قوشۇلمىغان.",
     "OK" : "ماقۇل",
+    "Open in new tab" : "يېڭى بەتكۈچتە ئېچىڭ",
     "Who?" : "كىم؟",
     "Users or groups" : "ئىشلەتكۈچىلەر ياكى گۇرۇپپىلار",
     "Impossible to get user/group/circle list" : "ئىشلەتكۈچى / گۇرۇپپا / چەمبىرەك تىزىملىكىگە ئېرىشىش مۇمكىن ئەمەس",

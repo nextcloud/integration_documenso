@@ -25,6 +25,7 @@ OC.L10N.register(
     "Send document" : "Dokument senden",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Einige Benutzer haben ihrem Konto keine E-Mail-Adresse zugewiesen. Sie wurden nicht als Unterzeichner hinzugefügt.",
     "OK" : "OK",
+    "Open in new tab" : "In einem neuen Tab öffnen",
     "Who?" : "Wer?",
     "Users or groups" : "Benutzer oder Gruppen",
     "Impossible to get user/group/circle list" : "Es ist nicht möglich, eine Benutzer-/Gruppen-/Kreisliste zu erhalten",

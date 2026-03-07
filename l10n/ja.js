@@ -20,6 +20,7 @@ OC.L10N.register(
     "Cancel" : "キャンセル",
     "Send document" : "ドキュメントを送信",
     "OK" : "OK",
+    "Open in new tab" : "新しいタブで開く",
     "Who?" : "どちら様でしょうか？",
     "Users or groups" : "ユーザーまたはグループ",
     "No recommendations. Start typing." : "推奨事項はありません。 入力を開始します。",

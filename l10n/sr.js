@@ -24,6 +24,7 @@ OC.L10N.register(
     "Send document" : "Пошаљи документ",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Налози неких корисника нису имали придружене и-мејл адресе. Они нису додати као потписници.",
     "OK" : "У реду је",
+    "Open in new tab" : "Отвори у новој картици",
     "Who?" : "Ко?",
     "Users or groups" : "Корисници или групе",
     "Impossible to get user/group/circle list" : "Листа корисника/група/кругова не може да се прибави",

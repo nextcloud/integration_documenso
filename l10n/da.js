@@ -24,6 +24,7 @@ OC.L10N.register(
     "Send document" : "Send dokument",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Nogle brugere havde ikke tildelt en mailadresse til deres konto. De blev ikke tilføjet som underskrivere.",
     "OK" : "OK",
+    "Open in new tab" : "Åben i ny fane",
     "Who?" : "Hvem?",
     "Users or groups" : "Brugere af grupper",
     "Impossible to get user/group/circle list" : "Umuligt at hente bruger/gruppe/cirkel liste",

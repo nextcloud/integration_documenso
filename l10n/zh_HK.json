@@ -23,6 +23,7 @@
     "Send document" : "傳送文件",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "部份使用者的帳號沒有電子郵件地址。他們未被新增為簽名者。",
     "OK" : "OK",
+    "Open in new tab" : "以新分頁打開",
     "Who?" : "誰？",
     "Users or groups" : "用戶或群組",
     "Impossible to get user/group/circle list" : "無法獲取用戶/群組/社交圈子列表",

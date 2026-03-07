@@ -23,6 +23,7 @@
     "Send document" : "Belgeyi gönder",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "Bazı kullanıcıların hesaplarına atanmış bir e-posta adresi yoktu. İmzalayan olarak eklenmediler.",
     "OK" : "Tamam",
+    "Open in new tab" : "Yeni sekmede aç",
     "Who?" : "Kim?",
     "Users or groups" : "Kullanıcılar veya gruplar",
     "Impossible to get user/group/circle list" : "Kullanıcı/grup/takım listesi alınamadı",
