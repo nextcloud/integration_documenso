@@ -24,6 +24,7 @@ OC.L10N.register(
     "Send document" : "إرسال المستند",
     "Some users did not have a mail address assigned to their account. They were not added as signers." : "بعض المستخدِمين لا يملكون حسابات بريد إلكتروني مربوطة مع حساباتهم. هؤلاء لا يمكن إضافتهم كمُوقِّعِين.",
     "OK" : "موافق",
+    "Open in new tab" : "فتح تبويبة جديدة",
     "Who?" : "من؟",
     "Users or groups" : "المستخدِمين و المجموعات",
     "Impossible to get user/group/circle list" : "يستحيل الحصول على قائمة المستخدِمين أو المجموعات أو الدوائر.",
