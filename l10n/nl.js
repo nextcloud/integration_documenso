@@ -10,6 +10,7 @@ OC.L10N.register(
     "Nextcloud users or email addresses" : "Nextcloud gebruikers of e-mailadressen",
     "Cancel" : "Annuleren",
     "OK" : "OK",
+    "Distribute" : "Distribueer",
     "Open in new tab" : "Open in nieuwe tab",
     "Who?" : "Wie?",
     "Users or groups" : "Gebruikers of groepen",
