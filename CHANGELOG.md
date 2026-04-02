@@ -5,9 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.1.0 - 2026-04-02
+
+### Added
+- NC 34 support
+- Use embedded vue component for documenso when possible
+
+### Changed
+- updated dependencies
+
+### Fixed
+- FileAction in NC33
+
 ## 2.0.0 - 2026-01-07
 
-## Changed
+### Changed
 - Migrated to Vue 3 and use nextcloud/vue 9
 - Adjust to file actions breaking changes in NC 33
 - Bump min supported NC version to 33
@@ -15,10 +27,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 1.1.2 - 2025-12-01
 
-## Fixed
+### Fixed
 - open document overview instead of editing page
 
-## Changed
+### Changed
 - bump max supported NC version to 33
 - update npm and composer packages
 
