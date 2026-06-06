@@ -12,6 +12,7 @@ OC.L10N.register(
     "OK" : "مورد قبول",
     "Open in new tab" : "باز کردن در یک برگه جدید",
     "Who?" : "Who?",
+    "Users or groups" : "کاربران یا گروه‌ها",
     "Impossible to get user/group/circle list" : "Impossible to get user/group/circle list",
     "No recommendations. Start typing." : "هیچ توصیه‌ای وجود ندارد. شروع به نوشتن کنید.",
     "Access token" : "Access token",
