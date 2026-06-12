@@ -5,6 +5,8 @@ OC.L10N.register(
     "Draft" : "Arewway",
     "Cancel" : "Cancel",
     "OK" : "IH",
+    "Who?" : "Anwa?",
+    "Users or groups" : "Iseqdacen neɣ igrawen",
     "Connected as {user}" : "D uqqin am {user}"
 },
 "nplurals=2; plural=(n != 1);");
