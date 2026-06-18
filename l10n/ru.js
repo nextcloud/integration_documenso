@@ -12,6 +12,7 @@ OC.L10N.register(
     "OK" : "ОК",
     "Open in new tab" : "Открыть в новой вкладке",
     "Who?" : "Кто?",
+    "Users or groups" : "Пользователи или группы",
     "Impossible to get user/group/circle list" : "Невозможно получить список пользователей/групп/кругов",
     "No recommendations. Start typing." : "Начните вводить имя...",
     "Access token" : "Токен доступа",
