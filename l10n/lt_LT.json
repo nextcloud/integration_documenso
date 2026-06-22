@@ -17,9 +17,9 @@
     "Users or groups" : "Naudotojai ar grupės",
     "Impossible to get user/group/circle list" : "Nepavyksta gauti vartotojų, grupių ar ratų sąrašo",
     "No recommendations. Start typing." : "Rekomendacijų nėra. Pradėkite rašyti.",
-    "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Norėdami sukurti prieigos raktą, eikite į „Documenso“ vartotojo nustatymų skiltį „API raktas“.",
-    "Access token" : "Prieigos raktas",
-    "Documenso access token" : "„Documenso“ prieigos raktas",
+    "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Norėdami sukurti prieigos žymenį, eikite į „Documenso“ vartotojo nustatymų skiltį „API Token“.",
+    "Access token" : "Prieigos žymuo",
+    "Documenso access token" : "„Documenso“ prieigos žymuo",
     "Connected as {user}" : "Prisijungta kaip {user}"
 },"pluralForm" :"nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);"
 }
