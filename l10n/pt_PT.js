@@ -5,6 +5,7 @@ OC.L10N.register(
     "Draft" : "Rascunho",
     "Bad credentials" : "Credenciais inválidas",
     "Bad HTTP method" : "Método HTTP incorreto",
+    "Connected accounts" : "Contas conectadas",
     "Cancel" : "Cancelar",
     "OK" : "Ok",
     "No recommendations. Start typing." : "Nenhuma recomendação. Comece a escrever "
