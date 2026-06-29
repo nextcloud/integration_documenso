@@ -1,11 +1,16 @@
 { "translations": {
+    "Documenso" : "Documenso",
     "Completed" : "Concluída",
     "Draft" : "Rascunho",
+    "More documents" : "Mais documentos",
     "Bad credentials" : "Credenciais inválidas",
     "Bad HTTP method" : "Método HTTP incorreto",
     "Connected accounts" : "Contas conectadas",
+    "Failed to request signature with Documenso" : "Falha ao solicitar assinatura com Documenso",
     "Cancel" : "Cancelar",
     "OK" : "Ok",
-    "No recommendations. Start typing." : "Nenhuma recomendação. Comece a escrever "
+    "Users or groups" : "Usuários ou grupos",
+    "No recommendations. Start typing." : "Nenhuma recomendação. Comece a escrever ",
+    "Request signature with Documenso" : "Solicitar assinatura com Documenso"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
