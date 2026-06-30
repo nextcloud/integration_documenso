@@ -1,16 +1,27 @@
 { "translations": {
     "Documenso" : "Documenso",
+    "Documenso service not available" : "O serviço Documenso não está disponível",
     "Completed" : "Concluída",
     "Draft" : "Rascunho",
     "More documents" : "Mais documentos",
     "Bad credentials" : "Credenciais inválidas",
     "Bad HTTP method" : "Método HTTP incorreto",
     "Connected accounts" : "Contas conectadas",
+    "Sign files via Documenso Service." : "Assine arquivos por meio do Serviço Documenso",
     "Failed to request signature with Documenso" : "Falha ao solicitar assinatura com Documenso",
+    "Please allow pop-up windows." : "Por favor, permita janelas pop-up.",
+    "Nextcloud users or email addresses" : "Usuários do Nextcloud ou endereços de e-mail",
+    "Documenso workflow" : "Fluxo de trabalho Documenso",
+    "The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode." : "O documento e os destinatários serão enviados para o Documenso. Uma nova aba será aberta com sua visão geral do Documenso. Para inserir os campos de assinatura e enviar o documento para assinatura, abra o documento carregado no modo de edição.",
     "Cancel" : "Cancelar",
     "OK" : "Ok",
+    "Document saved" : "Documento salvo",
+    "Who?" : "Quem?",
     "Users or groups" : "Usuários ou grupos",
+    "Impossible to get user/group/circle list" : "Impossível obter lista de usuários/grupos/círculos",
     "No recommendations. Start typing." : "Nenhuma recomendação. Comece a escrever ",
+    "Documenso integration" : "Integração Documenso",
+    "Documenso access token" : "Token de acesso do Documenso",
     "Request signature with Documenso" : "Solicitar assinatura com Documenso"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
