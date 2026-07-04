@@ -2,6 +2,7 @@ OC.L10N.register(
     "integration_documenso",
     {
     "Documenso" : "Documenso",
+    "No documents" : "Nenhum documento",
     "Documenso is not connected" : "Documenso não está conectado",
     "Documenso service not available" : "O serviço Documenso não está disponível",
     "Completed" : "Concluída",
@@ -41,6 +42,7 @@ OC.L10N.register(
     "Access token" : "Token de acesso",
     "Documenso access token" : "Token de acesso do Documenso",
     "Connected as {user}" : "Conectado como {user}",
+    "Disconnect from Documenso" : "Desconectar do Documenso",
     "Request signature with Documenso" : "Solicitar assinatura com Documenso"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
