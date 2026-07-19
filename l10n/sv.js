@@ -12,10 +12,10 @@ OC.L10N.register(
     "OK" : "OK",
     "Open in new tab" : "Öppna i ny flik",
     "Who?" : "Vem?",
-    "Users or groups" : "Användare och grupper",
-    "Impossible to get user/group/circle list" : "Omöjligt att få lista över användare/grupp/cirklar",
+    "Users or groups" : "Användare eller grupper",
+    "Impossible to get user/group/circle list" : "Det gick inte att hämta listan över användare, grupper och cirklar",
     "No recommendations. Start typing." : "Inga rekommendationer. Börja skriva.",
-    "Access token" : "Åtkomst-token",
+    "Access token" : "Åtkomsttoken",
     "Connected as {user}" : "Ansluten som {user}"
 },
 "nplurals=2; plural=(n != 1);");
