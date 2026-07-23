@@ -6,7 +6,6 @@ use OCA\Documenso\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
-
 use OCP\Security\ICrypto;
 use OCP\Settings\ISettings;
 
