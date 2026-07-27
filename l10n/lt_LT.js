@@ -39,8 +39,11 @@ OC.L10N.register(
     "Failed to save Documenso options" : "Nepavyko išsaugoti „Documenso“ nustatymų",
     "Documenso integration" : "„Documenso“ integracija",
     "To create an access token, go to the \"API Token\" section of your Documenso User settings." : "Norėdami sukurti prieigos žymenį, eikite į „Documenso“ vartotojo nustatymų skiltį „API Token“.",
+    "Documenso instance address" : "„Documenso“ egzemplioriaus adresas",
     "Access token" : "Prieigos žymuo",
     "Documenso access token" : "„Documenso“ prieigos žymuo",
-    "Connected as {user}" : "Prisijungta kaip {user}"
+    "Connected as {user}" : "Prisijungta kaip {user}",
+    "Disconnect from Documenso" : "Atsijungti nuo „Documenso“",
+    "Request signature with Documenso" : "Paprašyti pasirašyti naudojantis „Documenso“"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");
