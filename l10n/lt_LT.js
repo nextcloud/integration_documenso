@@ -20,7 +20,7 @@ OC.L10N.register(
     "Please allow pop-up windows." : "Leiskite iškylančiuosius langus.",
     "Request a signature via Documenso" : "Paprašyti pasirašyti naudojantis „Documenso“",
     "Users or email addresses" : "Naudotojai ar el. pašto adresai",
-    "Nextcloud users or email addresses" : "Nextcloud naudotojai ar el. pašto adresai",
+    "Nextcloud users or email addresses" : "„Nextcloud“ vartotojai ar el. pašto adresai",
     "Documenso workflow" : "„Documenso“ darbo eiga",
     "The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode." : "Dokumentas ir jo gavėjai bus nusiųsti į „Documenso“. Atsivers naujas langas su jūsų „Documenso“ apžvalga. Norėdami įterpti parašo laukelius ir nusiųsti dokumentą pasirašyti, atidarykite įkeltą dokumentą redagavimo režimu.",
     "Cancel" : "Atsisakyti",
