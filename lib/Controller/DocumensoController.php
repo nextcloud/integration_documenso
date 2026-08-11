@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace OCA\Documenso\Controller;
 
 use OCA\Documenso\AppInfo\Application;
+use OCA\Documenso\BackgroundJob\CheckUserDocumentsJob;
+use OCA\Documenso\Db\DocumensoFileMapper;
 use OCA\Documenso\Service\DocumensoAPIService;
 use OCA\Documenso\Service\UtilsService;
 use OCP\AppFramework\Controller;
@@ -13,10 +15,12 @@ use OCP\AppFramework\Http\Attribute\FrontpageRoute;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\BackgroundJob\IJobList;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
+use Psr\Log\LoggerInterface;
 
 class DocumensoController extends Controller {
 
@@ -28,6 +32,9 @@ class DocumensoController extends Controller {
 		private IURLGenerator $urlGenerator,
 		private DocumensoAPIService $documensoAPIService,
 		private UtilsService $utilsService,
+		private DocumensoFileMapper $documensoFileMapper,
+		private IJobList $jobList,
+		private LoggerInterface $logger,
 		private ?string $userId,
 	) {
 		parent::__construct($AppName, $request);
@@ -73,9 +80,25 @@ class DocumensoController extends Controller {
 		$signResult = $this->documensoAPIService->emailSignStandalone($fileId, $this->userId, $targetEmails, $targetUserIds);
 		if (isset($signResult['error'])) {
 			return new DataResponse($signResult, 401);
-		} else {
-			return new DataResponse($signResult);
 		}
+
+		if (isset($signResult['documentId']) && is_numeric($signResult['documentId'])) {
+			$documentId = (int)$signResult['documentId'];
+			try {
+				$this->documensoFileMapper->create($fileId, $documentId, $this->userId);
+				$jobArgument = ['user_id' => $this->userId];
+				if (!$this->jobList->has(CheckUserDocumentsJob::class, $jobArgument)) {
+					$this->jobList->add(CheckUserDocumentsJob::class, $jobArgument);
+				}
+			} catch (\Throwable $e) {
+				$this->logger->error(
+					'Failed to track Documenso document ' . $documentId . ': ' . $e->getMessage(),
+					['app' => Application::APP_ID, 'exception' => $e]
+				);
+			}
+		}
+
+		return new DataResponse($signResult);
 	}
 
 	/**

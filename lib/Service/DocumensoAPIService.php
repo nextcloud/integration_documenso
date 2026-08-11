@@ -192,6 +192,43 @@ class DocumensoAPIService {
 	}
 
 	/**
+	 * Get a single document from Documenso
+	 *
+	 * @return array request result or error
+	 */
+	public function getDocument(string $userId, int $documentId): array {
+		$baseUrl = $this->config->getUserValue($userId, Application::APP_ID, 'url');
+		return $this->apiRequest($baseUrl, $userId, 'api/v1/documents/' . $documentId);
+	}
+
+	/**
+	 * Download the signed PDF for a completed Documenso document.
+	 *
+	 * @return array{content: string}|array{error: string}
+	 */
+	public function downloadSignedDocument(string $userId, int $documentId): array {
+		$baseUrl = $this->config->getUserValue($userId, Application::APP_ID, 'url');
+		$result = $this->apiRequest($baseUrl, $userId, 'api/v1/documents/' . $documentId . '/download');
+		if (isset($result['error'])) {
+			return $result;
+		}
+		if (!isset($result['downloadUrl']) || !is_string($result['downloadUrl']) || $result['downloadUrl'] === '') {
+			return ['error' => 'Missing download URL for signed document', 'result' => $result];
+		}
+
+		try {
+			$response = $this->client->get($result['downloadUrl']);
+			if ($response->getStatusCode() !== 200) {
+				return ['error' => 'Failed to download signed document', 'response' => $response];
+			}
+			return ['content' => (string)$response->getBody()];
+		} catch (ServerException|ClientException|ConnectException $e) {
+			$this->logger->warning('Documenso signed download error: ' . $e->getMessage(), ['app' => Application::APP_ID]);
+			return ['error' => $e->getMessage()];
+		}
+	}
+
+	/**
 	 * Get a list of all documents from Documenso
 	 * @param string $userId
 	 * @return array request result
