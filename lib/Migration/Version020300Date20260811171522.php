@@ -46,10 +46,7 @@ class Version020300Date20260811171522 extends SimpleMigrationStep {
 		]);
 
 		$table->setPrimaryKey(['id']);
-		$table->addUniqueIndex(['document_id'], 'documenso_files_document_id');
-		$table->addIndex(['user_id'], 'documenso_files_user_id');
-		$table->addIndex(['file_id'], 'documenso_files_file_id');
-
+		$table->addUniqueIndex(['user_id', 'document_id'], 'documenso_files_user_id_document_id');
 		return $schema;
 	}
 }

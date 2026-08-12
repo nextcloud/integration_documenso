@@ -89,6 +89,7 @@ class FileService {
 				'Failed to update Nextcloud file for Documenso document ' . $documentId . ': ' . $e->getMessage(),
 				['app' => Application::APP_ID, 'exception' => $e]
 			);
+			$this->fileMapper->delete($mapping);
 			return;
 		}
 

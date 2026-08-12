@@ -54,7 +54,6 @@ class WebhookController extends Controller {
 	#[PublicPage]
 	#[NoCSRFRequired]
 	#[BruteForceProtection(action: 'documenso_webhook')]
-	#[AnonRateLimit(limit: 10, period: 60)]
 	#[FrontpageRoute(verb: 'POST', url: '/webhook/{userId}')]
 	public function handle(string $userId, ?string $event = null, ?array $payload = null): DataResponse {
 		$receivedSecret = $this->request->getHeader('X-Documenso-Secret');
@@ -85,7 +84,7 @@ class WebhookController extends Controller {
 		}
 
 		try {
-			$mapping = $this->fileMapper->findByDocumentId($documentId);
+			$mapping = $this->fileMapper->findByDocumentId($documentId, $userId);
 		} catch (DoesNotExistException) {
 			return new DataResponse(['received' => true]);
 		} catch (\Throwable $e) {
