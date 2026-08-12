@@ -33,6 +33,30 @@
 					<KeyOutlineIcon :size="20" />
 				</template>
 			</NcTextField>
+			<NcNoteCard type="info">
+				<p>
+					<!-- TRANSLATORS document.completed is a Documenso webhook event name and must stay in English -->
+					{{ t('integration_documenso', 'To update signed files immediately instead of waiting for the next polling interval, create a webhook in Documenso under the "Webhooks" section. Make sure to select the "document.completed" event trigger and point it to this URL:') }}
+				</p>
+				<p class="webhook-value">
+					{{ state.webhook_url }}
+				</p>
+				<p>
+					{{ t('integration_documenso', 'Use this secret when configuring the webhook in Documenso:') }}
+				</p>
+				<p class="webhook-value">
+					{{ state.webhook_secret }}
+				</p>
+			</NcNoteCard>
+			<NcCheckboxRadioSwitch
+				:model-value="state.polling_disabled"
+				@update:model-value="onPollingDisabledChange">
+				<!-- TRANSLATORS When checked, the app stops polling Documenso and relies on webhooks -->
+				{{ t('integration_documenso', 'Disable polling') }}
+			</NcCheckboxRadioSwitch>
+			<p class="settings-hint">
+				{{ t('integration_documenso', 'When enabled, signed files are only updated via webhooks. Polling is disabled automatically after a valid webhook is received.') }}
+			</p>
 			<div v-if="connected" class="line">
 				<label class="documenso-connected">
 					<CheckIcon :size="20" class="icon" />
@@ -59,6 +83,7 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import DocumensoIcon from './icons/DocumensoIcon.vue'
 
 import NcButton from '@nextcloud/vue/components/NcButton'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 import NcTextField from '@nextcloud/vue/components/NcTextField'
 
@@ -75,6 +100,7 @@ export default {
 
 	components: {
 		NcButton,
+		NcCheckboxRadioSwitch,
 		NcNoteCard,
 		NcTextField,
 		DocumensoIcon,
@@ -109,6 +135,10 @@ export default {
 		onLogoutClick() {
 			this.state.token = ''
 			this.saveOptions({ token: this.state.token })
+		},
+		onPollingDisabledChange(value) {
+			this.state.polling_disabled = value
+			this.saveOptions({ polling_disabled: value ? '1' : '0' })
 		},
 		onInput() {
 			this.loading = true
@@ -166,6 +196,16 @@ export default {
 			display: flex;
 			align-items: center;
 			gap: 8px;
+		}
+
+		.webhook-value {
+			word-break: break-all;
+			font-family: var(--font-face-monospace, monospace);
+		}
+
+		.settings-hint {
+			color: var(--color-text-maxcontrast);
+			margin-block: 0 8px;
 		}
 	}
 }

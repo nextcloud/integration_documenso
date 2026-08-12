@@ -11,10 +11,14 @@ use OCP\IConfig;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\Security\ICrypto;
+use OCP\Security\ISecureRandom;
 use OCP\Share\IManager as IShareManager;
 use OCP\SystemTag\ISystemTagManager;
 
 class UtilsService {
+	public const WEBHOOK_SECRET_KEY = 'webhook_secret';
+	private const WEBHOOK_SECRET_LENGTH = 32;
+
 	/**
 	 * Service providing storage, circles and tags tools
 	 */
@@ -26,6 +30,7 @@ class UtilsService {
 		private ISystemTagManager $tagManager,
 		private IConfig $config,
 		private ICrypto $crypto,
+		private ISecureRandom $secureRandom,
 	) {
 	}
 
@@ -60,6 +65,20 @@ class UtilsService {
 			$encryptedUserSecret = $this->crypto->encrypt($value);
 			$this->config->setUserValue($userId, Application::APP_ID, $key, $encryptedUserSecret);
 		}
+	}
+
+	/**
+	 * Return the user's webhook secret, creating and encrypting one if needed.
+	 */
+	public function getOrCreateWebhookSecret(string $userId): string {
+		$secret = $this->getEncryptedUserValue($userId, self::WEBHOOK_SECRET_KEY);
+		if ($secret !== '') {
+			return $secret;
+		}
+
+		$secret = $this->secureRandom->generate(self::WEBHOOK_SECRET_LENGTH, ISecureRandom::CHAR_ALPHANUMERIC);
+		$this->setEncryptedUserValue($userId, self::WEBHOOK_SECRET_KEY, $secret);
+		return $secret;
 	}
 
 	/**

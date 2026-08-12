@@ -87,7 +87,8 @@ class DocumensoController extends Controller {
 			try {
 				$this->documensoFileMapper->create($fileId, $documentId, $this->userId);
 				$jobArgument = ['user_id' => $this->userId];
-				if (!$this->jobList->has(CheckUserDocumentsJob::class, $jobArgument)) {
+				$pollingDisabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'polling_disabled', '0') === '1';
+				if (!$pollingDisabled && !$this->jobList->has(CheckUserDocumentsJob::class, $jobArgument)) {
 					$this->jobList->add(CheckUserDocumentsJob::class, $jobArgument);
 				}
 			} catch (\Throwable $e) {
@@ -138,6 +139,18 @@ class DocumensoController extends Controller {
 			return new DataResponse(['error' => 'no user in context'], Http::STATUS_UNAUTHORIZED);
 		}
 		foreach ($values as $key => $value) {
+			if ($key === 'polling_disabled') {
+				$disabled = $value === '1';
+				$this->config->setUserValue($this->userId, Application::APP_ID, $key, $disabled ? '1' : '0');
+				$jobArgument = ['user_id' => $this->userId];
+				if ($disabled) {
+					$this->jobList->remove(CheckUserDocumentsJob::class, $jobArgument);
+				} elseif ($this->documensoFileMapper->findAllByUserId($this->userId) !== []
+					&& !$this->jobList->has(CheckUserDocumentsJob::class, $jobArgument)) {
+					$this->jobList->add(CheckUserDocumentsJob::class, $jobArgument);
+				}
+				continue;
+			}
 			if ($key === 'token' && $value !== '') {
 				$this->utilsService->setEncryptedUserValue($this->userId, $key, trim($value));
 			} else {

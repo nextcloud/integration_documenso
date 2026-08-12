@@ -28,19 +28,23 @@ class FileService {
 
 	/**
 	 * Check a tracked Documenso document and update the Nextcloud file when completed.
+	 *
+	 * @param array|null $document Optional document payload. When provided, the Documenso API is not queried for the document.
 	 */
-	public function processMapping(DocumensoFile $mapping): void {
+	public function processMapping(DocumensoFile $mapping, ?array $document = null): void {
 		$userId = $mapping->getUserId();
 		$documentId = $mapping->getDocumentId();
 		$fileId = $mapping->getFileId();
 
-		$document = $this->apiService->getDocument($userId, $documentId);
-		if (isset($document['error'])) {
-			$this->logger->warning(
-				'Failed to fetch Documenso document ' . $documentId . ': ' . $document['error'],
-				['app' => Application::APP_ID]
-			);
-			return;
+		if ($document === null) {
+			$document = $this->apiService->getDocument($userId, $documentId);
+			if (isset($document['error'])) {
+				$this->logger->warning(
+					'Failed to fetch Documenso document ' . $documentId . ': ' . $document['error'],
+					['app' => Application::APP_ID]
+				);
+				return;
+			}
 		}
 
 		$status = isset($document['status']) && is_string($document['status'])
@@ -61,9 +65,9 @@ class FileService {
 		}
 
 		$download = $this->apiService->downloadSignedDocument($userId, $documentId);
-		if (isset($download['error'])) {
+		if (!isset($download['content'])) {
 			$this->logger->warning(
-				'Failed to download signed Documenso document ' . $documentId . ': ' . $download['error'],
+				'Failed to download signed Documenso document ' . $documentId . ': ' . ($download['error'] ?? 'unknown error'),
 				['app' => Application::APP_ID]
 			);
 			return;

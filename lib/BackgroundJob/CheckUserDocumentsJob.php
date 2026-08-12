@@ -15,6 +15,7 @@ use OCA\Documenso\Service\FileService;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\IJobList;
 use OCP\BackgroundJob\QueuedJob;
+use OCP\IConfig;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -27,6 +28,7 @@ class CheckUserDocumentsJob extends QueuedJob {
 		ITimeFactory $timeFactory,
 		private FileService $fileService,
 		private DocumensoFileMapper $fileMapper,
+		private IConfig $config,
 		private IJobList $jobList,
 		private LoggerInterface $logger,
 	) {
@@ -41,6 +43,10 @@ class CheckUserDocumentsJob extends QueuedJob {
 		$userId = isset($argument['user_id']) && is_string($argument['user_id']) ? $argument['user_id'] : '';
 		if ($userId === '') {
 			$this->logger->warning('CheckUserDocumentsJob missing user_id', ['app' => Application::APP_ID]);
+			return;
+		}
+
+		if ($this->config->getUserValue($userId, Application::APP_ID, 'polling_disabled', '0') === '1') {
 			return;
 		}
 
@@ -59,6 +65,9 @@ class CheckUserDocumentsJob extends QueuedJob {
 	}
 
 	private function scheduleRetry(string $userId): void {
+		if ($this->config->getUserValue($userId, Application::APP_ID, 'polling_disabled', '0') === '1') {
+			return;
+		}
 		$argument = ['user_id' => $userId];
 		if ($this->jobList->has(self::class, $argument)) {
 			return;

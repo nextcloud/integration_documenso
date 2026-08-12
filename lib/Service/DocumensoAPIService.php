@@ -210,16 +210,16 @@ class DocumensoAPIService {
 		$baseUrl = $this->config->getUserValue($userId, Application::APP_ID, 'url');
 		$result = $this->apiRequest($baseUrl, $userId, 'api/v1/documents/' . $documentId . '/download');
 		if (isset($result['error'])) {
-			return $result;
+			return ['error' => is_string($result['error']) ? $result['error'] : 'Failed to get signed document download'];
 		}
 		if (!isset($result['downloadUrl']) || !is_string($result['downloadUrl']) || $result['downloadUrl'] === '') {
-			return ['error' => 'Missing download URL for signed document', 'result' => $result];
+			return ['error' => 'Missing download URL for signed document'];
 		}
 
 		try {
 			$response = $this->client->get($result['downloadUrl']);
 			if ($response->getStatusCode() !== 200) {
-				return ['error' => 'Failed to download signed document', 'response' => $response];
+				return ['error' => 'Failed to download signed document'];
 			}
 			return ['content' => (string)$response->getBody()];
 		} catch (ServerException|ClientException|ConnectException $e) {

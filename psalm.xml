@@ -24,4 +24,14 @@
 		<file name="tests/stubs/oc_hooks_emitter.php" />
         <file name="tests/stubs/oca_files_event.php" />
 	</stubs>
+	<issueHandlers>
+		<UndefinedDocblockClass>
+			<errorLevel type="suppress">
+				<referencedClass name="Doctrine\DBAL\Schema\Schema" />
+				<referencedClass name="Doctrine\DBAL\Schema\SchemaException" />
+				<referencedClass name="Doctrine\DBAL\Driver\Statement" />
+				<referencedClass name="Doctrine\DBAL\Schema\Table" />
+			</errorLevel>
+		</UndefinedDocblockClass>
+	</issueHandlers>
 </psalm>
