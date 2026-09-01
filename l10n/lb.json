@@ -1,6 +1,7 @@
 { "translations": {
     "Completed" : "Erfëllt",
     "Cancel" : "Cancel",
-    "OK" : "OK"
+    "OK" : "OK",
+    "Who?" : "Wien?"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

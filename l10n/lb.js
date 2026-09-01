@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Completed" : "Erfëllt",
     "Cancel" : "Cancel",
-    "OK" : "OK"
+    "OK" : "OK",
+    "Who?" : "Wien?"
 },
 "nplurals=2; plural=(n != 1);");
