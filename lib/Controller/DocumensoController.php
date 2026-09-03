@@ -17,9 +17,7 @@ use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\BackgroundJob\IJobList;
 use OCP\IConfig;
-use OCP\IL10N;
 use OCP\IRequest;
-use OCP\IURLGenerator;
 use Psr\Log\LoggerInterface;
 
 class DocumensoController extends Controller {
@@ -28,8 +26,6 @@ class DocumensoController extends Controller {
 		string $AppName,
 		IRequest $request,
 		private IConfig $config,
-		private IL10N $l,
-		private IURLGenerator $urlGenerator,
 		private DocumensoAPIService $documensoAPIService,
 		private UtilsService $utilsService,
 		private DocumensoFileMapper $documensoFileMapper,

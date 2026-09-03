@@ -15,6 +15,7 @@ use OCA\Documenso\Db\DocumensoFileMapper;
 use OCP\Files\File;
 use OCP\Files\IRootFolder;
 use OCP\Files\NotFoundException;
+use OCP\Notification\IManager as INotificationManager;
 use Psr\Log\LoggerInterface;
 
 class FileService {
@@ -23,6 +24,7 @@ class FileService {
 		private DocumensoFileMapper $fileMapper,
 		private IRootFolder $rootFolder,
 		private LoggerInterface $logger,
+		private INotificationManager $notificationManager,
 	) {
 	}
 
@@ -84,6 +86,18 @@ class FileService {
 				throw new NotFoundException('Node is not a file for id ' . $fileId);
 			}
 			$node->putContent($download['content']);
+
+			// Create a notification for the user
+			$notification = $this->notificationManager->createNotification();
+			$notification->setApp(Application::APP_ID)
+				->setUser($userId)
+				->setDateTime(new \DateTime())
+				->setObject('document', (string)$documentId)
+				->setSubject('document_signed', [
+					'id' => $node->getId(),
+					'name' => $node->getName(),
+				]);
+			$this->notificationManager->notify($notification);
 		} catch (\Throwable $e) {
 			$this->logger->error(
 				'Failed to update Nextcloud file for Documenso document ' . $documentId . ': ' . $e->getMessage(),
