@@ -7,6 +7,7 @@ namespace OCA\Documenso\Service;
 use Exception;
 use OCA\Documenso\AppInfo\Application;
 use OCP\Files\IRootFolder;
+use OCP\Files\Node;
 use OCP\IConfig;
 use OCP\IUser;
 use OCP\IUserManager;
@@ -82,19 +83,19 @@ class UtilsService {
 	}
 
 	/**
-	 * Check if user has access to a given file
+	 * Get a file by its ID and user ID
 	 *
 	 * @param int $fileId
 	 * @param string $userId
-	 * @return bool
+	 * @return Node|null
 	 */
-	public function userHasAccessTo(int $fileId, string $userId): bool {
+	public function getFile(int $fileId, string $userId): ?Node {
 		$user = $this->userManager->get($userId);
 		if ($user instanceof IUser) {
 			$userFolder = $this->root->getUserFolder($userId);
 			$found = $userFolder->getById($fileId);
-			return !empty($found);
+			return $found[0] ?? null;
 		}
-		return false;
+		return null;
 	}
 }

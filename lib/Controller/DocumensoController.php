@@ -8,6 +8,7 @@ use OCA\Documenso\AppInfo\Application;
 use OCA\Documenso\BackgroundJob\CheckUserDocumentsJob;
 use OCA\Documenso\Db\DocumensoFileMapper;
 use OCA\Documenso\Service\DocumensoAPIService;
+use OCA\Documenso\Service\FileService;
 use OCA\Documenso\Service\UtilsService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
@@ -16,6 +17,7 @@ use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\BackgroundJob\IJobList;
+use OCP\Files\NotPermittedException;
 use OCP\IConfig;
 use OCP\IRequest;
 use Psr\Log\LoggerInterface;
@@ -29,6 +31,7 @@ class DocumensoController extends Controller {
 		private DocumensoAPIService $documensoAPIService,
 		private UtilsService $utilsService,
 		private DocumensoFileMapper $documensoFileMapper,
+		private FileService $fileService,
 		private IJobList $jobList,
 		private LoggerInterface $logger,
 		private ?string $userId,
@@ -56,11 +59,12 @@ class DocumensoController extends Controller {
 	 * @param int $fileId
 	 * @param string[] $targetEmails
 	 * @param string[] $targetUserIds
+	 * @param bool $overwriteOriginal
 	 * @return DataResponse
 	 */
 	#[NoAdminRequired]
 	#[FrontpageRoute(verb: 'PUT', url: '/documenso/standalone-sign/{fileId}')]
-	public function signStandalone(int $fileId, array $targetEmails = [], array $targetUserIds = []): DataResponse {
+	public function signStandalone(int $fileId, array $targetEmails = [], array $targetUserIds = [], bool $overwriteOriginal = false): DataResponse {
 		if ($this->userId === null) {
 			return new DataResponse(['error' => 'no user in context'], Http::STATUS_UNAUTHORIZED);
 		}
@@ -70,8 +74,21 @@ class DocumensoController extends Controller {
 		if (!$isConnected) {
 			return new DataResponse(['error' => 'Documenso connected account is not configured'], 401);
 		}
-		if (!$this->utilsService->userHasAccessTo($fileId, $this->userId)) {
+		$file = $this->utilsService->getFile($fileId, $this->userId);
+		if ($file === null) {
 			return new DataResponse(['error' => 'You don\'t have access to this file'], 401);
+		}
+		if (!$overwriteOriginal) {
+			try {
+				$fileId = $this->fileService->copyFile($file);
+			} catch (NotPermittedException $e) {
+				return new DataResponse(['error' => $e->getMessage()], 401);
+			}
+		} else {
+			// File only needs to be writeable if we're overwriting the original
+			if (!$file->isUpdateable()) {
+				return new DataResponse(['error' => 'You don\'t have permission to overwrite the original file'], 401);
+			}
 		}
 		$signResult = $this->documensoAPIService->emailSignStandalone($fileId, $this->userId, $targetEmails, $targetUserIds);
 		if (isset($signResult['error'])) {

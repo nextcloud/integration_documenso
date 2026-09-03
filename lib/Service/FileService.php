@@ -14,7 +14,9 @@ use OCA\Documenso\Db\DocumensoFile;
 use OCA\Documenso\Db\DocumensoFileMapper;
 use OCP\Files\File;
 use OCP\Files\IRootFolder;
+use OCP\Files\Node;
 use OCP\Files\NotFoundException;
+use OCP\Files\NotPermittedException;
 use OCP\Notification\IManager as INotificationManager;
 use Psr\Log\LoggerInterface;
 
@@ -26,6 +28,25 @@ class FileService {
 		private LoggerInterface $logger,
 		private INotificationManager $notificationManager,
 	) {
+	}
+
+	/**
+	 * Copy a file next to the original with _signed appended to the basename.
+	 *
+	 * @return int The file ID of the copy
+	 */
+	public function copyFile(Node $originalFile): int {
+		$parent = $originalFile->getParent();
+		if (!$parent->isUpdateable()) {
+			throw new NotPermittedException('Parent folder is not writable for user');
+		}
+		$name = $originalFile->getName();
+		$ext = pathinfo($name, PATHINFO_EXTENSION);
+		$basename = $ext !== '' ? substr($name, 0, -(strlen($ext) + 1)) : $name;
+		$newName = $basename . '_signed' . ($ext !== '' ? '.' . $ext : '');
+		$newName = $parent->getNonExistingName($newName);
+		$copy = $originalFile->copy($parent->getPath() . '/' . $newName);
+		return $copy->getId();
 	}
 
 	/**
