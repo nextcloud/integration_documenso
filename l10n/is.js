@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Completed" : "Lokið",
     "Draft" : "Drög",
+    "More documents" : "Fleiri skjöl",
     "Bad credentials" : "Gölluð auðkenni",
     "Connected accounts" : "Tengdir aðgangar",
     "Cancel" : "Hætta við",
