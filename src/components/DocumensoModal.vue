@@ -24,6 +24,9 @@
 						:placeholder="t('integration_documenso', 'Nextcloud users or email addresses')"
 						:label="t('integration_documenso', 'Users or email addresses')"
 						@update:value="updateSelectedItems($event)" />
+					<NcCheckboxRadioSwitch v-model="overwriteOriginal" class="overwrite-switch">
+						{{ t('integration_documenso', 'Overwrite original file when signed') }}
+					</NcCheckboxRadioSwitch>
 					<NcEmptyContent
 						:name="t('integration_documenso', 'Documenso workflow')"
 						:description="t('integration_documenso', 'The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode.')">
@@ -94,6 +97,7 @@
 <script>
 import NcModal from '@nextcloud/vue/components/NcModal'
 import NcButton from '@nextcloud/vue/components/NcButton'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 import NcDialog from '@nextcloud/vue/components/NcDialog'
 import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
 import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
@@ -112,6 +116,7 @@ export default {
 		NcModal,
 		MultiselectWho,
 		NcButton,
+		NcCheckboxRadioSwitch,
 		NcLoadingIcon,
 		NcEmptyContent,
 		NcDialog,
@@ -126,6 +131,7 @@ export default {
 			loading: false,
 			fileId: 0,
 			selectedItems: [],
+			overwriteOriginal: false,
 			showDialog: false,
 			showSaveChoiceDialog: false,
 			distributeLoading: false,
@@ -161,6 +167,7 @@ export default {
 		},
 		closeRequestModal() {
 			this.selectedItems = []
+			this.overwriteOriginal = false
 			this.show = false
 			this.showSaveChoiceDialog = false
 			this.host = ''
@@ -204,6 +211,7 @@ export default {
 			const req = {
 				targetUserIds,
 				targetEmails,
+				overwriteOriginal: this.overwriteOriginal,
 			}
 			const url = generateUrl('/apps/integration_documenso/documenso/standalone-sign/' + this.fileId)
 			axios.put(url, req).then((response) => {

@@ -7,14 +7,19 @@ namespace OCA\Documenso\Service;
 use Exception;
 use OCA\Documenso\AppInfo\Application;
 use OCP\Files\IRootFolder;
+use OCP\Files\Node;
 use OCP\IConfig;
 use OCP\IUser;
 use OCP\IUserManager;
 use OCP\Security\ICrypto;
+use OCP\Security\ISecureRandom;
 use OCP\Share\IManager as IShareManager;
 use OCP\SystemTag\ISystemTagManager;
 
 class UtilsService {
+	public const WEBHOOK_SECRET_KEY = 'webhook_secret';
+	private const WEBHOOK_SECRET_LENGTH = 32;
+
 	/**
 	 * Service providing storage, circles and tags tools
 	 */
@@ -26,6 +31,7 @@ class UtilsService {
 		private ISystemTagManager $tagManager,
 		private IConfig $config,
 		private ICrypto $crypto,
+		private ISecureRandom $secureRandom,
 	) {
 	}
 
@@ -63,19 +69,33 @@ class UtilsService {
 	}
 
 	/**
-	 * Check if user has access to a given file
+	 * Return the user's webhook secret, creating and encrypting one if needed.
+	 */
+	public function getOrCreateWebhookSecret(string $userId): string {
+		$secret = $this->getEncryptedUserValue($userId, self::WEBHOOK_SECRET_KEY);
+		if ($secret !== '') {
+			return $secret;
+		}
+
+		$secret = $this->secureRandom->generate(self::WEBHOOK_SECRET_LENGTH, ISecureRandom::CHAR_ALPHANUMERIC);
+		$this->setEncryptedUserValue($userId, self::WEBHOOK_SECRET_KEY, $secret);
+		return $secret;
+	}
+
+	/**
+	 * Get a file by its ID and user ID
 	 *
 	 * @param int $fileId
 	 * @param string $userId
-	 * @return bool
+	 * @return Node|null
 	 */
-	public function userHasAccessTo(int $fileId, string $userId): bool {
+	public function getFile(int $fileId, string $userId): ?Node {
 		$user = $this->userManager->get($userId);
 		if ($user instanceof IUser) {
 			$userFolder = $this->root->getUserFolder($userId);
 			$found = $userFolder->getById($fileId);
-			return !empty($found);
+			return $found[0] ?? null;
 		}
-		return false;
+		return null;
 	}
 }

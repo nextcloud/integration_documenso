@@ -6,6 +6,7 @@ namespace OCA\Documenso\AppInfo;
 
 use OCA\Documenso\Dashboard\DocumensoWidget;
 use OCA\Documenso\Listener\ContentSecurityPolicyListener;
+use OCA\Documenso\Notification\Notifier;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -35,6 +36,7 @@ class Application extends App implements IBootstrap {
 	public function register(IRegistrationContext $context): void {
 		$context->registerDashboardWidget(DocumensoWidget::class);
 		$context->registerEventListener(AddContentSecurityPolicyEvent::class, ContentSecurityPolicyListener::class);
+		$context->registerNotifierService(Notifier::class);
 	}
 
 	public function boot(IBootContext $context): void {
