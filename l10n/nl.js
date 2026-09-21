@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Completed" : "Voltooid",
     "Draft" : "Concept",
+    "More documents" : "Meer documenten",
     "Bad credentials" : "Foute inloggegevens",
     "Bad HTTP method" : "Foute HTTP methode",
     "Connected accounts" : "Verbonden accounts",
