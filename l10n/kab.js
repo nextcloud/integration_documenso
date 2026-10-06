@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Completed" : "Yemmed",
     "Draft" : "Arewway",
+    "More documents" : "Ugar n isemliyen",
     "Cancel" : "Cancel",
     "OK" : "IH",
     "Who?" : "Anwa?",
