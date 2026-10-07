@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace OCA\Documenso\BackgroundJob;
 
 use OCA\Documenso\AppInfo\Application;
+use OCA\Documenso\Db\DocumensoFile;
 use OCA\Documenso\Db\DocumensoFileMapper;
 use OCA\Documenso\Service\FileService;
 use OCP\AppFramework\Utility\ITimeFactory;
@@ -50,7 +51,8 @@ class CheckUserDocumentsJob extends QueuedJob {
 			return;
 		}
 
-		$mappings = $this->fileMapper->findAllByUserId($userId);
+		$pollStatuses = [DocumensoFile::STATUS_DRAFT, DocumensoFile::STATUS_PENDING];
+		$mappings = $this->fileMapper->findByUserIdAndStatuses($userId, $pollStatuses);
 		if ($mappings === []) {
 			return;
 		}
@@ -59,7 +61,7 @@ class CheckUserDocumentsJob extends QueuedJob {
 			$this->fileService->processMapping($mapping);
 		}
 
-		if ($this->fileMapper->findAllByUserId($userId) !== []) {
+		if ($this->fileMapper->findByUserIdAndStatuses($userId, $pollStatuses) !== []) {
 			$this->scheduleRetry($userId);
 		}
 	}

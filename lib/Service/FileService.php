@@ -74,64 +74,61 @@ class FileService {
 			? $document['status']
 			: '';
 
-		if ($status === 'REJECTED') {
-			$this->logger->info(
-				'Documenso document ' . $documentId . ' ended with status ' . $status,
-				['app' => Application::APP_ID]
-			);
-			$this->fileMapper->delete($mapping);
+		if ($status === '' || !in_array($status, DocumensoFile::STATUSES, true)) {
 			return;
 		}
 
-		if ($status !== 'COMPLETED') {
-			return;
-		}
+		$alreadyCompleted = $mapping->getStatus() === DocumensoFile::STATUS_COMPLETED;
 
-		$download = $this->apiService->downloadSignedDocument($userId, $documentId);
-		if (!isset($download['content'])) {
-			$this->logger->warning(
-				'Failed to download signed Documenso document ' . $documentId . ': ' . ($download['error'] ?? 'unknown error'),
-				['app' => Application::APP_ID]
-			);
-			return;
-		}
-
-		try {
-			$userFolder = $this->rootFolder->getUserFolder($userId);
-			$nodes = $userFolder->getById($fileId);
-			if ($nodes === []) {
-				throw new NotFoundException('File not found for id ' . $fileId);
+		if ($status === DocumensoFile::STATUS_COMPLETED && !$alreadyCompleted) {
+			$download = $this->apiService->downloadSignedDocument($userId, $documentId);
+			if (!isset($download['content'])) {
+				$this->logger->warning(
+					'Failed to download signed Documenso document ' . $documentId . ': ' . ($download['error'] ?? 'unknown error'),
+					['app' => Application::APP_ID]
+				);
+				return;
 			}
-			$node = $nodes[0];
-			if (!($node instanceof File)) {
-				throw new NotFoundException('Node is not a file for id ' . $fileId);
-			}
-			$node->putContent($download['content']);
 
-			// Create a notification for the user
-			$notification = $this->notificationManager->createNotification();
-			$notification->setApp(Application::APP_ID)
-				->setUser($userId)
-				->setDateTime(new \DateTime())
-				->setObject('document', (string)$documentId)
-				->setSubject('document_signed', [
-					'id' => $node->getId(),
-					'name' => $node->getName(),
-				]);
-			$this->notificationManager->notify($notification);
-		} catch (\Throwable $e) {
-			$this->logger->error(
-				'Failed to update Nextcloud file for Documenso document ' . $documentId . ': ' . $e->getMessage(),
-				['app' => Application::APP_ID, 'exception' => $e]
-			);
-			$this->fileMapper->delete($mapping);
-			return;
+			try {
+				$userFolder = $this->rootFolder->getUserFolder($userId);
+				$nodes = $userFolder->getById($fileId);
+				if ($nodes === []) {
+					throw new NotFoundException('File not found for id ' . $fileId);
+				}
+				$node = $nodes[0];
+				if (!($node instanceof File)) {
+					throw new NotFoundException('Node is not a file for id ' . $fileId);
+				}
+				$node->putContent($download['content']);
+
+				$notification = $this->notificationManager->createNotification();
+				$notification->setApp(Application::APP_ID)
+					->setUser($userId)
+					->setDateTime(new \DateTime())
+					->setObject('document', (string)$documentId)
+					->setSubject('document_signed', [
+						'id' => $node->getId(),
+						'name' => $node->getName(),
+					]);
+				$this->notificationManager->notify($notification);
+
+				$this->logger->info(
+					'Updated Nextcloud file ' . $fileId . ' from completed Documenso document ' . $documentId,
+					['app' => Application::APP_ID]
+				);
+			} catch (\Throwable $e) {
+				$this->logger->error(
+					'Failed to update Nextcloud file for Documenso document ' . $documentId . ': ' . $e->getMessage(),
+					['app' => Application::APP_ID, 'exception' => $e]
+				);
+				return;
+			}
 		}
 
-		$this->fileMapper->delete($mapping);
-		$this->logger->info(
-			'Updated Nextcloud file ' . $fileId . ' from completed Documenso document ' . $documentId,
-			['app' => Application::APP_ID]
-		);
+		if ($mapping->getStatus() !== $status) {
+			$mapping->setStatus($status);
+			$this->fileMapper->update($mapping);
+		}
 	}
 }

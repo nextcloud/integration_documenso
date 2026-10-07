@@ -6,6 +6,7 @@ namespace OCA\Documenso\Controller;
 
 use OCA\Documenso\AppInfo\Application;
 use OCA\Documenso\BackgroundJob\CheckUserDocumentsJob;
+use OCA\Documenso\Db\DocumensoFile;
 use OCA\Documenso\Db\DocumensoFileMapper;
 use OCA\Documenso\Service\DocumensoAPIService;
 use OCA\Documenso\Service\FileService;
@@ -90,6 +91,15 @@ class DocumensoController extends Controller {
 				return new DataResponse(['error' => 'You don\'t have permission to overwrite the original file'], 401);
 			}
 		}
+		$mapping = $this->documensoFileMapper->findByFileId($fileId);
+		if ($mapping !== null) {
+			$status = $mapping->getStatus();
+			if ($status === DocumensoFile::STATUS_CANCELLED || $status === DocumensoFile::STATUS_REJECTED) {
+				$this->documensoFileMapper->delete($mapping);
+			} else {
+				return new DataResponse(['error' => 'A Documenso signing process has already been started for this file'], 401);
+			}
+		}
 		$signResult = $this->documensoAPIService->emailSignStandalone($fileId, $this->userId, $targetEmails, $targetUserIds);
 		if (isset($signResult['error'])) {
 			return new DataResponse($signResult, 401);
@@ -158,7 +168,10 @@ class DocumensoController extends Controller {
 				$jobArgument = ['user_id' => $this->userId];
 				if ($disabled) {
 					$this->jobList->remove(CheckUserDocumentsJob::class, $jobArgument);
-				} elseif ($this->documensoFileMapper->findAllByUserId($this->userId) !== []
+				} elseif ($this->documensoFileMapper->findByUserIdAndStatuses($this->userId, [
+					DocumensoFile::STATUS_DRAFT,
+					DocumensoFile::STATUS_PENDING,
+				]) !== []
 					&& !$this->jobList->has(CheckUserDocumentsJob::class, $jobArgument)) {
 					$this->jobList->add(CheckUserDocumentsJob::class, $jobArgument);
 				}
