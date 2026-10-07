@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace OCA\Documenso\Controller;
 
 use OCA\Documenso\AppInfo\Application;
+use OCA\Documenso\BackgroundJob\CheckUserDocumentsJob;
+use OCA\Documenso\Db\DocumensoFileMapper;
 use OCA\Documenso\Service\DocumensoAPIService;
+use OCA\Documenso\Service\FileService;
 use OCA\Documenso\Service\UtilsService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
@@ -13,10 +16,11 @@ use OCP\AppFramework\Http\Attribute\FrontpageRoute;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\BackgroundJob\IJobList;
+use OCP\Files\NotPermittedException;
 use OCP\IConfig;
-use OCP\IL10N;
 use OCP\IRequest;
-use OCP\IURLGenerator;
+use Psr\Log\LoggerInterface;
 
 class DocumensoController extends Controller {
 
@@ -24,10 +28,12 @@ class DocumensoController extends Controller {
 		string $AppName,
 		IRequest $request,
 		private IConfig $config,
-		private IL10N $l,
-		private IURLGenerator $urlGenerator,
 		private DocumensoAPIService $documensoAPIService,
 		private UtilsService $utilsService,
+		private DocumensoFileMapper $documensoFileMapper,
+		private FileService $fileService,
+		private IJobList $jobList,
+		private LoggerInterface $logger,
 		private ?string $userId,
 	) {
 		parent::__construct($AppName, $request);
@@ -53,11 +59,12 @@ class DocumensoController extends Controller {
 	 * @param int $fileId
 	 * @param string[] $targetEmails
 	 * @param string[] $targetUserIds
+	 * @param bool $overwriteOriginal
 	 * @return DataResponse
 	 */
 	#[NoAdminRequired]
 	#[FrontpageRoute(verb: 'PUT', url: '/documenso/standalone-sign/{fileId}')]
-	public function signStandalone(int $fileId, array $targetEmails = [], array $targetUserIds = []): DataResponse {
+	public function signStandalone(int $fileId, array $targetEmails = [], array $targetUserIds = [], bool $overwriteOriginal = false): DataResponse {
 		if ($this->userId === null) {
 			return new DataResponse(['error' => 'no user in context'], Http::STATUS_UNAUTHORIZED);
 		}
@@ -67,15 +74,45 @@ class DocumensoController extends Controller {
 		if (!$isConnected) {
 			return new DataResponse(['error' => 'Documenso connected account is not configured'], 401);
 		}
-		if (!$this->utilsService->userHasAccessTo($fileId, $this->userId)) {
+		$file = $this->utilsService->getFile($fileId, $this->userId);
+		if ($file === null) {
 			return new DataResponse(['error' => 'You don\'t have access to this file'], 401);
+		}
+		if (!$overwriteOriginal) {
+			try {
+				$fileId = $this->fileService->copyFile($file);
+			} catch (NotPermittedException $e) {
+				return new DataResponse(['error' => $e->getMessage()], 401);
+			}
+		} else {
+			// File only needs to be writeable if we're overwriting the original
+			if (!$file->isUpdateable()) {
+				return new DataResponse(['error' => 'You don\'t have permission to overwrite the original file'], 401);
+			}
 		}
 		$signResult = $this->documensoAPIService->emailSignStandalone($fileId, $this->userId, $targetEmails, $targetUserIds);
 		if (isset($signResult['error'])) {
 			return new DataResponse($signResult, 401);
-		} else {
-			return new DataResponse($signResult);
 		}
+
+		if (isset($signResult['documentId']) && is_numeric($signResult['documentId'])) {
+			$documentId = (int)$signResult['documentId'];
+			try {
+				$this->documensoFileMapper->create($fileId, $documentId, $this->userId);
+				$jobArgument = ['user_id' => $this->userId];
+				$pollingDisabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'polling_disabled', '0') === '1';
+				if (!$pollingDisabled && !$this->jobList->has(CheckUserDocumentsJob::class, $jobArgument)) {
+					$this->jobList->add(CheckUserDocumentsJob::class, $jobArgument);
+				}
+			} catch (\Throwable $e) {
+				$this->logger->error(
+					'Failed to track Documenso document ' . $documentId . ': ' . $e->getMessage(),
+					['app' => Application::APP_ID, 'exception' => $e]
+				);
+			}
+		}
+
+		return new DataResponse($signResult);
 	}
 
 	/**
@@ -115,6 +152,18 @@ class DocumensoController extends Controller {
 			return new DataResponse(['error' => 'no user in context'], Http::STATUS_UNAUTHORIZED);
 		}
 		foreach ($values as $key => $value) {
+			if ($key === 'polling_disabled') {
+				$disabled = $value === '1';
+				$this->config->setUserValue($this->userId, Application::APP_ID, $key, $disabled ? '1' : '0');
+				$jobArgument = ['user_id' => $this->userId];
+				if ($disabled) {
+					$this->jobList->remove(CheckUserDocumentsJob::class, $jobArgument);
+				} elseif ($this->documensoFileMapper->findAllByUserId($this->userId) !== []
+					&& !$this->jobList->has(CheckUserDocumentsJob::class, $jobArgument)) {
+					$this->jobList->add(CheckUserDocumentsJob::class, $jobArgument);
+				}
+				continue;
+			}
 			if ($key === 'token' && $value !== '') {
 				$this->utilsService->setEncryptedUserValue($this->userId, $key, trim($value));
 			} else {
