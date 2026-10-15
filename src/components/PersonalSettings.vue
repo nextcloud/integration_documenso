@@ -35,8 +35,8 @@
 			</NcTextField>
 			<NcNoteCard type="info">
 				<p>
-					<!-- TRANSLATORS document.completed is a Documenso webhook event name and must stay in English -->
-					{{ t('integration_documenso', 'To update signed files immediately instead of waiting for the next polling interval, create a webhook in Documenso under the "Webhooks" section. Make sure to select the "document.completed" event trigger and point it to this URL:') }}
+					<!-- TRANSLATORS document.sent, document.completed, document.rejected and document.cancelled are Documenso webhook event names and must stay in English -->
+					{{ t('integration_documenso', 'To update document status and signed files immediately instead of waiting for the next polling interval, create a webhook in Documenso under the "Webhooks" section. Make sure to select the "document.sent", "document.completed", "document.rejected" and "document.cancelled" event triggers and point it to this URL:') }}
 				</p>
 				<p class="webhook-value">
 					{{ state.webhook_url }}

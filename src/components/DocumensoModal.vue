@@ -24,9 +24,38 @@
 						:placeholder="t('integration_documenso', 'Nextcloud users or email addresses')"
 						:label="t('integration_documenso', 'Users or email addresses')"
 						@update:value="updateSelectedItems($event)" />
-					<NcCheckboxRadioSwitch v-model="overwriteOriginal" class="overwrite-switch">
+					<NcCheckboxRadioSwitch
+						v-model="overwriteOriginal"
+						:disabled="!canOverwriteOriginal"
+						class="overwrite-switch">
 						{{ t('integration_documenso', 'Overwrite original file when signed') }}
 					</NcCheckboxRadioSwitch>
+					<template v-if="!overwriteOriginal">
+						<span class="field-label">
+							{{ t('integration_documenso', 'Save signed file as') }}
+						</span>
+						<div class="line destination-folder">
+							<label for="documenso-output-folder">
+								<FolderOutlineIcon />
+								{{ t('integration_documenso', 'Destination folder') }}
+							</label>
+							<input id="documenso-output-folder"
+								:readonly="true"
+								:value="targetFolder">
+							<NcButton class="edit-output-dir"
+								:aria-label="t('integration_documenso', 'Select a destination folder')"
+								@click="pickFolder">
+								<template #icon>
+									<PencilOutlineIcon />
+								</template>
+							</NcButton>
+						</div>
+						<NcTextField
+							v-model="targetName"
+							class="destination-name"
+							:label="t('integration_documenso', 'File name')"
+							:placeholder="t('integration_documenso', 'document_signed.pdf')" />
+					</template>
 					<NcEmptyContent
 						:name="t('integration_documenso', 'Documenso workflow')"
 						:description="t('integration_documenso', 'The document and recipients will be sent to Documenso. A new tab will open with your Documenso overview. To place the signature fields and send the document for signing, please open the uploaded document in editing mode.')">
@@ -101,13 +130,17 @@ import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwit
 import NcDialog from '@nextcloud/vue/components/NcDialog'
 import NcLoadingIcon from '@nextcloud/vue/components/NcLoadingIcon'
 import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
+import FolderOutlineIcon from 'vue-material-design-icons/FolderOutline.vue'
+import PencilOutlineIcon from 'vue-material-design-icons/PencilOutline.vue'
 import { EmbedUpdateDocumentV1 } from '@documenso/embed-vue'
 import MultiselectWho from './MultiselectWho.vue'
 import DocumensoIcon from './icons/DocumensoIcon.vue'
 
 import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
-import { showError, showSuccess } from '@nextcloud/dialogs'
+import { getFilePickerBuilder, showError, showSuccess } from '@nextcloud/dialogs'
+import '@nextcloud/dialogs/style.css'
 export default {
 	name: 'DocumensoModal',
 
@@ -120,6 +153,9 @@ export default {
 		NcLoadingIcon,
 		NcEmptyContent,
 		NcDialog,
+		NcTextField,
+		FolderOutlineIcon,
+		PencilOutlineIcon,
 		EmbedUpdateDocumentV1,
 	},
 
@@ -132,6 +168,9 @@ export default {
 			fileId: 0,
 			selectedItems: [],
 			overwriteOriginal: false,
+			canOverwriteOriginal: true,
+			targetFolder: '',
+			targetName: '',
 			showDialog: false,
 			showSaveChoiceDialog: false,
 			distributeLoading: false,
@@ -144,7 +183,13 @@ export default {
 
 	computed: {
 		canValidate() {
-			return this.selectedItems.length > 0
+			if (this.selectedItems.length === 0) {
+				return false
+			}
+			if (this.overwriteOriginal) {
+				return true
+			}
+			return this.targetFolder !== '' && this.targetName.trim() !== ''
 		},
 		showIframe() {
 			return this.embeddingToken !== ''
@@ -168,6 +213,9 @@ export default {
 		closeRequestModal() {
 			this.selectedItems = []
 			this.overwriteOriginal = false
+			this.canOverwriteOriginal = true
+			this.targetFolder = ''
+			this.targetName = ''
 			this.show = false
 			this.showSaveChoiceDialog = false
 			this.host = ''
@@ -196,8 +244,38 @@ export default {
 		onGoToDocumensoClick() {
 			this.openDocumentTab(true)
 		},
-		setFileId(fileId) {
+		setSourceFile(fileId, targetFolder, targetName, canOverwriteOriginal = true) {
 			this.fileId = fileId
+			this.targetFolder = targetFolder
+			this.targetName = targetName
+			this.canOverwriteOriginal = canOverwriteOriginal
+			if (!canOverwriteOriginal) {
+				this.overwriteOriginal = false
+			}
+		},
+		async pickFolder() {
+			const picker = getFilePickerBuilder(t('integration_documenso', 'Select a destination folder'))
+				.startAt(this.targetFolder)
+				.setMultiSelect(false)
+				.addMimeTypeFilter('httpd/unix-directory')
+				.allowDirectories(true)
+				.addButton({
+					label: t('integration_documenso', 'Select'),
+					callback: (nodes) => {
+						const node = nodes[0]
+						if (node) {
+							console.debug(node.path)
+							this.targetFolder = node.path
+						}
+					},
+				})
+				.build()
+
+			try {
+				await picker.pick()
+			} catch {
+				// picker closed without selecting
+			}
 		},
 		updateSelectedItems(newValue) {
 			this.selectedItems = newValue
@@ -212,6 +290,8 @@ export default {
 				targetUserIds,
 				targetEmails,
 				overwriteOriginal: this.overwriteOriginal,
+				targetFolder: this.targetFolder,
+				targetName: this.targetName.trim(),
 			}
 			const url = generateUrl('/apps/integration_documenso/documenso/standalone-sign/' + this.fileId)
 			axios.put(url, req).then((response) => {
@@ -277,6 +357,27 @@ export default {
 		width: 100%;
 		margin: 0 0 28px 0;
 		--vs-dropdown-max-height: 300px;
+	}
+
+	.line {
+		display: flex;
+
+		label {
+			display: flex;
+			align-items: center;
+			margin-right: 8px;
+			white-space: nowrap;
+
+			.material-design-icon {
+				margin-right: 8px;
+			}
+		}
+
+		input {
+			flex: 1;
+			min-width: 0;
+			width: auto;
+		}
 	}
 
 	.settings-hint {

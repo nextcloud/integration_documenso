@@ -2,6 +2,10 @@
 
 namespace Doctrine\DBAL\Schema {
 	class Table {
+		public function hasColumn(string $name): bool {
+			return false;
+		}
+
 		/**
 		 * @param mixed[] $options
 		 * @return self

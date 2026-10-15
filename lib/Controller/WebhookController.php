@@ -46,7 +46,6 @@ class WebhookController extends Controller {
 	 * Receive Documenso webhook events for a Nextcloud user.
 	 *
 	 * @param string $userId
-	 * @param string|null $event
 	 * @param array|null $payload
 	 * @return DataResponse
 	 */
@@ -54,7 +53,7 @@ class WebhookController extends Controller {
 	#[NoCSRFRequired]
 	#[BruteForceProtection(action: 'documenso_webhook')]
 	#[FrontpageRoute(verb: 'POST', url: '/webhook/{userId}')]
-	public function handle(string $userId, ?string $event = null, ?array $payload = null): DataResponse {
+	public function handle(string $userId, ?array $payload = null): DataResponse {
 		$receivedSecret = $this->request->getHeader('X-Documenso-Secret');
 		$storedSecret = $this->utilsService->getEncryptedUserValue($userId, UtilsService::WEBHOOK_SECRET_KEY);
 		if ($storedSecret === '' || $receivedSecret === '' || !hash_equals($storedSecret, $receivedSecret)) {
@@ -66,19 +65,15 @@ class WebhookController extends Controller {
 		$this->config->setUserValue($userId, Application::APP_ID, 'polling_disabled', '1');
 		$this->jobList->remove(CheckUserDocumentsJob::class, ['user_id' => $userId]);
 
-		if ($event !== 'DOCUMENT_COMPLETED') {
-			return new DataResponse(['received' => true]);
-		}
-
 		$documentId = 0;
 		if (is_array($payload) && isset($payload['id']) && is_numeric($payload['id'])) {
 			$documentId = (int)$payload['id'];
 		}
-		if ($documentId <= 0) {
-			$this->logger->warning(
-				'Documenso webhook DOCUMENT_COMPLETED is missing a document id',
-				['app' => Application::APP_ID]
-			);
+		$hasStatus = is_array($payload)
+			&& isset($payload['status'])
+			&& is_string($payload['status'])
+			&& $payload['status'] !== '';
+		if ($documentId <= 0 || !$hasStatus) {
 			return new DataResponse(['received' => true]);
 		}
 

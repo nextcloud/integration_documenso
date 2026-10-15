@@ -15,7 +15,7 @@ use OCP\DB\Types;
 use OCP\Migration\IOutput;
 use OCP\Migration\SimpleMigrationStep;
 
-class Version020300Date20260811171522 extends SimpleMigrationStep {
+class Version020300Date20261015152742 extends SimpleMigrationStep {
 	/**
 	 * @param IOutput $output
 	 * @param Closure(): ISchemaWrapper $schemaClosure
@@ -44,9 +44,15 @@ class Version020300Date20260811171522 extends SimpleMigrationStep {
 			'notnull' => true,
 			'length' => 300,
 		]);
+		$table->addColumn('status', Types::STRING, [
+			'notnull' => true,
+			'length' => 32,
+			'default' => 'DRAFT',
+		]);
 
 		$table->setPrimaryKey(['id']);
 		$table->addUniqueIndex(['user_id', 'document_id'], 'documenso_files_user_id_document_id');
+		$table->addUniqueIndex(['file_id'], 'documenso_files_file_id');
 		return $schema;
 	}
 }

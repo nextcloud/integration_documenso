@@ -12,7 +12,7 @@ import DocumensoIcon from '../img/app-dark.svg'
 import { getCSPNonce } from '@nextcloud/auth'
 
 __webpack_nonce__ = getCSPNonce() // eslint-disable-line
-__webpack_public_path__ = linkTo('integration_zulip', 'js/') // eslint-disable-line
+__webpack_public_path__ = linkTo('integration_documenso', 'js/') // eslint-disable-line
 
 if (!OCA.Documenso) {
 	/**
@@ -41,7 +41,21 @@ const requestSignatureAction = {
 	},
 	iconSvgInline: () => DocumensoIcon,
 	async exec({ nodes }) {
-		OCA.Documenso.DocumensoModalVue.setFileId(nodes[0].fileid)
+		const node = nodes[0]
+		const name = node.basename
+		const lastDot = name.lastIndexOf('.')
+		const targetName = lastDot > 0
+			? name.slice(0, lastDot) + '_signed' + name.slice(lastDot)
+			: name + '_signed'
+		// Same rule as DocumensoController: cancelled/rejected can be replaced; other statuses block overwrite
+		const status = node.attributes['documenso-state'] ?? ''
+		const canOverwriteOriginal = status === ''
+		OCA.Documenso.DocumensoModalVue.setSourceFile(
+			node.fileid,
+			node.dirname || '/',
+			targetName,
+			canOverwriteOriginal,
+		)
 		OCA.Documenso.DocumensoModalVue.showModal()
 		return null
 	},
