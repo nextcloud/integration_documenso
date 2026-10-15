@@ -12,7 +12,9 @@ namespace OCA\Documenso\Service;
 use OCA\Documenso\AppInfo\Application;
 use OCA\Documenso\Db\DocumensoFile;
 use OCA\Documenso\Db\DocumensoFileMapper;
+use OCP\Files\AlreadyExistsException;
 use OCP\Files\File;
+use OCP\Files\Folder;
 use OCP\Files\IRootFolder;
 use OCP\Files\Node;
 use OCP\Files\NotFoundException;
@@ -31,21 +33,35 @@ class FileService {
 	}
 
 	/**
-	 * Copy a file next to the original with _signed appended to the basename.
+	 * Copy a file to a user-chosen folder and name. Never overwrites an existing file.
 	 *
 	 * @return int The file ID of the copy
+	 * @throws AlreadyExistsException
+	 * @throws NotFoundException
+	 * @throws NotPermittedException
 	 */
-	public function copyFile(Node $originalFile): int {
-		$parent = $originalFile->getParent();
-		if (!$parent->isUpdateable()) {
-			throw new NotPermittedException('Parent folder is not writable for user');
+	public function copyFile(Node $originalFile, string $userId, string $targetFolderPath, string $targetName): int {
+		$targetName = trim($targetName);
+		if ($targetName === '' || str_contains($targetName, '/') || str_contains($targetName, '\\')) {
+			throw new NotPermittedException('Invalid file name');
 		}
-		$name = $originalFile->getName();
-		$ext = pathinfo($name, PATHINFO_EXTENSION);
-		$basename = $ext !== '' ? substr($name, 0, -(strlen($ext) + 1)) : $name;
-		$newName = $basename . '_signed' . ($ext !== '' ? '.' . $ext : '');
-		$newName = $parent->getNonExistingName($newName);
-		$copy = $originalFile->copy($parent->getPath() . '/' . $newName);
+
+		$userFolder = $this->rootFolder->getUserFolder($userId);
+		$relativePath = trim($targetFolderPath, '/');
+		if ($relativePath === '') {
+			$folder = $userFolder;
+		} else {
+			$node = $userFolder->get($relativePath);
+			if (!($node instanceof Folder)) {
+				throw new NotFoundException('Destination is not a folder');
+			}
+			$folder = $node;
+		}
+		if ($folder->nodeExists($targetName)) {
+			throw new AlreadyExistsException('A file with this name already exists in the destination folder');
+		}
+
+		$copy = $originalFile->copy($folder->getPath() . '/' . $targetName);
 		return $copy->getId();
 	}
 

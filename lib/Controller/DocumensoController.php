@@ -18,6 +18,8 @@ use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\BackgroundJob\IJobList;
+use OCP\Files\AlreadyExistsException;
+use OCP\Files\NotFoundException;
 use OCP\Files\NotPermittedException;
 use OCP\IConfig;
 use OCP\IRequest;
@@ -61,11 +63,13 @@ class DocumensoController extends Controller {
 	 * @param string[] $targetEmails
 	 * @param string[] $targetUserIds
 	 * @param bool $overwriteOriginal
+	 * @param string $targetFolder
+	 * @param string $targetName
 	 * @return DataResponse
 	 */
 	#[NoAdminRequired]
 	#[FrontpageRoute(verb: 'PUT', url: '/documenso/standalone-sign/{fileId}')]
-	public function signStandalone(int $fileId, array $targetEmails = [], array $targetUserIds = [], bool $overwriteOriginal = false): DataResponse {
+	public function signStandalone(int $fileId, array $targetEmails = [], array $targetUserIds = [], bool $overwriteOriginal = false, string $targetFolder = '', string $targetName = ''): DataResponse {
 		if ($this->userId === null) {
 			return new DataResponse(['error' => 'no user in context'], Http::STATUS_UNAUTHORIZED);
 		}
@@ -81,15 +85,12 @@ class DocumensoController extends Controller {
 		}
 		if (!$overwriteOriginal) {
 			try {
-				$fileId = $this->fileService->copyFile($file);
-			} catch (NotPermittedException $e) {
-				return new DataResponse(['error' => $e->getMessage()], 401);
+				$fileId = $this->fileService->copyFile($file, $this->userId, $targetFolder, $targetName);
+			} catch (AlreadyExistsException|NotFoundException|NotPermittedException $e) {
+				return new DataResponse(['error' => $e->getMessage()], Http::STATUS_BAD_REQUEST);
 			}
-		} else {
-			// File only needs to be writeable if we're overwriting the original
-			if (!$file->isUpdateable()) {
-				return new DataResponse(['error' => 'You don\'t have permission to overwrite the original file'], 401);
-			}
+		} elseif (!$file->isUpdateable()) {
+			return new DataResponse(['error' => 'You don\'t have permission to overwrite the original file'], Http::STATUS_BAD_REQUEST);
 		}
 		$mapping = $this->documensoFileMapper->findByFileId($fileId);
 		if ($mapping !== null) {

@@ -15,7 +15,7 @@ use OCP\DB\Types;
 use OCP\Migration\IOutput;
 use OCP\Migration\SimpleMigrationStep;
 
-class Version020300Date20260904124704 extends SimpleMigrationStep {
+class Version020300Date20261015152742 extends SimpleMigrationStep {
 	/**
 	 * @param IOutput $output
 	 * @param Closure(): ISchemaWrapper $schemaClosure
@@ -25,21 +25,33 @@ class Version020300Date20260904124704 extends SimpleMigrationStep {
 	#[\Override]
 	public function changeSchema(IOutput $output, Closure $schemaClosure, array $options): ?ISchemaWrapper {
 		$schema = $schemaClosure();
-		if (!$schema->hasTable('documenso_files')) {
+		if ($schema->hasTable('documenso_files')) {
 			return null;
 		}
 
-		$table = $schema->getTable('documenso_files');
-		if ($table->hasColumn('status')) {
-			return null;
-		}
-
+		$table = $schema->createTable('documenso_files');
+		$table->addColumn('id', Types::BIGINT, [
+			'autoincrement' => true,
+			'notnull' => true,
+		]);
+		$table->addColumn('file_id', Types::BIGINT, [
+			'notnull' => true,
+		]);
+		$table->addColumn('document_id', Types::BIGINT, [
+			'notnull' => true,
+		]);
+		$table->addColumn('user_id', Types::STRING, [
+			'notnull' => true,
+			'length' => 300,
+		]);
 		$table->addColumn('status', Types::STRING, [
 			'notnull' => true,
 			'length' => 32,
 			'default' => 'DRAFT',
 		]);
 
+		$table->setPrimaryKey(['id']);
+		$table->addUniqueIndex(['user_id', 'document_id'], 'documenso_files_user_id_document_id');
 		$table->addUniqueIndex(['file_id'], 'documenso_files_file_id');
 		return $schema;
 	}
