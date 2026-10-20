@@ -24,5 +24,8 @@
 		<file name="tests/stubs/oc_hooks_emitter.php" />
         <file name="tests/stubs/oca_files_event.php" />
         <file name="tests/stubs/doctrine_dbal_schema_table.php" />
+		<file name="tests/stubs/oca_dav_events_sabrepluginaddevent.php" />
+		<file name="tests/stubs/oca_dav_connector_sabre.php" />
+		<file name="tests/stubs/sabre_dav.php" />
 	</stubs>
 </psalm>

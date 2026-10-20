@@ -12,7 +12,9 @@ namespace OCA\Documenso\Service;
 use OCA\Documenso\AppInfo\Application;
 use OCA\Documenso\Db\DocumensoFile;
 use OCA\Documenso\Db\DocumensoFileMapper;
+use OCP\Files\AlreadyExistsException;
 use OCP\Files\File;
+use OCP\Files\Folder;
 use OCP\Files\IRootFolder;
 use OCP\Files\Node;
 use OCP\Files\NotFoundException;
@@ -31,21 +33,35 @@ class FileService {
 	}
 
 	/**
-	 * Copy a file next to the original with _signed appended to the basename.
+	 * Copy a file to a user-chosen folder and name. Never overwrites an existing file.
 	 *
 	 * @return int The file ID of the copy
+	 * @throws AlreadyExistsException
+	 * @throws NotFoundException
+	 * @throws NotPermittedException
 	 */
-	public function copyFile(Node $originalFile): int {
-		$parent = $originalFile->getParent();
-		if (!$parent->isUpdateable()) {
-			throw new NotPermittedException('Parent folder is not writable for user');
+	public function copyFile(Node $originalFile, string $userId, string $targetFolderPath, string $targetName): int {
+		$targetName = trim($targetName);
+		if ($targetName === '' || str_contains($targetName, '/') || str_contains($targetName, '\\')) {
+			throw new NotPermittedException('Invalid file name');
 		}
-		$name = $originalFile->getName();
-		$ext = pathinfo($name, PATHINFO_EXTENSION);
-		$basename = $ext !== '' ? substr($name, 0, -(strlen($ext) + 1)) : $name;
-		$newName = $basename . '_signed' . ($ext !== '' ? '.' . $ext : '');
-		$newName = $parent->getNonExistingName($newName);
-		$copy = $originalFile->copy($parent->getPath() . '/' . $newName);
+
+		$userFolder = $this->rootFolder->getUserFolder($userId);
+		$relativePath = trim($targetFolderPath, '/');
+		if ($relativePath === '') {
+			$folder = $userFolder;
+		} else {
+			$node = $userFolder->get($relativePath);
+			if (!($node instanceof Folder)) {
+				throw new NotFoundException('Destination is not a folder');
+			}
+			$folder = $node;
+		}
+		if ($folder->nodeExists($targetName)) {
+			throw new AlreadyExistsException('A file with this name already exists in the destination folder');
+		}
+
+		$copy = $originalFile->copy($folder->getPath() . '/' . $targetName);
 		return $copy->getId();
 	}
 
@@ -74,64 +90,61 @@ class FileService {
 			? $document['status']
 			: '';
 
-		if ($status === 'REJECTED') {
-			$this->logger->info(
-				'Documenso document ' . $documentId . ' ended with status ' . $status,
-				['app' => Application::APP_ID]
-			);
-			$this->fileMapper->delete($mapping);
+		if ($status === '' || !in_array($status, DocumensoFile::STATUSES, true)) {
 			return;
 		}
 
-		if ($status !== 'COMPLETED') {
-			return;
-		}
+		$alreadyCompleted = $mapping->getStatus() === DocumensoFile::STATUS_COMPLETED;
 
-		$download = $this->apiService->downloadSignedDocument($userId, $documentId);
-		if (!isset($download['content'])) {
-			$this->logger->warning(
-				'Failed to download signed Documenso document ' . $documentId . ': ' . ($download['error'] ?? 'unknown error'),
-				['app' => Application::APP_ID]
-			);
-			return;
-		}
-
-		try {
-			$userFolder = $this->rootFolder->getUserFolder($userId);
-			$nodes = $userFolder->getById($fileId);
-			if ($nodes === []) {
-				throw new NotFoundException('File not found for id ' . $fileId);
+		if ($status === DocumensoFile::STATUS_COMPLETED && !$alreadyCompleted) {
+			$download = $this->apiService->downloadSignedDocument($userId, $documentId);
+			if (!isset($download['content'])) {
+				$this->logger->warning(
+					'Failed to download signed Documenso document ' . $documentId . ': ' . ($download['error'] ?? 'unknown error'),
+					['app' => Application::APP_ID]
+				);
+				return;
 			}
-			$node = $nodes[0];
-			if (!($node instanceof File)) {
-				throw new NotFoundException('Node is not a file for id ' . $fileId);
-			}
-			$node->putContent($download['content']);
 
-			// Create a notification for the user
-			$notification = $this->notificationManager->createNotification();
-			$notification->setApp(Application::APP_ID)
-				->setUser($userId)
-				->setDateTime(new \DateTime())
-				->setObject('document', (string)$documentId)
-				->setSubject('document_signed', [
-					'id' => $node->getId(),
-					'name' => $node->getName(),
-				]);
-			$this->notificationManager->notify($notification);
-		} catch (\Throwable $e) {
-			$this->logger->error(
-				'Failed to update Nextcloud file for Documenso document ' . $documentId . ': ' . $e->getMessage(),
-				['app' => Application::APP_ID, 'exception' => $e]
-			);
-			$this->fileMapper->delete($mapping);
-			return;
+			try {
+				$userFolder = $this->rootFolder->getUserFolder($userId);
+				$nodes = $userFolder->getById($fileId);
+				if ($nodes === []) {
+					throw new NotFoundException('File not found for id ' . $fileId);
+				}
+				$node = $nodes[0];
+				if (!($node instanceof File)) {
+					throw new NotFoundException('Node is not a file for id ' . $fileId);
+				}
+				$node->putContent($download['content']);
+
+				$notification = $this->notificationManager->createNotification();
+				$notification->setApp(Application::APP_ID)
+					->setUser($userId)
+					->setDateTime(new \DateTime())
+					->setObject('document', (string)$documentId)
+					->setSubject('document_signed', [
+						'id' => $node->getId(),
+						'name' => $node->getName(),
+					]);
+				$this->notificationManager->notify($notification);
+
+				$this->logger->info(
+					'Updated Nextcloud file ' . $fileId . ' from completed Documenso document ' . $documentId,
+					['app' => Application::APP_ID]
+				);
+			} catch (\Throwable $e) {
+				$this->logger->error(
+					'Failed to update Nextcloud file for Documenso document ' . $documentId . ': ' . $e->getMessage(),
+					['app' => Application::APP_ID, 'exception' => $e]
+				);
+				return;
+			}
 		}
 
-		$this->fileMapper->delete($mapping);
-		$this->logger->info(
-			'Updated Nextcloud file ' . $fileId . ' from completed Documenso document ' . $documentId,
-			['app' => Application::APP_ID]
-		);
+		if ($mapping->getStatus() !== $status) {
+			$mapping->setStatus($status);
+			$this->fileMapper->update($mapping);
+		}
 	}
 }
