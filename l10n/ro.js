@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Completed" : "Terminat",
     "Draft" : "Schiță",
+    "More documents" : "Mai multe documente",
     "Bad credentials" : "Credențiale greșite",
     "Bad HTTP method" : "Metodă HTTP nepotrivită",
     "Connected accounts" : "Conturile conectate",
