@@ -10,6 +10,9 @@ OC.L10N.register(
     "Cancel" : "Anulare",
     "OK" : "OK",
     "Open in new tab" : "Deschide într-o filă nouă",
-    "No recommendations. Start typing." : "Nu am găsit recomandări. Începeți să scrieți."
+    "Who?" : "Cine?",
+    "Impossible to get user/group/circle list" : "Lista de utilizatori/grupuri/cercuri nu a putut fi obținută",
+    "No recommendations. Start typing." : "Nu am găsit recomandări. Începeți să scrieți.",
+    "Connected as {user}" : "Conectat ca {user}"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");
