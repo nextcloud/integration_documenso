@@ -203,22 +203,24 @@ class DocumensoAPIService {
 
 	/**
 	 * Download the signed PDF for a completed Documenso document.
+	 * The v2 endpoint returns the PDF itself and works with every Documenso storage transport,
+	 * whereas the v1 endpoint only returns a pre-signed URL when Documenso stores files in S3.
+	 * See https://openapi.documenso.com/reference#tag/document/get/document/{documentId}/download
 	 *
 	 * @return array{content: string}|array{error: string}
 	 */
 	public function downloadSignedDocument(string $userId, int $documentId): array {
 		$baseUrl = $this->config->getUserValue($userId, Application::APP_ID, 'url');
-		$result = $this->apiRequest($baseUrl, $userId, 'api/v1/documents/' . $documentId . '/download');
-		if (isset($result['error'])) {
-			return ['error' => is_string($result['error']) ? $result['error'] : 'Failed to get signed document download'];
-		}
-		if (!isset($result['downloadUrl']) || !is_string($result['downloadUrl']) || $result['downloadUrl'] === '') {
-			return ['error' => 'Missing download URL for signed document'];
-		}
+		$token = $this->utilsService->getEncryptedUserValue($userId, 'token');
 
 		try {
-			$response = $this->client->get($result['downloadUrl']);
-			if ($response->getStatusCode() !== 200) {
+			$response = $this->client->get($baseUrl . 'api/v2/document/' . $documentId . '/download', [
+				'headers' => [
+					'Authorization' => $token,
+				],
+			]);
+			if ($response->getStatusCode() !== 200
+				|| !str_starts_with($response->getHeader('Content-Type'), 'application/pdf')) {
 				return ['error' => 'Failed to download signed document'];
 			}
 			return ['content' => (string)$response->getBody()];
