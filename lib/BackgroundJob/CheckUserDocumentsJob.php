@@ -58,7 +58,16 @@ class CheckUserDocumentsJob extends QueuedJob {
 		}
 
 		foreach ($mappings as $mapping) {
-			$this->fileService->processMapping($mapping);
+			// a failing document must not prevent the retry from being scheduled,
+			// this queued job is already removed from the job list at this point
+			try {
+				$this->fileService->processMapping($mapping);
+			} catch (\Throwable $e) {
+				$this->logger->error(
+					'Failed to check Documenso document ' . $mapping->getDocumentId() . ': ' . $e->getMessage(),
+					['app' => Application::APP_ID, 'exception' => $e]
+				);
+			}
 		}
 
 		if ($this->fileMapper->findByUserIdAndStatuses($userId, $pollStatuses) !== []) {
