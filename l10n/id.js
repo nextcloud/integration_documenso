@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Completed" : "Selesai",
     "Draft" : "Draf",
+    "More documents" : "Dokumen lainnya",
     "Bad credentials" : "Kredensial tidak benar",
     "Bad HTTP method" : "Metode HTTP tidak benar",
     "Connected accounts" : "Akun terhubung",
